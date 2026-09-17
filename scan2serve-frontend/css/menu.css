@@ -1,0 +1,2025 @@
+/* =========================================================
+   SCAN2SERVE
+   CUSTOMER MENU PAGE
+   COMPLETE RESPONSIVE CSS
+========================================================= */
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.menu-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  background: linear-gradient(135deg, #3a2418, #4a2d1c);
+
+  border-bottom: 2px solid rgba(197, 139, 69, 0.55);
+
+  box-shadow: 0 5px 18px rgba(45, 29, 20, 0.18);
+}
+
+/* =========================================================
+   HEADER INNER
+========================================================= */
+
+.header-inner {
+  width: min(1440px, calc(100% - 40px));
+
+  min-height: 76px;
+
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  gap: 12px;
+
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.brand-area {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  min-width: 220px;
+
+  flex: 1 1 auto;
+}
+
+.brand-logo {
+  width: 46px;
+  height: 46px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: linear-gradient(135deg, #e7b956, #f2d47d);
+
+  color: #382216;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 24px;
+  font-weight: 700;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+}
+
+.brand-text {
+  min-width: 0;
+}
+
+.brand-text h1 {
+  margin: 0;
+
+  color: #fff9ef;
+
+  font-size: 22px;
+  line-height: 1.1;
+
+  font-weight: 700;
+}
+
+.brand-text h1 span {
+  color: #e7b956;
+}
+
+.brand-text p {
+  margin: 4px 0 0;
+
+  color: #d8c6b3;
+
+  font-size: 11px;
+}
+
+/* =========================================================
+   TABLE CARD
+========================================================= */
+
+.table-info-card {
+  min-width: 92px;
+
+  padding: 8px 14px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255, 250, 243, 0.08);
+
+  border: 1px solid rgba(224, 179, 111, 0.45);
+
+  border-radius: 9px;
+
+  box-sizing: border-box;
+
+  flex-shrink: 0;
+}
+
+.table-label {
+  color: #d8c6b3;
+
+  font-size: 10px;
+  line-height: 1;
+
+  font-weight: 600;
+
+  letter-spacing: 1.2px;
+}
+
+.table-info-card strong {
+  margin-top: 4px;
+
+  color: #e8b858;
+
+  font-size: 19px;
+  line-height: 1;
+}
+
+/* =========================================================
+   HEADER ACTIONS
+========================================================= */
+
+.header-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  flex-shrink: 0;
+}
+
+.header-button {
+  position: relative;
+
+  min-height: 42px;
+
+  padding: 0 16px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  border-radius: 8px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.header-button:hover {
+  transform: translateY(-1px);
+}
+
+.header-button:active {
+  transform: translateY(0);
+}
+
+/* =========================================================
+   VIEW CART
+========================================================= */
+
+.primary-header-button {
+  border: none;
+
+  background: linear-gradient(135deg, #c76538, #dc793b);
+
+  color: #ffffff;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.primary-header-button:hover {
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* =========================================================
+   CURRENT ORDER
+========================================================= */
+
+.secondary-header-button {
+  border: 1px solid rgba(224, 179, 111, 0.55);
+
+  background: rgba(255, 250, 243, 0.08);
+
+  color: #fff9ef;
+}
+
+.secondary-header-button:hover {
+  background: rgba(255, 250, 243, 0.15);
+}
+
+.button-icon {
+  font-size: 14px;
+}
+
+/* =========================================================
+   CART COUNT
+========================================================= */
+
+.cart-count {
+  min-width: 20px;
+  height: 20px;
+
+  padding: 0 5px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #fff7e8;
+
+  color: #b95f2c;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   HIDDEN
+========================================================= */
+
+.hidden {
+  display: none !important;
+}
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
+
+.menu-page {
+  width: min(1440px, calc(100% - 40px));
+
+  margin: 0 auto;
+
+  padding: 38px 0 65px;
+
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   MENU HERO
+========================================================= */
+
+.menu-introduction {
+  width: 100%;
+
+  min-height: 182px;
+
+  margin: 0 0 30px;
+
+  padding: 25px 30px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 30px;
+
+  background: linear-gradient(135deg, #fffdf9, #f8efe3);
+
+  border: 1px solid #e5d4bd;
+
+  border-radius: 17px;
+
+  box-shadow: 0 5px 18px rgba(83, 57, 34, 0.07);
+
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.menu-introduction-content {
+  flex: 1 1 auto;
+
+  min-width: 0;
+}
+
+.menu-introduction .eyebrow {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #c25d2c;
+
+  font-size: 11px;
+
+  line-height: 1.2;
+
+  font-weight: 700;
+
+  letter-spacing: 1.6px;
+}
+
+.menu-introduction h2 {
+  margin: 0;
+
+  color: #24160f;
+
+  font-size: 29px;
+
+  line-height: 1.2;
+
+  font-weight: 700;
+}
+
+.menu-introduction p {
+  margin: 7px 0 0;
+
+  color: #795f4d;
+
+  font-size: 14px;
+
+  line-height: 1.5;
+}
+
+/* =========================================================
+   GOOD FOOD / BETTER MOOD
+========================================================= */
+
+.menu-food-brand {
+  width: 190px;
+
+  min-width: 190px;
+
+  max-width: 190px;
+
+  flex: 0 0 190px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  transform: rotate(-3deg);
+
+  box-sizing: border-box;
+
+  transition:
+    width 0.25s ease,
+    min-width 0.25s ease,
+    max-width 0.25s ease;
+}
+
+/* =========================================================
+   FOOD CIRCLE
+========================================================= */
+
+.food-circle {
+  width: 70px;
+
+  height: 70px;
+
+  margin: 0 auto 6px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: linear-gradient(135deg, var(--light-gold), var(--gold));
+
+  font-size: 32px;
+
+  box-shadow: 0 8px 20px rgba(150, 100, 35, 0.15);
+
+  transition:
+    width 0.25s ease,
+    height 0.25s ease,
+    font-size 0.25s ease;
+}
+
+/* =========================================================
+   GOOD FOOD
+========================================================= */
+
+.menu-food-brand span {
+  display: block;
+
+  color: var(--terracotta);
+
+  font-size: 11px;
+
+  line-height: 1.3;
+
+  font-weight: 700;
+
+  white-space: nowrap;
+
+  transition: font-size 0.25s ease;
+}
+
+/* =========================================================
+   BETTER MOOD
+========================================================= */
+
+.menu-food-brand strong {
+  display: block;
+
+  color: var(--dark-brown);
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 18px;
+
+  line-height: 1.25;
+
+  font-weight: 700;
+
+  white-space: nowrap;
+
+  transition: font-size 0.25s ease;
+}
+
+/* =========================================================
+   MENU CONTAINER
+========================================================= */
+
+.menu-container {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 30px;
+}
+
+/* =========================================================
+   CATEGORY
+========================================================= */
+
+.menu-category {
+  overflow: hidden;
+
+  background: rgba(255, 253, 249, 0.95);
+
+  border: 1px solid #e4cfb5;
+
+  border-radius: 15px;
+
+  box-shadow: 0 5px 18px rgba(83, 57, 34, 0.07);
+}
+
+/* =========================================================
+   CATEGORY HEADER
+========================================================= */
+
+.category-header {
+  padding: 18px 22px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  background: linear-gradient(135deg, #f7ead9, #fffaf3);
+
+  border-bottom: 1px solid #ead8c2;
+
+  box-sizing: border-box;
+}
+
+.category-title-wrapper {
+  display: flex;
+
+  align-items: center;
+
+  gap: 11px;
+
+  min-width: 0;
+}
+
+.category-marker {
+  width: 8px;
+
+  height: 34px;
+
+  flex-shrink: 0;
+
+  border-radius: 5px;
+
+  background: linear-gradient(180deg, #d69d3c, #c76538);
+}
+
+.category-header h3 {
+  margin: 0;
+
+  color: #3a2418;
+
+  font-size: 20px;
+
+  line-height: 1.2;
+
+  font-weight: 700;
+}
+
+/* =========================================================
+   CATEGORY COUNT HIDDEN
+========================================================= */
+
+.category-count {
+  display: none !important;
+}
+
+/* =========================================================
+   MENU GRID
+========================================================= */
+
+.menu-grid {
+  padding: 22px;
+
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 20px;
+
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   MENU ITEM CARD
+========================================================= */
+
+.menu-item-card {
+  min-width: 0;
+
+  overflow: hidden;
+
+  display: flex;
+
+  flex-direction: column;
+
+  background: #ffffff;
+
+  border: 1px solid #e7d7c5;
+
+  border-radius: 10px;
+
+  box-shadow: 0 4px 12px rgba(58, 36, 24, 0.07);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.menu-item-card:hover {
+  transform: translateY(-3px);
+
+  border-color: rgba(197, 139, 69, 0.65);
+
+  box-shadow: 0 9px 20px rgba(58, 36, 24, 0.12);
+}
+
+/* =========================================================
+   ITEM IMAGE WRAPPER
+
+   IMPORTANT:
+   Responsive 4:3 image area.
+   The height is calculated automatically.
+========================================================= */
+
+.menu-item-image-wrapper {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 4 / 3;
+
+  min-height: 0;
+
+  overflow: hidden;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: linear-gradient(135deg, #eee0cf, #f8efe3);
+
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   ACTUAL MENU IMAGE
+
+   contain = COMPLETE IMAGE VISIBLE
+   No crop
+   No zoom
+========================================================= */
+
+.menu-item-image {
+  width: 100%;
+
+  height: 100%;
+
+  display: block;
+
+  object-fit: contain;
+
+  object-position: center;
+
+  transform: none;
+
+  transition: none;
+}
+
+/* =========================================================
+   DISABLE IMAGE ZOOM
+========================================================= */
+
+.menu-item-card:hover .menu-item-image {
+  transform: none;
+}
+
+/* =========================================================
+   IMAGE PLACEHOLDER
+========================================================= */
+
+.image-placeholder {
+  width: 100%;
+
+  height: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: linear-gradient(135deg, #eee0cf, #f8efe3);
+
+  color: #a88d72;
+
+  font-size: 42px;
+}
+
+/* =========================================================
+   ITEM BODY
+========================================================= */
+
+.menu-item-body {
+  min-height: 185px;
+
+  padding: 16px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  box-sizing: border-box;
+}
+
+.menu-item-name {
+  margin: 0;
+
+  color: #321d13;
+
+  font-size: 17px;
+
+  line-height: 1.3;
+
+  font-weight: 700;
+}
+
+.menu-item-description {
+  margin: 7px 0 0;
+
+  min-height: 40px;
+
+  color: #806d5d;
+
+  font-size: 12px;
+
+  line-height: 1.55;
+
+  display: -webkit-box;
+
+  -webkit-line-clamp: 2;
+
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+}
+
+/* =========================================================
+   ITEM BOTTOM
+========================================================= */
+
+.menu-item-bottom {
+  margin-top: auto;
+
+  padding-top: 15px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 11px;
+}
+
+/* =========================================================
+   PRICE
+========================================================= */
+
+.menu-item-price {
+  color: #bf5f2d;
+
+  font-size: 18px;
+
+  font-weight: 700;
+}
+
+/* =========================================================
+   ACTION ROW
+========================================================= */
+
+.item-action-row {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+}
+
+/* =========================================================
+   QUANTITY CONTROL
+========================================================= */
+
+.quantity-control {
+  height: 40px;
+
+  display: flex;
+
+  align-items: center;
+
+  overflow: hidden;
+
+  flex-shrink: 0;
+
+  border: 1px solid #dbc4a8;
+
+  border-radius: 8px;
+
+  background: #fffaf4;
+}
+
+.quantity-button {
+  width: 34px;
+
+  height: 100%;
+
+  border: none;
+
+  background: transparent;
+
+  color: #3a2418;
+
+  font-size: 18px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.quantity-button:hover {
+  background: #f1dfc9;
+
+  color: #bf5f2d;
+}
+
+.quantity-button:active {
+  transform: scale(0.96);
+}
+
+.quantity-value {
+  min-width: 29px;
+
+  text-align: center;
+
+  color: #321d13;
+
+  font-size: 13px;
+
+  font-weight: 700;
+}
+
+/* =========================================================
+   ADD TO CART
+========================================================= */
+
+.add-cart-button {
+  flex: 1;
+
+  height: 40px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: linear-gradient(135deg, #c76538, #dc793b);
+
+  color: #ffffff;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.add-cart-button:hover {
+  transform: translateY(-1px);
+
+  box-shadow: 0 5px 13px rgba(185, 105, 37, 0.25);
+}
+
+.add-cart-button:active {
+  transform: translateY(0);
+}
+
+.add-cart-button:disabled {
+  opacity: 0.65;
+
+  cursor: wait;
+
+  transform: none;
+}
+
+/* =========================================================
+   MENU STATES
+========================================================= */
+
+.menu-state {
+  padding: 55px 25px;
+
+  text-align: center;
+
+  background: rgba(255, 253, 249, 0.9);
+
+  border: 1px solid #e4cfb5;
+
+  border-radius: 15px;
+
+  box-shadow: 0 5px 18px rgba(83, 57, 34, 0.07);
+
+  box-sizing: border-box;
+}
+
+.menu-state h3 {
+  margin: 14px 0 0;
+
+  color: #3a2418;
+
+  font-size: 19px;
+}
+
+.menu-state p {
+  margin: 5px 0 0;
+
+  color: #806d5d;
+
+  font-size: 13px;
+}
+
+/* =========================================================
+   LOADING SPINNER
+========================================================= */
+
+.loading-spinner {
+  width: 34px;
+
+  height: 34px;
+
+  margin: 0 auto;
+
+  border: 3px solid #ead9c5;
+
+  border-top-color: #c76538;
+
+  border-radius: 50%;
+
+  animation: menuSpin 0.8s linear infinite;
+}
+
+@keyframes menuSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   STATE ICON
+========================================================= */
+
+.state-icon {
+  width: 45px;
+
+  height: 45px;
+
+  margin: 0 auto;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #f1dfc9;
+
+  color: #c76538;
+
+  font-size: 20px;
+
+  font-weight: 800;
+}
+
+.error-state .state-icon {
+  background: #f5ddd7;
+
+  color: #a9432e;
+}
+
+/* =========================================================
+   TRY AGAIN
+========================================================= */
+
+.state-button {
+  margin-top: 18px;
+
+  padding: 9px 18px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: #c76538;
+
+  color: #ffffff;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.state-button:hover {
+  background: #a9552d;
+}
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.cart-toast {
+  position: fixed;
+
+  right: 22px;
+
+  bottom: 22px;
+
+  z-index: 300;
+
+  min-width: 275px;
+
+  padding: 13px 16px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 11px;
+
+  background: #3a2418;
+
+  color: #ffffff;
+
+  border: 1px solid rgba(224, 179, 111, 0.45);
+
+  border-radius: 10px;
+
+  box-shadow: 0 12px 30px rgba(45, 29, 20, 0.25);
+
+  transform: translateY(25px);
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.cart-toast.show {
+  transform: translateY(0);
+
+  opacity: 1;
+}
+
+.toast-icon {
+  width: 27px;
+
+  height: 27px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #e9bf62;
+
+  color: #3a2418;
+
+  font-size: 14px;
+
+  font-weight: 800;
+}
+
+.cart-toast strong {
+  display: block;
+
+  font-size: 13px;
+}
+
+.cart-toast span {
+  display: block;
+
+  margin-top: 1px;
+
+  color: #d9c8b6;
+
+  font-size: 11px;
+}
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1441px) {
+  .header-inner {
+    width: min(1500px, calc(100% - 60px));
+  }
+
+  .menu-page {
+    width: min(1500px, calc(100% - 60px));
+  }
+}
+
+/* =========================================================
+   SMALL DESKTOP / LARGE TABLET
+========================================================= */
+
+@media (max-width: 1200px) {
+  .menu-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .menu-food-brand {
+    width: 165px;
+
+    min-width: 165px;
+
+    max-width: 165px;
+
+    flex: 0 0 165px;
+  }
+
+  .food-circle {
+    width: 66px;
+
+    height: 66px;
+
+    font-size: 30px;
+  }
+
+  .menu-food-brand span {
+    font-size: 10px;
+  }
+
+  .menu-food-brand strong {
+    font-size: 17px;
+  }
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+  /* HEADER */
+
+  .header-inner {
+    width: calc(100% - 28px);
+
+    min-height: 70px;
+
+    flex-wrap: wrap;
+
+    padding: 12px 0;
+  }
+
+  .brand-area {
+    flex: 1 1 auto;
+
+    min-width: 180px;
+  }
+
+  .table-info-card {
+    order: 2;
+  }
+
+  .header-actions {
+    order: 3;
+
+    width: 100%;
+  }
+
+  .header-button {
+    flex: 1 1 0;
+  }
+
+  /* MAIN */
+
+  .menu-page {
+    width: calc(100% - 28px);
+
+    padding-top: 24px;
+  }
+
+  /* HERO */
+
+  .menu-introduction {
+    min-height: 175px;
+
+    padding: 23px;
+
+    gap: 20px;
+  }
+
+  .menu-introduction h2 {
+    font-size: 27px;
+  }
+
+  .menu-introduction p {
+    font-size: 13px;
+  }
+
+  /* FOOD BRAND */
+
+  .menu-food-brand {
+    width: 145px;
+
+    min-width: 145px;
+
+    max-width: 145px;
+
+    flex: 0 0 145px;
+  }
+
+  .food-circle {
+    width: 62px;
+
+    height: 62px;
+
+    font-size: 28px;
+  }
+
+  .menu-food-brand span {
+    font-size: 10px;
+  }
+
+  .menu-food-brand strong {
+    font-size: 16px;
+  }
+
+  /* MENU GRID */
+
+  .menu-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* IMAGES */
+
+  .menu-item-image-wrapper {
+    aspect-ratio: 4 / 3;
+  }
+
+  .menu-item-image {
+    object-fit: contain;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+  /* HEADER */
+
+  .header-inner {
+    width: calc(100% - 20px);
+
+    gap: 10px;
+
+    padding: 10px 0;
+  }
+
+  .brand-area {
+    min-width: 0;
+
+    gap: 9px;
+  }
+
+  .brand-logo {
+    width: 38px;
+
+    height: 38px;
+
+    font-size: 20px;
+  }
+
+  .brand-text h1 {
+    font-size: 18px;
+  }
+
+  .brand-text p {
+    margin-top: 3px;
+
+    font-size: 9px;
+  }
+
+  .table-info-card {
+    min-width: 65px;
+
+    padding: 6px 9px;
+  }
+
+  .table-label {
+    font-size: 8px;
+
+    letter-spacing: 0.9px;
+  }
+
+  .table-info-card strong {
+    margin-top: 3px;
+
+    font-size: 16px;
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+
+  .header-button {
+    min-height: 40px;
+
+    padding: 0 9px;
+
+    font-size: 11px;
+  }
+
+  .button-icon {
+    font-size: 13px;
+  }
+
+  .cart-count {
+    min-width: 18px;
+
+    height: 18px;
+
+    font-size: 10px;
+  }
+
+  /* MAIN */
+
+  .menu-page {
+    width: calc(100% - 20px);
+
+    padding: 18px 0 35px;
+  }
+
+  /* HERO */
+
+  .menu-introduction {
+    min-height: 175px;
+
+    margin-bottom: 18px;
+
+    padding: 20px 14px;
+
+    border-radius: 15px;
+
+    gap: 8px;
+  }
+
+  .menu-introduction-content {
+    flex: 1 1 auto;
+
+    min-width: 0;
+  }
+
+  .menu-introduction .eyebrow {
+    margin-bottom: 6px;
+
+    font-size: 9px;
+
+    letter-spacing: 1.2px;
+  }
+
+  .menu-introduction h2 {
+    font-size: 23px;
+
+    line-height: 1.2;
+  }
+
+  .menu-introduction p {
+    margin-top: 6px;
+
+    font-size: 12px;
+
+    line-height: 1.45;
+  }
+
+  /* FOOD BRAND */
+
+  .menu-food-brand {
+    width: 105px;
+
+    min-width: 105px;
+
+    max-width: 105px;
+
+    flex: 0 0 105px;
+
+    transform: rotate(-3deg);
+  }
+
+  .food-circle {
+    width: 58px;
+
+    height: 58px;
+
+    margin: 0 auto 5px;
+
+    font-size: 25px;
+  }
+
+  .menu-food-brand span {
+    font-size: 8px;
+
+    line-height: 1.25;
+
+    white-space: normal;
+  }
+
+  .menu-food-brand strong {
+    font-size: 14px;
+
+    line-height: 1.2;
+
+    white-space: normal;
+  }
+
+  /* CATEGORY */
+
+  .menu-container {
+    gap: 18px;
+  }
+
+  .category-header {
+    padding: 15px;
+  }
+
+  .category-title-wrapper {
+    gap: 9px;
+  }
+
+  .category-marker {
+    width: 7px;
+
+    height: 29px;
+  }
+
+  .category-header h3 {
+    font-size: 17px;
+  }
+
+  /* MENU GRID */
+
+  .menu-grid {
+    padding: 14px;
+
+    grid-template-columns: 1fr;
+
+    gap: 14px;
+  }
+
+  /* RESPONSIVE FOOD IMAGE */
+
+  .menu-item-image-wrapper {
+    width: 100%;
+
+    aspect-ratio: 4 / 3;
+
+    min-height: 0;
+
+    max-height: none;
+  }
+
+  .menu-item-image {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+    object-position: center;
+
+    transform: none;
+  }
+
+  /* ITEM BODY */
+
+  .menu-item-body {
+    min-height: 170px;
+
+    padding: 14px;
+  }
+
+  .menu-item-name {
+    font-size: 16px;
+  }
+
+  .menu-item-description {
+    font-size: 11px;
+  }
+
+  .menu-item-price {
+    font-size: 17px;
+  }
+
+  /* TOAST */
+
+  .cart-toast {
+    left: 10px;
+
+    right: 10px;
+
+    bottom: 12px;
+
+    min-width: 0;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 430px) {
+  /* HEADER */
+
+  .header-inner {
+    width: calc(100% - 16px);
+
+    gap: 7px;
+  }
+
+  .brand-area {
+    gap: 7px;
+  }
+
+  .brand-logo {
+    width: 35px;
+
+    height: 35px;
+
+    font-size: 19px;
+  }
+
+  .brand-text h1 {
+    font-size: 16px;
+  }
+
+  .brand-text p {
+    font-size: 8px;
+  }
+
+  .table-info-card {
+    min-width: 58px;
+
+    padding: 5px 7px;
+  }
+
+  .table-label {
+    font-size: 7px;
+  }
+
+  .table-info-card strong {
+    font-size: 15px;
+  }
+
+  .header-button {
+    min-height: 38px;
+
+    padding: 0 7px;
+
+    font-size: 10px;
+  }
+
+  /* MAIN */
+
+  .menu-page {
+    width: calc(100% - 16px);
+
+    padding-top: 15px;
+  }
+
+  /* HERO */
+
+  .menu-introduction {
+    min-height: 165px;
+
+    padding: 17px 12px;
+
+    gap: 5px;
+  }
+
+  .menu-introduction .eyebrow {
+    font-size: 8px;
+
+    letter-spacing: 1px;
+  }
+
+  .menu-introduction h2 {
+    font-size: 21px;
+  }
+
+  .menu-introduction p {
+    font-size: 11px;
+  }
+
+  /* FOOD BRAND */
+
+  .menu-food-brand {
+    width: 88px;
+
+    min-width: 88px;
+
+    max-width: 88px;
+
+    flex: 0 0 88px;
+  }
+
+  .food-circle {
+    width: 52px;
+
+    height: 52px;
+
+    font-size: 22px;
+  }
+
+  .menu-food-brand span {
+    font-size: 7px;
+
+    line-height: 1.25;
+  }
+
+  .menu-food-brand strong {
+    font-size: 12px;
+
+    line-height: 1.15;
+  }
+
+  /* CATEGORY */
+
+  .category-header {
+    padding: 13px;
+  }
+
+  .category-marker {
+    width: 6px;
+
+    height: 27px;
+  }
+
+  .category-header h3 {
+    font-size: 16px;
+  }
+
+  /* MENU GRID */
+
+  .menu-grid {
+    padding: 11px;
+
+    gap: 12px;
+  }
+
+  /* IMAGE */
+
+  .menu-item-image-wrapper {
+    aspect-ratio: 4 / 3;
+  }
+
+  .menu-item-image {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+    object-position: center;
+  }
+
+  /* ITEM BODY */
+
+  .menu-item-body {
+    min-height: 165px;
+
+    padding: 13px;
+  }
+
+  .menu-item-name {
+    font-size: 15px;
+  }
+
+  .menu-item-price {
+    font-size: 16px;
+  }
+
+  .quantity-control {
+    height: 38px;
+  }
+
+  .quantity-button {
+    width: 31px;
+  }
+
+  .add-cart-button {
+    height: 38px;
+
+    font-size: 11px;
+  }
+}
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 360px) {
+  /* HEADER */
+
+  .header-inner {
+    width: calc(100% - 12px);
+
+    gap: 5px;
+  }
+
+  .brand-logo {
+    width: 32px;
+
+    height: 32px;
+
+    font-size: 17px;
+  }
+
+  .brand-text h1 {
+    font-size: 15px;
+  }
+
+  .brand-text p {
+    font-size: 7px;
+  }
+
+  .table-info-card {
+    min-width: 52px;
+
+    padding: 5px;
+  }
+
+  .table-info-card strong {
+    font-size: 14px;
+  }
+
+  .header-button {
+    min-height: 36px;
+
+    padding: 0 6px;
+
+    font-size: 9px;
+  }
+
+  /* MAIN */
+
+  .menu-page {
+    width: calc(100% - 12px);
+  }
+
+  /* HERO */
+
+  .menu-introduction {
+    min-height: 158px;
+
+    padding: 15px 10px;
+
+    gap: 3px;
+  }
+
+  .menu-introduction .eyebrow {
+    font-size: 7px;
+
+    letter-spacing: 0.8px;
+  }
+
+  .menu-introduction h2 {
+    font-size: 19px;
+  }
+
+  .menu-introduction p {
+    font-size: 10px;
+  }
+
+  /* FOOD BRAND */
+
+  .menu-food-brand {
+    width: 76px;
+
+    min-width: 76px;
+
+    max-width: 76px;
+
+    flex: 0 0 76px;
+  }
+
+  .food-circle {
+    width: 47px;
+
+    height: 47px;
+
+    font-size: 20px;
+  }
+
+  .menu-food-brand span {
+    font-size: 6.5px;
+  }
+
+  .menu-food-brand strong {
+    font-size: 11px;
+  }
+
+  /* IMAGE */
+
+  .menu-item-image-wrapper {
+    aspect-ratio: 4 / 3;
+  }
+
+  .menu-item-image {
+    object-fit: contain;
+  }
+
+  /* ITEM */
+
+  .menu-item-body {
+    min-height: 160px;
+
+    padding: 12px;
+  }
+
+  .item-action-row {
+    gap: 6px;
+  }
+
+  .quantity-control {
+    height: 36px;
+  }
+
+  .quantity-button {
+    width: 28px;
+
+    font-size: 16px;
+  }
+
+  .quantity-value {
+    min-width: 25px;
+
+    font-size: 12px;
+  }
+
+  .add-cart-button {
+    height: 36px;
+
+    font-size: 10px;
+  }
+}
+
+/* =========================================================
+   EXTRA SMALL DEVICES
+========================================================= */
+
+@media (max-width: 320px) {
+  .menu-introduction {
+    padding: 13px 8px;
+  }
+
+  .menu-introduction h2 {
+    font-size: 18px;
+  }
+
+  .menu-introduction p {
+    font-size: 9px;
+  }
+
+  .menu-food-brand {
+    width: 68px;
+
+    min-width: 68px;
+
+    max-width: 68px;
+
+    flex: 0 0 68px;
+  }
+
+  .food-circle {
+    width: 43px;
+
+    height: 43px;
+
+    font-size: 18px;
+  }
+
+  .menu-food-brand span {
+    font-size: 6px;
+  }
+
+  .menu-food-brand strong {
+    font-size: 10px;
+  }
+
+  .brand-text h1 {
+    font-size: 14px;
+  }
+
+  .brand-text p {
+    display: none;
+  }
+
+  .table-info-card {
+    min-width: 48px;
+  }
+
+  .header-button {
+    font-size: 8px;
+
+    padding: 0 5px;
+  }
+
+  /* IMAGE */
+
+  .menu-item-image-wrapper {
+    aspect-ratio: 4 / 3;
+
+    width: 100%;
+  }
+
+  .menu-item-image {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+    object-position: center;
+  }
+}
+
+/* =========================================================
+   LANDSCAPE MOBILE
+========================================================= */
+
+@media (max-height: 500px) and (max-width: 900px) {
+  .menu-header {
+    position: relative;
+  }
+
+  .header-inner {
+    min-height: 62px;
+
+    padding: 8px 0;
+  }
+
+  .menu-page {
+    padding-top: 18px;
+  }
+
+  .menu-introduction {
+    min-height: 145px;
+  }
+
+  .food-circle {
+    width: 55px;
+
+    height: 55px;
+  }
+
+  .menu-item-image-wrapper {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.header-button:focus-visible,
+.quantity-button:focus-visible,
+.add-cart-button:focus-visible,
+.state-button:focus-visible {
+  outline: 3px solid rgba(218, 169, 82, 0.65);
+
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-food-brand,
+  .food-circle,
+  .menu-food-brand span,
+  .menu-food-brand strong,
+  .menu-item-card,
+  .menu-item-image,
+  .header-button,
+  .add-cart-button,
+  .cart-toast {
+    transition: none !important;
+  }
+
+  .loading-spinner {
+    animation: none !important;
+  }
+}

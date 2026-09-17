@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Scan2Serve - Bill Desk</title>
+
+    <link rel="stylesheet" href="css/bill-desk.css" />
+  </head>
+
+  <body>
+    <!-- =====================================================
+       LOGIN
+  ====================================================== -->
+
+    <section id="loginScreen" class="login-screen">
+      <div class="login-card">
+        <div class="login-brand">
+          <div class="login-brand-icon">🧾</div>
+
+          <div>
+            <h1>SCAN<span>2</span>SERVE</h1>
+
+            <p>Restaurant Management</p>
+          </div>
+        </div>
+
+        <div class="login-heading">
+          <h2>BILL DESK</h2>
+
+          <p>Sign in to manage restaurant bills and payments.</p>
+        </div>
+
+        <form id="loginForm" class="login-form" autocomplete="on">
+          <div class="form-group">
+            <label for="loginUsername"> Username </label>
+
+            <input
+              type="text"
+              id="loginUsername"
+              name="username"
+              placeholder="Enter username"
+              autocomplete="username"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="loginPassword"> Password </label>
+
+            <div class="password-wrapper">
+              <input
+                type="password"
+                id="loginPassword"
+                name="password"
+                placeholder="Enter password"
+                autocomplete="current-password"
+                required
+              />
+
+              <button type="button" id="passwordToggle" class="password-toggle">
+                Show
+              </button>
+            </div>
+          </div>
+
+          <div id="loginError" class="login-error hidden"></div>
+
+          <button type="submit" id="loginButton" class="login-button">
+            Login to Bill Desk
+          </button>
+        </form>
+
+        <div class="login-footer">
+          <span> Scan2Serve </span>
+
+          <small> Authorized Bill Desk Staff </small>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+       DASHBOARD
+  ====================================================== -->
+
+    <section id="dashboardScreen" class="dashboard-screen hidden">
+      <div class="page-container">
+        <!-- =================================================
+           HEADER
+      ================================================== -->
+
+        <header class="top-header">
+          <div class="brand">
+            <div class="brand-icon">🧾</div>
+
+            <div>
+              <h1>SCAN<span>2</span>SERVE</h1>
+
+              <p>Restaurant Management</p>
+            </div>
+          </div>
+
+          <div class="page-title">
+            <h2>BILL DESK</h2>
+
+            <p>Manage Bills & Payments</p>
+          </div>
+
+          <div class="header-right">
+            <div class="date-time">
+              <span id="currentDate"> Loading... </span>
+            </div>
+
+            <div class="employee-info">
+              <strong id="employeeName"> Bill Desk Staff </strong>
+
+              <span id="employeeRole"> BILL DESK </span>
+            </div>
+
+            <button type="button" id="logoutButton" class="logout-button">
+              Logout
+            </button>
+          </div>
+        </header>
+
+        <!-- =================================================
+           MAIN
+      ================================================== -->
+
+        <main>
+          <section class="dashboard-panel">
+            <!-- =================================================
+               TABS
+          ================================================== -->
+
+            <div class="tabs">
+              <button
+                id="activeBillsTab"
+                class="tab-button active"
+                type="button"
+              >
+                <span class="tab-icon"> 🧾 </span>
+
+                Active Bills
+              </button>
+
+              <button id="oldBillsTab" class="tab-button" type="button">
+                <span class="tab-icon"> 🕘 </span>
+
+                Old Bills
+              </button>
+            </div>
+
+            <!-- =================================================
+               ACTIVE BILLS
+          ================================================== -->
+
+            <section id="activeBillsSection" class="tab-section">
+              <div class="section-heading">
+                <div class="section-heading-title">
+                  <h2>ACTIVE BILLS</h2>
+
+                  <span id="activeBillCount"> 0 Active Bills </span>
+                </div>
+
+                <button
+                  id="refreshActiveButton"
+                  class="section-refresh-button"
+                  type="button"
+                >
+                  ↻ Refresh
+                </button>
+              </div>
+
+              <div id="activeBillsContainer" class="active-bills-grid">
+                <div class="loading">Loading active bills...</div>
+              </div>
+
+              <div id="noActiveBills" class="empty-state hidden">
+                <div class="empty-icon">✓</div>
+
+                <h3>No Active Bills</h3>
+
+                <p>All current bills have been completed.</p>
+              </div>
+            </section>
+
+            <!-- =================================================
+               OLD BILLS
+          ================================================== -->
+
+            <section id="oldBillsSection" class="tab-section hidden">
+              <div class="section-heading">
+                <div class="section-heading-title">
+                  <h2>OLD BILLS</h2>
+
+                  <span> Paid & Cancelled Bills </span>
+                </div>
+              </div>
+
+              <!-- =============================================
+                 SEARCH
+            ============================================== -->
+
+              <div class="search-panel">
+                <div class="search-field">
+                  <label for="orderIdInput"> Order ID </label>
+
+                  <input
+                    type="number"
+                    id="orderIdInput"
+                    placeholder="Enter Order ID"
+                    min="1"
+                  />
+                </div>
+
+                <div class="search-field">
+                  <label for="tableNumberInput"> Table No. </label>
+
+                  <input
+                    type="number"
+                    id="tableNumberInput"
+                    placeholder="Enter Table No."
+                    min="1"
+                  />
+                </div>
+
+                <div class="search-field">
+                  <label for="dateInput"> Date </label>
+
+                  <input type="date" id="dateInput" />
+                </div>
+
+                <button id="searchButton" class="primary-button" type="button">
+                  🔍 Search
+                </button>
+
+                <button id="clearButton" class="secondary-button" type="button">
+                  ↻ Clear
+                </button>
+              </div>
+
+              <div id="searchMessage" class="search-message hidden"></div>
+
+              <!-- =============================================
+                 RECENT BILLS
+            ============================================== -->
+
+              <div class="recent-section">
+                <div class="recent-heading">
+                  <h2 id="recentBillsTitle">RECENT BILLS</h2>
+
+                  <div class="recent-heading-actions">
+                    <button
+                      id="allBillsButton"
+                      class="small-refresh-button"
+                      type="button"
+                    >
+                      See All Bills
+                    </button>
+
+                    <button
+                      id="refreshRecentButton"
+                      class="small-refresh-button"
+                      type="button"
+                    >
+                      ↻ Refresh
+                    </button>
+                  </div>
+                </div>
+
+                <div id="recentBillsContainer" class="recent-bills-container">
+                  <div class="loading">Loading recent bills...</div>
+                </div>
+              </div>
+            </section>
+          </section>
+        </main>
+
+        <!-- =====================================================
+           BILL MODAL
+      ====================================================== -->
+
+        <div id="billModal" class="modal hidden">
+          <div class="modal-overlay" id="modalOverlay"></div>
+
+          <div class="bill-modal">
+            <!-- =============================================
+               MODAL HEADER
+          ============================================== -->
+
+            <div class="modal-header">
+              <div>
+                <h2>Bill Details</h2>
+
+                <p id="modalOrderInfo">Order</p>
+              </div>
+
+              <button id="closeModalButton" class="close-button" type="button">
+                ×
+              </button>
+            </div>
+
+            <!-- =============================================
+               LOADING
+          ============================================== -->
+
+            <div id="modalLoading" class="modal-loading">Loading bill...</div>
+
+            <!-- =============================================
+               CONTENT
+          ============================================== -->
+
+            <div id="modalContent" class="modal-content hidden">
+              <!-- =========================================
+                 BILL INFORMATION
+            ========================================== -->
+
+              <div class="modal-order-info">
+                <div class="bill-info-card">
+                  <span> Order ID </span>
+
+                  <strong id="modalOrderId"> - </strong>
+                </div>
+
+                <div class="bill-info-card">
+                  <span> Table </span>
+
+                  <strong id="modalTableNumber"> - </strong>
+                </div>
+
+                <div class="bill-info-card customer-card">
+                  <span> Customer Name </span>
+
+                  <strong id="modalCustomerName"> Walk-in Customer </strong>
+                </div>
+
+                <div class="bill-info-card customer-card">
+                  <span> Contact </span>
+
+                  <strong id="modalCustomerPhone"> Not Provided </strong>
+                </div>
+
+                <div class="bill-info-card">
+                  <span> Order Placed </span>
+
+                  <strong id="modalOrderTime"> - </strong>
+                </div>
+
+                <div class="bill-info-card payment-time-card">
+                  <span> Payment Completed </span>
+
+                  <strong id="modalPaymentTime"> Not Paid Yet </strong>
+                </div>
+              </div>
+
+              <!-- =========================================
+                 BILL STATUS
+            ========================================== -->
+
+              <div class="bill-status-bar">
+                <div>
+                  <span> Bill Status </span>
+
+                  <strong id="modalBillStatus"> - </strong>
+                </div>
+
+                <div>
+                  <span> Payment Method </span>
+
+                  <strong id="modalPaymentMethod"> - </strong>
+                </div>
+              </div>
+
+              <!-- =========================================
+                 ITEMS
+            ========================================== -->
+
+              <div class="bill-items-wrapper">
+                <table class="bill-table">
+                  <thead>
+                    <tr>
+                      <th>Item</th>
+
+                      <th>Qty</th>
+
+                      <th>Unit Price</th>
+
+                      <th>Total</th>
+
+                      <th>Status</th>
+
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+
+                  <tbody id="modalBillItems"></tbody>
+                </table>
+              </div>
+
+              <!-- =========================================
+                 BILLING NOTE
+            ========================================== -->
+
+              <div class="billing-note">
+                Bill amount is calculated only for
+                <strong>READY</strong>
+                and
+                <strong>SERVED</strong>
+                items.
+
+                <br />
+
+                <span>
+                  ORDER_PLACED, PREPARING and CANCELLED items are not included
+                  in the payable amount.
+                </span>
+              </div>
+
+              <!-- =========================================
+                 TOTALS
+            ========================================== -->
+
+              <div class="bill-totals">
+                <div class="bill-total-row">
+                  <span> Subtotal </span>
+
+                  <strong id="modalSubtotal"> ₹0.00 </strong>
+                </div>
+
+                <div class="bill-total-row">
+                  <span id="modalGstLabel"> GST (5%) </span>
+
+                  <strong id="modalGst"> ₹0.00 </strong>
+                </div>
+
+                <div class="bill-total-row grand-total-row">
+                  <span> Grand Total </span>
+
+                  <strong id="modalGrandTotal"> ₹0.00 </strong>
+                </div>
+              </div>
+
+              <!-- =========================================
+                 PAYMENT
+            ========================================== -->
+
+              <div id="paymentSection" class="payment-section">
+                <label for="paymentMethod"> Payment Method </label>
+
+                <select id="paymentMethod">
+                  <option value="CASH">Cash</option>
+
+                  <option value="UPI">UPI</option>
+
+                  <option value="CARD">Card</option>
+                </select>
+
+                <button id="payButton" class="pay-button" type="button">
+                  ✓ Mark as Paid
+                </button>
+              </div>
+
+              <!-- =========================================
+                 PAID MESSAGE
+            ========================================== -->
+
+              <div id="paidMessage" class="paid-message hidden">
+                <div>✓ Payment Completed Successfully</div>
+
+                <small id="paidMessageTime">
+                  Payment time saved successfully.
+                </small>
+              </div>
+
+              <!-- =========================================
+                 ACTIONS
+            ========================================== -->
+
+              <div class="modal-actions">
+                <button
+                  id="cancelCompleteBillButton"
+                  class="cancel-complete-button"
+                  type="button"
+                >
+                  ✕ Cancel Complete Bill
+                </button>
+
+                <button
+                  id="refreshBillButton"
+                  class="refresh-bill-button"
+                  type="button"
+                >
+                  ↻ Refresh Bill
+                </button>
+
+                <button id="printButton" class="print-button" type="button">
+                  🖨 Print Bill
+                </button>
+
+                <button
+                  id="modalCloseBottomButton"
+                  class="secondary-button"
+                  type="button"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+
+            <!-- =============================================
+               ERROR
+          ============================================== -->
+
+            <div id="modalError" class="modal-error hidden"></div>
+          </div>
+        </div>
+
+        <!-- =====================================================
+           FOOTER
+      ====================================================== -->
+
+        <footer>© 2026 Scan2Serve. All rights reserved.</footer>
+      </div>
+    </section>
+
+    <script src="js/bill-desk.js"></script>
+  </body>
+</html>

@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="SCAN2SERVE Restaurant Management System - Staff Access"
+    />
+
+    <title>SCAN2SERVE - Staff Access</title>
+
+    <link rel="stylesheet" href="css/role-login.css" />
+  </head>
+
+  <body>
+    <!-- =========================================================
+         ROLE LOGIN PAGE
+         ========================================================= -->
+
+    <main class="role-login-page">
+      <!-- Background decoration -->
+      <div class="background-circle background-circle-one"></div>
+      <div class="background-circle background-circle-two"></div>
+
+      <!-- =======================================================
+           ONE MAIN CARD
+           ======================================================= -->
+
+      <div class="role-login-card">
+        <!-- =====================================================
+             LEFT SIDE - RESTAURANT INFORMATION
+             ===================================================== -->
+
+        <section class="restaurant-info">
+          <div class="restaurant-info-content">
+            <!-- =================================================
+                 BRAND
+                 ================================================= -->
+
+            <div class="brand">
+              <!-- S2S LOGO -->
+              <div class="s2s-logo" aria-label="SCAN2SERVE logo">
+                <span class="s2s-letter">S</span>
+                <span class="s2s-number">2</span>
+                <span class="s2s-letter">S</span>
+              </div>
+
+              <div class="brand-text">
+                <h1>SCAN<span>2</span>SERVE</h1>
+
+                <p>Restaurant Management</p>
+              </div>
+            </div>
+
+            <!-- =================================================
+                 HERO
+                 ================================================= -->
+
+            <div class="hero-content">
+              <span class="hero-eyebrow"> SMART RESTAURANT MANAGEMENT </span>
+
+              <h2>
+                Everything your
+                <br />
+                restaurant needs,
+                <span>in one</span>
+                <br />
+                <span>place.</span>
+              </h2>
+
+              <p class="hero-description">
+                SCAN2SERVE helps restaurant staff manage daily operations
+                efficiently — from orders and kitchen preparation to billing and
+                restaurant administration.
+              </p>
+            </div>
+
+            <!-- =================================================
+                 FEATURES
+                 ================================================= -->
+
+            <div class="feature-grid">
+              <!-- Digital Ordering -->
+              <article class="feature-card">
+                <div class="feature-icon">🍽️</div>
+
+                <div class="feature-content">
+                  <h3>Digital Ordering</h3>
+
+                  <p>Simple and efficient food ordering</p>
+                </div>
+              </article>
+
+              <!-- Kitchen Management -->
+              <article class="feature-card">
+                <div class="feature-icon">👨‍🍳</div>
+
+                <div class="feature-content">
+                  <h3>Kitchen Management</h3>
+
+                  <p>Keep orders organized and moving</p>
+                </div>
+              </article>
+
+              <!-- Billing -->
+              <article class="feature-card">
+                <div class="feature-icon">💳</div>
+
+                <div class="feature-content">
+                  <h3>Billing &amp; Payments</h3>
+
+                  <p>Manage bills and payments efficiently</p>
+                </div>
+              </article>
+
+              <!-- Restaurant Management -->
+              <article class="feature-card">
+                <div class="feature-icon">📊</div>
+
+                <div class="feature-content">
+                  <h3>Restaurant Management</h3>
+
+                  <p>Control your restaurant operations</p>
+                </div>
+              </article>
+            </div>
+
+            <!-- =================================================
+                 LEFT FOOTER
+                 ================================================= -->
+
+            <footer class="restaurant-footer">
+              <strong> SCAN<span>2</span>SERVE </strong>
+
+              <span> Smart Restaurant Management System </span>
+            </footer>
+          </div>
+        </section>
+
+        <!-- =====================================================
+             RIGHT SIDE - ROLE SELECTION
+             ===================================================== -->
+
+        <section class="login-selection">
+          <div class="login-selection-content">
+            <!-- =================================================
+                 CARD HEADER
+                 ================================================= -->
+
+            <div class="login-card-header">
+              <span class="login-eyebrow"> STAFF ACCESS </span>
+
+              <h2>Welcome Back</h2>
+
+              <p>Select your role to continue to the appropriate login.</p>
+            </div>
+
+            <!-- =================================================
+                 ROLE OPTIONS
+                 ================================================= -->
+
+            <div class="role-options">
+              <!-- ADMIN -->
+              <button type="button" class="role-option" data-role="admin">
+                <div class="role-option-icon">👨‍💼</div>
+
+                <div class="role-option-content">
+                  <strong> Admin </strong>
+
+                  <span> Restaurant administration </span>
+                </div>
+
+                <span class="role-arrow"> → </span>
+              </button>
+
+              <!-- KITCHEN -->
+              <button type="button" class="role-option" data-role="kitchen">
+                <div class="role-option-icon">👨‍🍳</div>
+
+                <div class="role-option-content">
+                  <strong> Kitchen </strong>
+
+                  <span> Manage kitchen orders </span>
+                </div>
+
+                <span class="role-arrow"> → </span>
+              </button>
+
+              <!-- BILL DESK -->
+              <button type="button" class="role-option" data-role="bill-desk">
+                <div class="role-option-icon">💳</div>
+
+                <div class="role-option-content">
+                  <strong> Bill Desk </strong>
+
+                  <span> Billing and payments </span>
+                </div>
+
+                <span class="role-arrow"> → </span>
+              </button>
+            </div>
+
+            <!-- =================================================
+                 SECURITY MESSAGE
+                 ================================================= -->
+
+            <div class="security-message">
+              <div class="security-icon">🔒</div>
+
+              <div class="security-content">
+                <strong> Authorized Staff Only </strong>
+
+                <span>
+                  Select the role assigned to you by your restaurant
+                  administrator.
+                </span>
+              </div>
+            </div>
+
+            <!-- =================================================
+                 RIGHT FOOTER
+                 ================================================= -->
+
+            <div class="login-card-footer">
+              <strong> Scan<span>2</span>Serve </strong>
+
+              <span> Secure Staff Access </span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- =========================================================
+         JAVASCRIPT
+         ========================================================= -->
+
+    <script src="js/role-login.js"></script>
+  </body>
+</html>

@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Scan2Serve - Bill</title>
+
+    <link rel="stylesheet" href="css/bill.css" />
+  </head>
+
+  <body>
+    <div class="bill-container">
+      <!-- =====================================================
+         PAYMENT SUCCESS
+    ====================================================== -->
+
+      <div
+        id="paymentSuccessMessage"
+        class="payment-success-message"
+        style="display: none"
+      >
+        <div class="payment-success-icon">✓</div>
+
+        <div class="payment-success-content">
+          <h3>Payment Successful</h3>
+
+          <p>Your payment has been completed successfully.</p>
+        </div>
+      </div>
+
+      <!-- =====================================================
+         LOADING
+    ====================================================== -->
+
+      <div id="loading" class="loading">Loading bill...</div>
+
+      <!-- =====================================================
+         BILL CONTENT
+    ====================================================== -->
+
+      <div id="billContent" class="bill-content">
+        <!-- ===================================================
+           HEADER
+      ==================================================== -->
+
+        <div class="header">
+          <h1>Scan2Serve</h1>
+
+          <p>Restaurant Digital Bill</p>
+        </div>
+
+        <!-- ===================================================
+           ORDER INFORMATION
+      ==================================================== -->
+
+        <div class="order-info">
+          <div class="order-info-item">
+            <strong> Order ID: </strong>
+
+            <span id="orderId"> - </span>
+          </div>
+
+          <div class="order-info-item table-info">
+            <strong> Table: </strong>
+
+            <span id="tableNumber"> - </span>
+          </div>
+        </div>
+
+        <!-- ===================================================
+           CUSTOMER INFORMATION
+      ==================================================== -->
+
+        <div id="customerBillInfo" class="customer-bill-info">
+          <div class="customer-info-item">
+            <strong> Customer Name: </strong>
+
+            <span id="customerName"> - </span>
+          </div>
+
+          <div class="customer-info-item">
+            <strong> Phone: </strong>
+
+            <span id="customerPhone"> - </span>
+          </div>
+        </div>
+
+        <!-- ===================================================
+           ITEMS
+      ==================================================== -->
+
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+
+              <th>Qty</th>
+
+              <th>Unit Price</th>
+
+              <th>Total</th>
+
+              <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody id="billItems"></tbody>
+        </table>
+
+        <!-- ===================================================
+           BILL CALCULATION NOTE
+      ==================================================== -->
+
+        <p class="bill-note">
+          Note: The bill amount is calculated only for items that are Ready or
+          Served.
+        </p>
+
+        <!-- ===================================================
+           TOTALS
+      ==================================================== -->
+
+        <div class="totals">
+          <div class="total-row">
+            <span> Subtotal </span>
+
+            <strong> ₹<span id="subtotal">0.00</span> </strong>
+          </div>
+
+          <div class="total-row">
+            <span id="gstLabel"> GST </span>
+
+            <strong> ₹<span id="gst">0.00</span> </strong>
+          </div>
+
+          <div class="total-row grand-total">
+            <span> Grand Total </span>
+
+            <strong> ₹<span id="grandTotal">0.00</span> </strong>
+          </div>
+        </div>
+
+        <!-- ===================================================
+           BUTTON
+      ==================================================== -->
+
+        <div class="buttons">
+          <button type="button" class="menu-btn" onclick="goToMenu()">
+            ← Back to Menu
+          </button>
+        </div>
+      </div>
+
+      <!-- =====================================================
+         ERROR
+    ====================================================== -->
+
+      <div id="error" class="error">Unable to load bill.</div>
+    </div>
+
+    <!-- =====================================================
+       JAVASCRIPT
+  ====================================================== -->
+
+    <script src="js/bill.js"></script>
+  </body>
+</html>

@@ -1,0 +1,2290 @@
+/* =========================================================
+   SCAN2SERVE - KITCHEN DASHBOARD
+   ========================================================= */
+
+/* =========================================================
+   ROOT
+   ========================================================= */
+
+:root {
+  --brown-dark: #3a2418;
+  --brown: #65402b;
+  --brown-light: #8a5a3b;
+
+  --orange: #c8792d;
+  --orange-light: #d4893b;
+
+  --cream: #f8f2e9;
+  --cream-light: #fffaf3;
+
+  --surface: #ffffff;
+
+  --border: #d8b27d;
+  --border-light: #eadfce;
+
+  --text: #4d3a2b;
+  --text-muted: #806b58;
+
+  --success: #397346;
+  --danger: #a43b31;
+
+  --shadow-small: 0 4px 12px rgba(79, 48, 33, 0.08);
+  --shadow-medium: 0 20px 70px rgba(80, 48, 25, 0.16);
+}
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  color: #2d241e;
+
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(197, 139, 69, 0.08),
+      transparent 35%
+    ),
+    linear-gradient(135deg, #fffaf3 0%, #f8efe3 50%, #f4e8d8 100%);
+}
+
+button,
+input,
+select {
+  font-family: inherit;
+}
+
+button {
+  border: none;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* =========================================================
+   LOGIN SCREEN
+   ========================================================= */
+
+.login-screen {
+  position: relative;
+
+  min-height: 100vh;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 25px;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(197, 139, 69, 0.18),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 90%,
+      rgba(185, 105, 37, 0.14),
+      transparent 32%
+    ),
+    linear-gradient(135deg, #2d1a10, #3a2418);
+}
+
+/* =========================================================
+   LOGIN CARD
+   ========================================================= */
+
+.login-card {
+  width: min(430px, 94vw);
+
+  padding: 34px;
+
+  background: #fffaf3;
+
+  border: 1px solid #d8b27d;
+
+  border-radius: 16px;
+
+  box-shadow: 0 20px 70px rgba(80, 48, 25, 0.16);
+}
+
+/* =========================================================
+   LOGIN BRAND
+   ========================================================= */
+
+.login-brand {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  margin-bottom: 30px;
+}
+
+.login-brand-icon {
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  background: linear-gradient(135deg, #c8792d, #b46524);
+
+  color: #ffffff;
+
+  border-radius: 12px;
+
+  font-size: 25px;
+}
+
+.login-brand h1 {
+  color: #3a2418;
+
+  font-size: 24px;
+
+  letter-spacing: 1px;
+
+  line-height: 1.1;
+}
+
+.login-brand h1 span {
+  color: #c8792d;
+}
+
+.login-brand p {
+  margin-top: 4px;
+
+  color: #806b58;
+
+  font-size: 12px;
+}
+
+/* =========================================================
+   LOGIN HEADING
+   ========================================================= */
+
+.login-heading {
+  margin-bottom: 25px;
+
+  text-align: left;
+}
+
+.login-heading h2 {
+  color: #3a2418;
+
+  font-size: 23px;
+
+  line-height: 1.2;
+}
+
+.login-heading p {
+  margin-top: 7px;
+
+  color: #765d49;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+}
+
+/* =========================================================
+   OLD LOGIN ICON
+   ========================================================= */
+
+.login-icon {
+  display: none;
+}
+
+/* =========================================================
+   LOGIN FORM
+   ========================================================= */
+
+.login-form {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+.login-form-group,
+.form-group {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.login-form-group label,
+.form-group label {
+  color: #5f4633;
+
+  font-size: 12px;
+
+  font-weight: 700;
+}
+
+.login-form-group input,
+.form-group input {
+  width: 100%;
+
+  height: 45px;
+
+  padding: 0 13px;
+
+  border: 1px solid #d8c6b2;
+
+  border-radius: 8px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  color: #3a2418;
+
+  font-size: 13px;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.login-form-group input::placeholder,
+.form-group input::placeholder {
+  color: #a99686;
+}
+
+.login-form-group input:focus,
+.form-group input:focus {
+  border-color: #c58b45;
+
+  box-shadow: 0 0 0 3px rgba(197, 139, 69, 0.1);
+}
+
+/* =========================================================
+   PASSWORD
+   ========================================================= */
+
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  padding-right: 70px;
+}
+
+.password-toggle {
+  position: absolute;
+
+  top: 50%;
+  right: 7px;
+
+  transform: translateY(-50%);
+
+  height: 32px;
+
+  padding: 0 9px;
+
+  background: #fff5e8;
+
+  color: #8e501c;
+
+  border: 1px solid #e1bd8d;
+
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  font-size: 11px;
+
+  font-weight: 700;
+}
+
+.password-toggle:hover {
+  background: #ffedd8;
+}
+
+/* =========================================================
+   LOGIN ERROR
+   ========================================================= */
+
+.login-error {
+  padding: 11px 13px;
+
+  background: #fff0ed;
+
+  color: #9c3529;
+
+  border: 1px solid #dca69d;
+
+  border-radius: 8px;
+
+  font-size: 12px;
+
+  line-height: 1.4;
+}
+
+/* =========================================================
+   LOGIN BUTTON
+   ========================================================= */
+
+.login-button {
+  width: 100%;
+
+  height: 45px;
+
+  margin-top: 4px;
+
+  background: linear-gradient(135deg, #c8792d, #b46524);
+
+  color: #ffffff;
+
+  border: 1px solid #d38a43;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease;
+}
+
+.login-button:hover {
+  background: linear-gradient(135deg, #d4893b, #b96925);
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 7px 16px rgba(174, 94, 35, 0.18);
+}
+
+.login-button:active {
+  transform: translateY(0);
+}
+
+.login-button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+
+  transform: none;
+
+  box-shadow: none;
+}
+
+/* =========================================================
+   LOGIN FOOTER
+   ========================================================= */
+
+.login-footer {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-top: 25px;
+
+  padding-top: 16px;
+
+  border-top: 1px solid #eadfce;
+
+  color: #765d49;
+
+  font-size: 11px;
+}
+
+.login-footer span {
+  color: #765d49;
+
+  font-size: 11px;
+
+  font-weight: 700;
+}
+
+.login-footer small {
+  color: #927e6c;
+
+  font-size: 10px;
+}
+
+/* =========================================================
+   DASHBOARD
+   ========================================================= */
+
+.dashboard-screen {
+  min-height: 100vh;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header,
+.top-header {
+  position: sticky;
+
+  top: 0;
+
+  z-index: 1000;
+
+  min-height: 105px;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.15fr)
+    minmax(170px, 0.75fr)
+    minmax(350px, 1.4fr);
+
+  align-items: center;
+
+  gap: 24px;
+
+  padding: 16px 35px;
+
+  background: linear-gradient(135deg, #3a2418, #4a2d1c);
+
+  color: #fffaf3;
+
+  border-bottom: 3px solid #c58b45;
+
+  box-shadow: 0 4px 18px rgba(80, 48, 25, 0.18);
+}
+
+/* =========================================================
+   BRAND
+   ========================================================= */
+
+.header-brand,
+.brand {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+}
+
+.header-brand-icon,
+.brand-icon {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  background: rgba(197, 139, 69, 0.15);
+
+  border: 1px solid #c58b45;
+
+  border-radius: 10px;
+
+  color: #fffaf3;
+
+  font-size: 24px;
+}
+
+.header-brand h1,
+.brand h1 {
+  color: #fffaf3;
+
+  font-size: 28px;
+
+  letter-spacing: 1px;
+
+  line-height: 1.1;
+}
+
+.header-brand h1 span,
+.brand h1 span {
+  color: #d38a43;
+}
+
+.header-brand p,
+.brand p {
+  margin-top: 4px;
+
+  color: #d9b98e;
+
+  font-size: 11px;
+}
+
+/* =========================================================
+   PAGE TITLE
+   ========================================================= */
+
+.page-title {
+  text-align: center;
+}
+
+.page-title h2 {
+  color: #fffaf3;
+
+  font-size: 29px;
+
+  letter-spacing: 0.8px;
+}
+
+.page-title p {
+  margin-top: 5px;
+
+  color: #d9b98e;
+
+  font-size: 12px;
+}
+
+/* =========================================================
+   HEADER RIGHT
+   ========================================================= */
+
+.header-right,
+.header-user {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-end;
+
+  gap: 10px;
+}
+
+/* =========================================================
+   DATE / TIME
+   ========================================================= */
+
+.date-time {
+  padding: 10px 13px;
+
+  background: rgba(255, 250, 243, 0.07);
+
+  color: #f7e5cc;
+
+  border: 1px solid #c58b45;
+
+  border-radius: 8px;
+
+  font-size: 11px;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   EMPLOYEE INFO
+   ========================================================= */
+
+.employee-info,
+.header-user-info {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+
+  min-width: 100px;
+}
+
+.employee-info strong,
+.header-user-info strong {
+  color: #fffaf3;
+
+  font-size: 11px;
+}
+
+.employee-info span,
+.header-user-info span {
+  color: #d9b98e;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.5px;
+}
+
+/* =========================================================
+   LOGOUT
+   ========================================================= */
+
+.logout-button {
+  flex: 0 0 auto;
+
+  height: 37px;
+
+  padding: 0 13px;
+
+  background: rgba(255, 250, 243, 0.08);
+
+  color: #fffaf3;
+
+  border: 1px solid #c58b45;
+
+  border-radius: 7px;
+
+  cursor: pointer;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+.logout-button:hover {
+  background: #c8792d;
+}
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+.kitchen-main {
+  width: 100%;
+
+  max-width: 1500px;
+
+  margin: 0 auto;
+
+  padding: 30px 28px 50px;
+}
+
+/* =========================================================
+   TOP BAR
+   ========================================================= */
+
+.kitchen-top-bar {
+  display: grid;
+
+  grid-template-columns:
+    minmax(220px, 1fr)
+    minmax(260px, 420px)
+    auto;
+
+  align-items: center;
+
+  gap: 16px;
+
+  padding: 20px;
+
+  margin-bottom: 22px;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  border: 1px solid #d8b27d;
+
+  border-radius: 13px;
+
+  box-shadow: 0 4px 12px rgba(79, 48, 33, 0.08);
+}
+
+.kitchen-title-area h2 {
+  color: #3a2418;
+
+  font-size: 23px;
+
+  line-height: 1.2;
+}
+
+.kitchen-title-area p {
+  margin-top: 5px;
+
+  color: #806b58;
+
+  font-size: 11px;
+}
+
+/* =========================================================
+   SEARCH
+   ========================================================= */
+
+.kitchen-search input {
+  width: 100%;
+
+  height: 42px;
+
+  padding: 0 13px;
+
+  border: 1px solid #d8c6b2;
+
+  border-radius: 8px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  color: #3a2418;
+
+  font-size: 12px;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.kitchen-search input::placeholder {
+  color: #a99686;
+}
+
+.kitchen-search input:focus {
+  border-color: #c58b45;
+
+  box-shadow: 0 0 0 3px rgba(197, 139, 69, 0.1);
+}
+
+/* =========================================================
+   REFRESH
+   ========================================================= */
+
+.kitchen-refresh-button {
+  min-height: 42px;
+
+  padding: 0 17px;
+
+  border: 1px solid #d38a43;
+
+  border-radius: 8px;
+
+  background: linear-gradient(135deg, #c8792d, #b46524);
+
+  color: #ffffff;
+
+  cursor: pointer;
+
+  font-size: 12px;
+
+  font-weight: 700;
+}
+
+.kitchen-refresh-button:hover {
+  background: linear-gradient(135deg, #d4893b, #b96925);
+}
+
+.kitchen-refresh-button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   ERROR
+   ========================================================= */
+
+.kitchen-error {
+  min-height: 18px;
+
+  margin: 0 0 12px;
+
+  color: #a43b31;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+/* =========================================================
+   KITCHEN SECTION
+   ========================================================= */
+
+.kitchen-section {
+  margin-bottom: 22px;
+
+  padding: 21px;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  border: 1px solid #d8b27d;
+
+  border-radius: 14px;
+
+  box-shadow: 0 4px 12px rgba(79, 48, 33, 0.08);
+}
+
+/* =========================================================
+   SECTION HEADER
+   ========================================================= */
+
+.kitchen-section-header {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-bottom: 18px;
+
+  padding-bottom: 15px;
+
+  border-bottom: 1px solid #eadfce;
+}
+
+.kitchen-section-title {
+  display: flex;
+
+  align-items: center;
+
+  gap: 11px;
+}
+
+.kitchen-section-icon {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 9px;
+
+  background: #fff2df;
+
+  border: 1px solid #ead1ae;
+
+  font-size: 18px;
+}
+
+.kitchen-section-icon.cancelled-icon {
+  background: #fff0ee;
+
+  border-color: #e3b7b1;
+}
+
+.kitchen-section-title h2 {
+  color: #3a2418;
+
+  font-size: 18px;
+}
+
+.kitchen-section-title p {
+  margin-top: 3px;
+
+  color: #806b58;
+
+  font-size: 10px;
+}
+
+/* =========================================================
+   COUNT
+   ========================================================= */
+
+.kitchen-count {
+  min-width: 31px;
+
+  height: 31px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 8px;
+
+  border-radius: 50%;
+
+  background: #f3e5d5;
+
+  color: #3a2418;
+
+  font-size: 12px;
+
+  font-weight: 800;
+}
+
+.kitchen-count.cancelled-count {
+  background: #fae0dc;
+
+  color: #a43b31;
+}
+
+/* =========================================================
+   ORDERS GRID
+   ========================================================= */
+
+.kitchen-orders-grid {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+
+  gap: 14px;
+}
+
+/* =========================================================
+   ORDER CARD
+   ========================================================= */
+
+.kitchen-order-card {
+  padding: 17px;
+
+  background: #ffffff;
+
+  border: 1px solid #eadfce;
+
+  border-radius: 11px;
+
+  box-shadow: 0 3px 9px rgba(79, 48, 33, 0.06);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.kitchen-order-card:hover {
+  transform: translateY(-1px);
+
+  box-shadow: 0 7px 16px rgba(79, 48, 33, 0.1);
+}
+
+/* =========================================================
+   ORDER HEADER
+   ========================================================= */
+
+.kitchen-order-header {
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: space-between;
+
+  gap: 10px;
+}
+
+.kitchen-order-heading h3 {
+  color: #3a2418;
+
+  font-size: 17px;
+}
+
+.kitchen-order-heading p {
+  margin-top: 5px;
+
+  color: #c8792d;
+
+  font-size: 11px;
+
+  font-weight: 750;
+}
+
+/* =========================================================
+   ORDER STATUS
+   ========================================================= */
+
+.kitchen-order-status {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 5px 9px;
+
+  border-radius: 20px;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+}
+
+.kitchen-order-status-pending {
+  background: #fff0d9;
+
+  color: #9a5b16;
+
+  border: 1px solid #e4c28f;
+}
+
+.kitchen-order-status-preparing {
+  background: #f7ead4;
+
+  color: #8a5a20;
+
+  border: 1px solid #dfc294;
+}
+
+.kitchen-order-status-ready {
+  background: #e7f3e8;
+
+  color: #397346;
+
+  border: 1px solid #b8d7bc;
+}
+
+.kitchen-order-status-paid {
+  background: #fae6e2;
+
+  color: #9d3e34;
+
+  border: 1px solid #e0b4ae;
+}
+
+/* =========================================================
+   ORDER TIME
+   ========================================================= */
+
+.kitchen-order-time {
+  margin: 10px 0 13px;
+
+  color: #806b58;
+
+  font-size: 10px;
+}
+
+/* =========================================================
+   ITEMS
+   ========================================================= */
+
+.kitchen-items {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 0;
+}
+
+/* =========================================================
+   ITEM
+   ========================================================= */
+
+.kitchen-item {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto
+    auto;
+
+  align-items: center;
+
+  gap: 13px;
+
+  padding: 12px 0;
+
+  border-bottom: 1px dashed #eadfce;
+}
+
+.kitchen-item:last-child {
+  border-bottom: 0;
+}
+
+/* =========================================================
+   ITEM INFORMATION
+   ========================================================= */
+
+.kitchen-item-information {
+  min-width: 0;
+}
+
+.kitchen-item-information h4 {
+  color: #3a2418;
+
+  font-size: 14px;
+
+  line-height: 1.3;
+}
+
+.kitchen-item-information p {
+  margin-top: 5px;
+
+  color: #806b58;
+
+  font-size: 11px;
+}
+
+.kitchen-item-information small {
+  display: block;
+
+  margin-top: 4px;
+
+  color: #b0a399;
+
+  font-size: 9px;
+}
+
+/* =========================================================
+   ITEM STATUS COLUMN
+   ========================================================= */
+
+.kitchen-item-status-column {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 5px;
+}
+
+.kitchen-item-status-label {
+  color: #958579;
+
+  font-size: 8px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.5px;
+}
+
+/* =========================================================
+   ITEM STATUS
+   ========================================================= */
+
+.kitchen-item-status {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-width: 76px;
+
+  padding: 5px 8px;
+
+  border-radius: 18px;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   ORDER PLACED
+   ========================================================= */
+
+.kitchen-status-order_placed {
+  background: #fff0d9;
+
+  color: #9a5b16;
+
+  border: 1px solid #e4c28f;
+}
+
+/* =========================================================
+   PREPARING
+   ========================================================= */
+
+.kitchen-status-preparing {
+  background: #f7ead4;
+
+  color: #8a5a20;
+
+  border: 1px solid #dfc294;
+}
+
+/* =========================================================
+   READY
+   ========================================================= */
+
+.kitchen-status-ready {
+  background: #e7f3e8;
+
+  color: #397346;
+
+  border: 1px solid #b8d7bc;
+}
+
+/* =========================================================
+   SERVED
+   ========================================================= */
+
+.kitchen-status-served {
+  background: #5b3926;
+
+  color: #ffffff;
+
+  border: 1px solid #7d5839;
+}
+
+/* =========================================================
+   CANCELLED
+   ========================================================= */
+
+.kitchen-status-cancelled {
+  background: #fff0ee;
+
+  color: #a43b31;
+
+  border: 1px solid #e3b7b1;
+}
+
+/* =========================================================
+   CANCELLED ITEM
+   ========================================================= */
+
+.kitchen-item-cancelled {
+  margin: 3px 0;
+
+  padding: 10px;
+
+  border: 1px solid #f0d7d2;
+
+  border-radius: 8px;
+
+  background: #fff9f7;
+}
+
+.kitchen-item-cancelled .kitchen-item-information h4 {
+  color: #8f3c32;
+}
+
+/* =========================================================
+   ITEM BUTTONS
+   ========================================================= */
+
+.kitchen-item-buttons {
+  min-width: 112px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-end;
+}
+
+/* =========================================================
+   ACTION BUTTON
+   ========================================================= */
+
+.kitchen-action-button {
+  min-height: 35px;
+
+  padding: 7px 10px;
+
+  border: 1px solid #c58b45;
+
+  border-radius: 7px;
+
+  background: linear-gradient(135deg, #c8792d, #b46524);
+
+  color: #ffffff;
+
+  cursor: pointer;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+.kitchen-action-button:hover {
+  background: linear-gradient(135deg, #d4893b, #b96925);
+}
+
+.kitchen-action-button:disabled {
+  opacity: 0.5;
+
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   SERVED LABEL
+   ========================================================= */
+
+.kitchen-served-label {
+  color: #397346;
+
+  font-size: 11px;
+
+  font-weight: 700;
+}
+
+/* =========================================================
+   CANCELLED LABEL
+   ========================================================= */
+
+.kitchen-cancelled-label {
+  color: #a43b31;
+
+  font-size: 11px;
+
+  font-weight: 700;
+}
+
+/* =========================================================
+   CLOSE ORDER
+   ========================================================= */
+
+.kitchen-close-order-container {
+  margin-top: 15px;
+
+  padding-top: 14px;
+
+  border-top: 1px solid #eadfce;
+}
+
+.kitchen-review-message {
+  margin: 0 0 11px;
+
+  color: #8f6d59;
+
+  font-size: 10px;
+
+  line-height: 1.5;
+}
+
+.kitchen-close-order-button {
+  width: 100%;
+
+  min-height: 40px;
+
+  border: 1px solid #765139;
+
+  border-radius: 8px;
+
+  background: linear-gradient(135deg, #5b3926, #70472d);
+
+  color: #ffffff;
+
+  cursor: pointer;
+
+  font-size: 12px;
+
+  font-weight: 750;
+}
+
+.kitchen-close-order-button:hover {
+  background: linear-gradient(135deg, #70472d, #825536);
+}
+
+.kitchen-close-order-button:disabled {
+  opacity: 0.55;
+
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   EMPTY
+   ========================================================= */
+
+.kitchen-empty {
+  grid-column: 1 / -1;
+
+  margin: 0;
+
+  padding: 22px;
+
+  background: #fffaf3;
+
+  border: 1px dashed #ddc7aa;
+
+  border-radius: 9px;
+
+  color: #806b58;
+
+  text-align: center;
+
+  font-size: 12px;
+}
+
+/* =========================================================
+   LARGE DESKTOP
+   1201px+
+   ========================================================= */
+
+@media (min-width: 1201px) {
+  .top-header,
+  .header {
+    grid-template-columns:
+      minmax(0, 1.15fr)
+      minmax(200px, 0.75fr)
+      minmax(380px, 1.4fr);
+  }
+}
+
+/* =========================================================
+   LAPTOP
+   1025px - 1200px
+
+   SAME STRUCTURE AS BILL DESK
+   ========================================================= */
+
+@media (max-width: 1200px) and (min-width: 1025px) {
+  .top-header,
+  .header {
+    min-height: 120px;
+
+    display: grid;
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      auto;
+
+    grid-template-areas:
+      "brand title"
+      "right right";
+
+    align-items: center;
+
+    gap: 12px 24px;
+
+    padding: 15px 24px;
+  }
+
+  .header-brand,
+  .brand {
+    grid-area: brand;
+
+    min-width: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+  }
+
+  .page-title {
+    grid-area: title;
+
+    min-width: 0;
+
+    text-align: right;
+  }
+
+  .page-title h2 {
+    white-space: nowrap;
+  }
+
+  .header-right,
+  .header-user {
+    grid-area: right;
+
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      auto
+      auto;
+
+    align-items: center;
+
+    gap: 10px;
+
+    justify-content: initial;
+  }
+
+  .date-time {
+    grid-column: 1;
+
+    grid-row: 1;
+
+    width: 100%;
+
+    min-width: 0;
+
+    text-align: center;
+  }
+
+  .employee-info,
+  .header-user-info {
+    grid-column: 2;
+
+    grid-row: 1;
+
+    min-width: 0;
+
+    max-width: 150px;
+  }
+
+  .logout-button {
+    grid-column: 3;
+
+    grid-row: 1;
+
+    justify-self: end;
+  }
+
+  .header-brand-icon,
+  .brand-icon {
+    width: 55px;
+
+    height: 55px;
+  }
+
+  .header-brand h1,
+  .brand h1 {
+    font-size: 24px;
+  }
+
+  .page-title h2 {
+    font-size: 25px;
+  }
+
+  .date-time {
+    font-size: 10px;
+
+    padding: 9px 10px;
+  }
+
+  .employee-info,
+  .header-user-info {
+    min-width: 80px;
+  }
+}
+
+/* =========================================================
+   TABLET
+   601px - 1024px
+
+   SAME STRUCTURE AS BILL DESK
+   ========================================================= */
+
+@media (max-width: 1024px) and (min-width: 601px) {
+  .top-header,
+  .header {
+    min-height: auto;
+
+    display: grid;
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      auto;
+
+    grid-template-areas:
+      "brand title"
+      "right right";
+
+    align-items: center;
+
+    gap: 12px 20px;
+
+    padding: 15px 20px;
+  }
+
+  .header-brand,
+  .brand {
+    grid-area: brand;
+
+    min-width: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+  }
+
+  .page-title {
+    grid-area: title;
+
+    min-width: 0;
+
+    text-align: right;
+  }
+
+  .page-title h2 {
+    white-space: nowrap;
+  }
+
+  .header-right,
+  .header-user {
+    grid-area: right;
+
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      auto
+      auto;
+
+    align-items: center;
+
+    gap: 10px;
+
+    justify-content: initial;
+  }
+
+  .date-time {
+    grid-column: 1;
+
+    grid-row: 1;
+
+    width: 100%;
+
+    min-width: 0;
+
+    text-align: center;
+  }
+
+  .employee-info,
+  .header-user-info {
+    grid-column: 2;
+
+    grid-row: 1;
+
+    min-width: 0;
+
+    max-width: 145px;
+  }
+
+  .logout-button {
+    grid-column: 3;
+
+    grid-row: 1;
+
+    justify-self: end;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   426px - 600px
+
+   SAME STRUCTURE AS BILL DESK
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .top-header,
+  .header {
+    position: relative;
+
+    width: 100%;
+
+    min-height: auto;
+
+    display: grid;
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      auto;
+
+    grid-template-areas:
+      "brand title"
+      "right right";
+
+    align-items: center;
+
+    gap: 12px 14px;
+
+    padding: 14px 16px;
+  }
+
+  .header-brand,
+  .brand {
+    grid-area: brand;
+
+    width: auto;
+
+    min-width: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+  }
+
+  .header-brand-icon,
+  .brand-icon {
+    width: 48px;
+
+    height: 48px;
+
+    flex: 0 0 48px;
+
+    min-width: 48px;
+  }
+
+  .header-brand h1,
+  .brand h1 {
+    min-width: 0;
+
+    margin: 0;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+  }
+
+  .header-brand p,
+  .brand p {
+    margin: 2px 0 0;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+  }
+
+  .page-title {
+    grid-area: title;
+
+    width: auto;
+
+    min-width: 0;
+
+    padding-top: 0;
+
+    text-align: right;
+  }
+
+  .page-title h2 {
+    margin: 0;
+
+    white-space: nowrap;
+  }
+
+  .page-title p {
+    margin: 3px 0 0;
+
+    white-space: nowrap;
+  }
+
+  .header-right,
+  .header-user {
+    grid-area: right;
+
+    width: 100%;
+
+    min-width: 0;
+
+    display: grid;
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      auto
+      auto;
+
+    align-items: center;
+
+    gap: 9px;
+  }
+
+  .date-time {
+    grid-column: 1;
+
+    grid-row: 1;
+
+    width: 100%;
+
+    min-width: 0;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+  }
+
+  .employee-info,
+  .header-user-info {
+    grid-column: 2;
+
+    grid-row: 1;
+
+    min-width: 0;
+
+    max-width: 145px;
+
+    overflow: hidden;
+  }
+
+  .employee-info strong,
+  .header-user-info strong {
+    display: block;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+  }
+
+  .logout-button {
+    grid-column: 3;
+
+    grid-row: 1;
+
+    width: auto;
+
+    min-width: 76px;
+
+    justify-self: end;
+  }
+
+  .kitchen-main {
+    padding: 15px 12px 35px;
+  }
+
+  .kitchen-top-bar {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    padding: 16px;
+  }
+
+  .kitchen-title-area {
+    width: 100%;
+  }
+
+  .kitchen-search {
+    width: 100%;
+  }
+
+  .kitchen-refresh-button {
+    width: 100%;
+  }
+
+  .kitchen-section {
+    padding: 16px;
+
+    border-radius: 12px;
+  }
+
+  .kitchen-section-header {
+    align-items: flex-start;
+  }
+
+  .kitchen-orders-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kitchen-item {
+    grid-template-columns: 1fr;
+
+    gap: 10px;
+  }
+
+  .kitchen-item-status-column {
+    align-items: flex-start;
+  }
+
+  .kitchen-item-buttons {
+    min-width: 0;
+
+    justify-content: flex-start;
+  }
+
+  .kitchen-action-button {
+    width: 100%;
+
+    min-height: 40px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   420px AND BELOW
+   ========================================================= */
+
+@media (max-width: 420px) {
+  .login-screen {
+    padding: 15px 10px;
+  }
+
+  .login-card {
+    padding: 23px 17px;
+  }
+
+  .login-brand {
+    margin-bottom: 25px;
+  }
+
+  .login-brand-icon {
+    width: 48px;
+
+    height: 48px;
+
+    font-size: 23px;
+  }
+
+  .login-brand h1 {
+    font-size: 21px;
+  }
+
+  .login-heading h2 {
+    font-size: 22px;
+  }
+
+  .login-heading p {
+    font-size: 12px;
+  }
+
+  /* =======================================================
+     HEADER
+     ======================================================= */
+
+  .top-header,
+  .header {
+    position: relative;
+
+    min-height: auto;
+
+    display: grid;
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      auto;
+
+    grid-template-areas:
+      "brand title"
+      "right right";
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 13px 14px;
+  }
+
+  .header-brand,
+  .brand {
+    grid-area: brand;
+
+    width: auto;
+
+    min-width: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+  }
+
+  .header-brand-icon,
+  .brand-icon {
+    width: 44px;
+
+    height: 44px;
+
+    flex: 0 0 44px;
+
+    min-width: 44px;
+  }
+
+  .header-brand h1,
+  .brand h1 {
+    min-width: 0;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    font-size: 19px;
+
+    letter-spacing: 0.5px;
+  }
+
+  .header-brand p,
+  .brand p {
+    font-size: 9px;
+  }
+
+  .page-title {
+    grid-area: title;
+
+    width: auto;
+
+    min-width: 0;
+
+    padding-top: 0;
+
+    text-align: right;
+  }
+
+  .page-title h2 {
+    font-size: 20px;
+
+    white-space: nowrap;
+  }
+
+  .page-title p {
+    font-size: 9px;
+
+    white-space: nowrap;
+  }
+
+  .header-right,
+  .header-user {
+    grid-area: right;
+
+    width: 100%;
+
+    min-width: 0;
+
+    display: grid;
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      auto
+      auto;
+
+    align-items: center;
+
+    gap: 8px;
+  }
+
+  .date-time {
+    grid-column: 1;
+
+    grid-row: 1;
+
+    width: 100%;
+
+    min-width: 0;
+
+    text-align: center;
+
+    font-size: 9px;
+
+    padding: 8px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+  }
+
+  .employee-info,
+  .header-user-info {
+    grid-column: 2;
+
+    grid-row: 1;
+
+    min-width: 0;
+
+    max-width: 120px;
+
+    overflow: hidden;
+  }
+
+  .employee-info strong,
+  .header-user-info strong {
+    font-size: 10px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+  }
+
+  .employee-info span,
+  .header-user-info span {
+    font-size: 8px;
+  }
+
+  .logout-button {
+    grid-column: 3;
+
+    grid-row: 1;
+
+    width: auto;
+
+    min-width: 72px;
+
+    height: 35px;
+
+    padding: 0 10px;
+
+    font-size: 10px;
+
+    justify-self: end;
+  }
+
+  /* =======================================================
+     KITCHEN CONTENT
+     ======================================================= */
+
+  .kitchen-section-title h2 {
+    font-size: 16px;
+  }
+
+  .kitchen-section-title p {
+    font-size: 9px;
+  }
+
+  .kitchen-order-card {
+    padding: 14px;
+  }
+
+  .kitchen-order-heading h3 {
+    font-size: 16px;
+  }
+}
+
+/* =========================================================
+   LANDSCAPE MOBILE
+   ========================================================= */
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .top-header,
+  .header {
+    position: relative;
+
+    min-height: auto;
+
+    display: grid;
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr)
+      minmax(0, 1.2fr);
+
+    grid-template-areas: "brand title right";
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 10px 16px;
+  }
+
+  .header-brand,
+  .brand {
+    grid-area: brand;
+  }
+
+  .page-title {
+    grid-area: title;
+
+    text-align: center;
+  }
+
+  .header-right,
+  .header-user {
+    grid-area: right;
+
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      auto
+      auto;
+
+    align-items: center;
+
+    gap: 8px;
+  }
+
+  .date-time {
+    grid-column: 1;
+
+    grid-row: 1;
+
+    width: 100%;
+
+    min-width: 0;
+
+    font-size: 8px;
+
+    padding: 7px 8px;
+  }
+
+  .employee-info,
+  .header-user-info {
+    grid-column: 2;
+
+    grid-row: 1;
+
+    min-width: 0;
+
+    max-width: 100px;
+  }
+
+  .employee-info strong,
+  .header-user-info strong {
+    font-size: 9px;
+  }
+
+  .employee-info span,
+  .header-user-info span {
+    font-size: 7px;
+  }
+
+  .logout-button {
+    grid-column: 3;
+
+    grid-row: 1;
+
+    height: 32px;
+
+    padding: 0 9px;
+
+    font-size: 9px;
+  }
+}
+
+/* =========================================================
+   TOUCH DEVICES
+   ========================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+  .logout-button,
+  .kitchen-refresh-button,
+  .kitchen-action-button,
+  .kitchen-close-order-button,
+  .login-button,
+  .password-toggle {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .kitchen-order-card:hover {
+    transform: none;
+
+    box-shadow: 0 3px 9px rgba(79, 48, 33, 0.06);
+  }
+}

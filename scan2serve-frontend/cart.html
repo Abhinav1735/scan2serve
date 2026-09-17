@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta name="description" content="Scan2Serve restaurant ordering cart" />
+
+    <title>Scan2Serve - Your Cart</title>
+
+    <link rel="stylesheet" href="css/cart.css" />
+  </head>
+
+  <body>
+    <!-- =====================================================
+       HEADER
+  ====================================================== -->
+
+    <header class="cart-header">
+      <div class="cart-header-inner">
+        <!-- BRAND -->
+
+        <div class="cart-brand">
+          <div class="cart-brand-logo">S</div>
+
+          <div class="cart-brand-text">
+            <h1>Scan<span>2</span>Serve</h1>
+
+            <p>Restaurant</p>
+          </div>
+        </div>
+
+        <!-- TABLE -->
+
+        <div class="cart-table-card">
+          <span> TABLE </span>
+
+          <strong id="headerTableInfo"> - </strong>
+        </div>
+
+        <!-- CURRENT ORDER ONLY -->
+
+        <div class="cart-header-actions">
+          <a
+            id="headerOrderButton"
+            class="header-action-button order-button hidden"
+            href="#"
+          >
+            <span class="button-icon"> ◷ </span>
+
+            <span> Current Order </span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- =====================================================
+       MAIN
+  ====================================================== -->
+
+    <main class="cart-page">
+      <!-- ===================================================
+         INTRODUCTION
+    ==================================================== -->
+
+      <section class="cart-introduction">
+        <div class="introduction-content">
+          <span class="cart-eyebrow"> YOUR SELECTION </span>
+
+          <h2>Your Cart</h2>
+
+          <p>Review your delicious selections before placing your order.</p>
+        </div>
+
+        <div class="food-decoration">
+          <div class="food-circle">🍽️</div>
+
+          <span> Good Food </span>
+
+          <strong> Better Mood </strong>
+        </div>
+      </section>
+
+      <!-- ===================================================
+         LOADING
+    ==================================================== -->
+
+      <section id="loading" class="cart-state">
+        <div class="loading-spinner"></div>
+
+        <h3>Preparing Your Cart</h3>
+
+        <p>Just a moment...</p>
+      </section>
+
+      <!-- ===================================================
+         ERROR
+    ==================================================== -->
+
+      <section id="errorState" class="cart-state hidden">
+        <div class="state-icon">!</div>
+
+        <h3>Unable to Load Cart</h3>
+
+        <p id="errorMessage">Something went wrong while loading your cart.</p>
+
+        <button id="retryButton" class="state-button" type="button">
+          Try Again
+        </button>
+      </section>
+
+      <!-- ===================================================
+         EMPTY
+    ==================================================== -->
+
+      <section id="emptyState" class="cart-state hidden">
+        <div class="state-icon">🍽</div>
+
+        <h3>Your Table Is Waiting</h3>
+
+        <p>Explore our menu and discover something delicious.</p>
+
+        <button id="emptyMenuButton" class="state-button" type="button">
+          Explore Our Menu
+        </button>
+      </section>
+
+      <!-- ===================================================
+         CART CONTENT
+    ==================================================== -->
+
+      <section id="cartContent" class="cart-content hidden">
+        <!-- =================================================
+           ITEMS
+      ================================================== -->
+
+        <div class="cart-items-section">
+          <div class="section-heading">
+            <div>
+              <span class="section-eyebrow"> ORDER ITEMS </span>
+
+              <h3>Selected Dishes</h3>
+            </div>
+
+            <span id="itemCountLabel" class="item-count-label"> 0 items </span>
+          </div>
+
+          <div id="cartItems" class="cart-items"></div>
+        </div>
+
+        <!-- =================================================
+           ORDER SUMMARY
+      ================================================== -->
+
+        <aside class="cart-summary">
+          <div class="summary-heading">
+            <span class="section-eyebrow"> ORDER SUMMARY </span>
+
+            <h3>Your Order</h3>
+          </div>
+
+          <div class="summary-details">
+            <div class="summary-row">
+              <span> Items </span>
+
+              <strong id="summaryItemCount"> 0 </strong>
+            </div>
+
+            <div class="summary-row">
+              <span> Subtotal </span>
+
+              <strong id="summarySubtotal"> ₹0.00 </strong>
+            </div>
+
+            <div class="summary-row">
+              <span id="gstLabel"> GST (5%) </span>
+
+              <strong id="summaryGst"> ₹0.00 </strong>
+            </div>
+          </div>
+
+          <div class="summary-divider"></div>
+
+          <div class="summary-total">
+            <span> Grand Total </span>
+
+            <strong id="summaryTotal"> ₹0.00 </strong>
+          </div>
+
+          <p class="summary-note">
+            GST is calculated according to the restaurant's current tax setting.
+          </p>
+
+          <!-- PLACE ORDER -->
+
+          <button
+            id="placeOrderButton"
+            class="place-order-button"
+            type="button"
+          >
+            <span> ✓ </span>
+
+            <span> Place Order </span>
+          </button>
+
+          <!-- EXPLORE MENU -->
+
+          <button
+            id="restaurantMenuButton"
+            class="continue-shopping-button"
+            type="button"
+          >
+            <span> 🍽 </span>
+
+            Explore Our Menu
+          </button>
+        </aside>
+      </section>
+    </main>
+
+    <!-- =====================================================
+       CUSTOMER DETAILS MODAL
+  ====================================================== -->
+
+    <div id="customerDetailsModal" class="modal-overlay hidden">
+      <div
+        class="modal-card customer-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="customerModalTitle"
+      >
+        <button
+          id="closeCustomerDetailsButton"
+          class="modal-close-button"
+          type="button"
+          aria-label="Close"
+        >
+          ×
+        </button>
+
+        <div class="modal-icon">👤</div>
+
+        <span class="modal-eyebrow"> CUSTOMER DETAILS </span>
+
+        <h3 id="customerModalTitle">Tell Us About You</h3>
+
+        <p class="modal-description">
+          We need your details for your order and bill.
+        </p>
+
+        <form id="customerDetailsForm" novalidate>
+          <div class="form-group">
+            <label for="customerName">
+              Customer Name
+              <span>*</span>
+            </label>
+
+            <input
+              id="customerName"
+              type="text"
+              maxlength="100"
+              autocomplete="name"
+              placeholder="Enter your name"
+            />
+
+            <small id="customerNameError" class="field-error hidden"></small>
+          </div>
+
+          <div class="form-group">
+            <label for="customerPhone">
+              Phone Number
+              <span>*</span>
+            </label>
+
+            <input
+              id="customerPhone"
+              type="tel"
+              maxlength="10"
+              inputmode="numeric"
+              autocomplete="tel"
+              placeholder="10-digit mobile number"
+            />
+
+            <small id="customerPhoneError" class="field-error hidden"></small>
+          </div>
+
+          <div id="customerDetailsError" class="form-error hidden"></div>
+
+          <div class="modal-actions">
+            <button
+              id="cancelCustomerDetailsButton"
+              class="modal-button modal-button-secondary"
+              type="button"
+            >
+              Cancel
+            </button>
+
+            <button class="modal-button modal-button-primary" type="submit">
+              Continue
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- =====================================================
+       ORDER CONFIRMATION
+  ====================================================== -->
+
+    <div id="orderConfirmationModal" class="modal-overlay hidden">
+      <div
+        class="modal-card confirmation-modal"
+        role="dialog"
+        aria-modal="true"
+      >
+        <button
+          id="closeConfirmationButton"
+          class="modal-close-button"
+          type="button"
+          aria-label="Close"
+        >
+          ×
+        </button>
+
+        <div class="modal-icon confirmation-icon">✓</div>
+
+        <span class="modal-eyebrow"> FINAL CONFIRMATION </span>
+
+        <h3>Confirm Your Order</h3>
+
+        <p class="modal-description">
+          Please check your details before sending your order to the restaurant.
+        </p>
+
+        <div class="confirmation-customer-card">
+          <div class="confirmation-row">
+            <span> Customer </span>
+
+            <strong id="confirmationCustomerName"> - </strong>
+          </div>
+
+          <div class="confirmation-row">
+            <span> Phone </span>
+
+            <strong id="confirmationCustomerPhone"> - </strong>
+          </div>
+
+          <div class="confirmation-row">
+            <span> Table </span>
+
+            <strong id="confirmationTableNumber"> - </strong>
+          </div>
+        </div>
+
+        <div class="confirmation-summary">
+          <div class="confirmation-summary-row">
+            <span> Items </span>
+
+            <strong id="confirmationItemCount"> 0 </strong>
+          </div>
+
+          <div class="confirmation-summary-row">
+            <span> Subtotal </span>
+
+            <strong id="confirmationSubtotal"> ₹0.00 </strong>
+          </div>
+
+          <div class="confirmation-summary-row">
+            <span id="confirmationGstLabel"> GST (5%) </span>
+
+            <strong id="confirmationGst"> ₹0.00 </strong>
+          </div>
+
+          <div class="confirmation-grand-total">
+            <span> Grand Total </span>
+
+            <strong id="confirmationGrandTotal"> ₹0.00 </strong>
+          </div>
+        </div>
+
+        <p class="confirmation-message">
+          Once you place the order, our kitchen will receive it and start
+          preparing your food.
+        </p>
+
+        <div class="modal-actions">
+          <button
+            id="cancelOrderConfirmationButton"
+            class="modal-button modal-button-secondary"
+            type="button"
+          >
+            Cancel
+          </button>
+
+          <button
+            id="confirmPlaceOrderButton"
+            class="modal-button modal-button-primary"
+            type="button"
+          >
+            Place Order
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- =====================================================
+       TOAST
+  ====================================================== -->
+
+    <div id="cartToast" class="cart-toast" role="status" aria-live="polite">
+      <div class="toast-icon">✓</div>
+
+      <div>
+        <p id="toastTitle" class="cart-toast-title"></p>
+
+        <p id="toastMessage" class="cart-toast-message"></p>
+      </div>
+    </div>
+
+    <script src="js/cart.js"></script>
+  </body>
+</html>

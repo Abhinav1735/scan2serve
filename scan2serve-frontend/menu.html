@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta name="description" content="Scan2Serve digital restaurant menu" />
+
+    <title>Scan2Serve - Restaurant Menu</title>
+
+    <!-- Shared styles -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Menu page styles -->
+    <link rel="stylesheet" href="css/menu.css" />
+  </head>
+
+  <body>
+    <!-- =====================================================
+       HEADER
+  ====================================================== -->
+
+    <header class="menu-header">
+      <div class="header-inner">
+        <!-- =================================================
+           BRAND
+      ================================================== -->
+
+        <div class="brand-area">
+          <div class="brand-logo">S</div>
+
+          <div class="brand-text">
+            <h1>Scan<span>2</span>Serve</h1>
+
+            <p>Restaurant Menu</p>
+          </div>
+        </div>
+
+        <!-- =================================================
+           TABLE
+      ================================================== -->
+
+        <div class="table-info-card">
+          <span class="table-label"> TABLE </span>
+
+          <strong id="tableNumberDisplay"> - </strong>
+        </div>
+
+        <!-- =================================================
+           HEADER ACTIONS
+      ================================================== -->
+
+        <div class="header-actions">
+          <!--
+          This button remains hidden until
+          menu.js finds an active order.
+        -->
+
+          <button
+            type="button"
+            id="currentOrderButton"
+            class="header-button secondary-header-button hidden"
+          >
+            <span class="button-icon"> ◷ </span>
+
+            <span> Current Order </span>
+          </button>
+
+          <!-- VIEW CART -->
+
+          <button
+            type="button"
+            id="cartButton"
+            class="header-button primary-header-button"
+          >
+            <span class="button-icon"> 🛒 </span>
+
+            <span> View Cart </span>
+
+            <span id="cartCount" class="cart-count hidden"> 0 </span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- =====================================================
+       MAIN
+  ====================================================== -->
+
+    <main class="menu-page">
+      <!-- ===================================================
+         MENU HERO
+         
+         Good Food / Better Mood is intentionally
+         designed to match the Cart branding.
+    ==================================================== -->
+
+      <section class="menu-introduction">
+        <!-- =================================================
+           LEFT SIDE
+      ================================================== -->
+
+        <div class="menu-introduction-content">
+          <span class="eyebrow"> WELCOME TO SCAN2SERVE </span>
+
+          <h2>Explore Our Menu</h2>
+
+          <p>Choose your favourite dishes and add them to your cart.</p>
+        </div>
+
+        <!-- =================================================
+           RIGHT SIDE
+           
+           GOOD FOOD / BETTER MOOD
+      ================================================== -->
+
+        <div class="menu-food-brand">
+          <!-- GOLD CIRCLE -->
+          <div class="food-circle">🍽️</div>
+
+          <span> Good Food </span>
+
+          <strong> Better Mood </strong>
+        </div>
+      </section>
+
+      <!-- ===================================================
+         LOADING STATE
+    ==================================================== -->
+
+      <section id="menuLoading" class="menu-state">
+        <div class="loading-spinner"></div>
+
+        <h3>Loading menu...</h3>
+
+        <p>Please wait while we prepare your menu.</p>
+      </section>
+
+      <!-- ===================================================
+         ERROR STATE
+    ==================================================== -->
+
+      <section id="menuError" class="menu-state error-state hidden">
+        <div class="state-icon">!</div>
+
+        <h3>Unable to Load Menu</h3>
+
+        <p id="menuErrorMessage">
+          Something went wrong while loading the menu.
+        </p>
+
+        <button type="button" id="retryMenuButton" class="state-button">
+          Try Again
+        </button>
+      </section>
+
+      <!-- ===================================================
+         EMPTY STATE
+    ==================================================== -->
+
+      <section id="menuEmpty" class="menu-state hidden">
+        <div class="state-icon">🍽</div>
+
+        <h3>Menu Currently Unavailable</h3>
+
+        <p>There are no available items at the moment.</p>
+      </section>
+
+      <!-- ===================================================
+         DYNAMIC MENU CONTAINER
+
+         menu.js creates the categories and items here.
+    ==================================================== -->
+
+      <section id="menuContainer" class="menu-container hidden"></section>
+    </main>
+
+    <!-- =====================================================
+       TOAST
+  ====================================================== -->
+
+    <div id="cartToast" class="cart-toast" role="status" aria-live="polite">
+      <span class="toast-icon"> ✓ </span>
+
+      <div>
+        <strong id="toastTitle"> Added to Cart </strong>
+
+        <span id="toastMessage"> Item added successfully. </span>
+      </div>
+    </div>
+
+    <!-- =====================================================
+       JAVASCRIPT
+  ====================================================== -->
+
+    <script src="js/menu.js"></script>
+  </body>
+</html>

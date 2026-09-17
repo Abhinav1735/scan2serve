@@ -1,0 +1,1525 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Scan2Serve | Admin Dashboard</title>
+
+    <link rel="stylesheet" href="css/admin-dashboard.css" />
+    <link rel="stylesheet" href="css/admin-bill-desk.css" />
+    <link rel="stylesheet" href="css/admin-kitchen.css" />
+  </head>
+
+  <body>
+    <!-- =========================================================
+     LOGIN SCREEN
+========================================================= -->
+
+    <section id="loginScreen" class="login-screen">
+      <div class="login-background-decoration decoration-one"></div>
+      <div class="login-background-decoration decoration-two"></div>
+
+      <div class="login-card">
+        <div class="login-brand">
+          <div class="brand-logo">
+            <span>S</span>
+            <strong>2</strong>
+            <span>S</span>
+          </div>
+
+          <div class="brand-text">
+            <h1>Scan2Serve</h1>
+            <p>Restaurant Management</p>
+          </div>
+        </div>
+
+        <div class="login-heading">
+          <span class="eyebrow">ADMIN PORTAL</span>
+
+          <h2>Welcome back</h2>
+
+          <p>Sign in to manage your restaurant.</p>
+        </div>
+
+        <form id="loginForm" autocomplete="on">
+          <div class="form-group">
+            <label for="loginUsername"> Username </label>
+
+            <div class="input-wrapper">
+              <span class="input-icon">👤</span>
+
+              <input
+                id="loginUsername"
+                type="text"
+                name="username"
+                placeholder="Enter username"
+                autocomplete="username"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="loginPassword"> Password </label>
+
+            <div class="input-wrapper">
+              <span class="input-icon">🔒</span>
+
+              <input
+                id="loginPassword"
+                type="password"
+                name="password"
+                placeholder="Enter password"
+                autocomplete="current-password"
+                required
+              />
+
+              <button
+                id="passwordToggle"
+                type="button"
+                class="password-toggle"
+                aria-label="Show password"
+              >
+                Show
+              </button>
+            </div>
+          </div>
+
+          <div
+            id="loginError"
+            class="form-message error hidden"
+            role="alert"
+          ></div>
+
+          <button
+            id="loginButton"
+            type="submit"
+            class="primary-btn login-button"
+          >
+            <span class="button-text">Login</span>
+            <span class="button-loader hidden"></span>
+          </button>
+        </form>
+
+        <div class="login-footer">
+          <span>Scan2Serve</span>
+          <span>•</span>
+          <span>Smart QR Restaurant System</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+     MAIN APPLICATION
+========================================================= -->
+
+    <div id="app" class="app hidden">
+      <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+      <aside id="adminSidebar" class="admin-sidebar">
+        <!-- BRAND -->
+
+        <div class="sidebar-brand">
+          <div class="sidebar-brand-logo">
+            <span>S</span>
+            <strong>2</strong>
+            <span>S</span>
+          </div>
+
+          <div class="sidebar-brand-text">
+            <strong>Scan2Serve</strong>
+            <small>Restaurant Management</small>
+          </div>
+        </div>
+
+        <!-- NAVIGATION -->
+
+        <nav class="sidebar-nav" aria-label="Main navigation">
+          <!-- MAIN -->
+
+          <div class="nav-section-label">MAIN</div>
+
+          <button
+            class="sidebar-item active"
+            data-section="dashboard"
+            data-roles="ADMIN,BILL_DESK,KITCHEN"
+            type="button"
+          >
+            <span class="nav-icon">▦</span>
+
+            <span class="nav-text"> Dashboard </span>
+          </button>
+
+          <!-- RESTAURANT -->
+
+          <div class="nav-section-label">RESTAURANT</div>
+
+          <button
+            class="sidebar-item"
+            data-section="menu"
+            data-roles="ADMIN"
+            type="button"
+          >
+            <span class="nav-icon">🍽</span>
+
+            <span class="nav-text"> Menu </span>
+          </button>
+
+          <button
+            class="sidebar-item"
+            data-section="categories"
+            data-roles="ADMIN"
+            type="button"
+          >
+            <span class="nav-icon">▤</span>
+
+            <span class="nav-text"> Categories </span>
+          </button>
+
+          <button
+            class="sidebar-item"
+            data-section="tables"
+            data-roles="ADMIN"
+            type="button"
+          >
+            <span class="nav-icon">▥</span>
+
+            <span class="nav-text"> Tables & QR </span>
+          </button>
+
+          <!-- OPERATIONS -->
+
+          <div class="nav-section-label">OPERATIONS</div>
+
+          <button
+            class="sidebar-item"
+            data-section="orders"
+            data-roles="ADMIN,BILL_DESK,KITCHEN"
+            type="button"
+          >
+            <span class="nav-icon">☷</span>
+
+            <span class="nav-text"> Orders </span>
+          </button>
+
+          <button
+            class="sidebar-item"
+            data-section="bill-desk"
+            data-roles="ADMIN,BILL_DESK"
+            type="button"
+          >
+            <span class="nav-icon">₹</span>
+
+            <span class="nav-text"> Bill Desk </span>
+          </button>
+
+          <button
+            class="sidebar-item"
+            data-section="kitchen"
+            data-roles="ADMIN,KITCHEN"
+            type="button"
+          >
+            <span class="nav-icon">♨</span>
+
+            <span class="nav-text"> Kitchen </span>
+          </button>
+
+          <!-- ADMINISTRATION -->
+
+          <div class="nav-section-label admin-only">ADMINISTRATION</div>
+
+          <button
+            class="sidebar-item admin-only"
+            data-section="employees"
+            data-roles="ADMIN"
+            type="button"
+          >
+            <span class="nav-icon">♙</span>
+
+            <span class="nav-text"> Employees </span>
+          </button>
+
+          <button
+            class="sidebar-item admin-only"
+            data-section="settings"
+            data-roles="ADMIN"
+            type="button"
+          >
+            <span class="nav-icon">⚙</span>
+
+            <span class="nav-text"> Settings </span>
+          </button>
+        </nav>
+
+        <!-- SIDEBAR FOOTER -->
+
+        <div class="sidebar-footer">
+          <div class="sidebar-footer-brand">
+            <strong>Scan2Serve</strong>
+            <span>Smart QR Restaurant System</span>
+          </div>
+
+          <button id="logoutButton" class="sidebar-logout" type="button">
+            <span>↪</span>
+            <span>Logout</span>
+          </button>
+        </div>
+      </aside>
+
+      <!-- MOBILE OVERLAY -->
+
+      <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+      <!-- =====================================================
+         MAIN AREA
+    ====================================================== -->
+
+      <main class="admin-main">
+        <!-- =================================================
+             TOP HEADER
+        ================================================== -->
+
+        <header class="admin-header">
+          <div class="header-left">
+            <button
+              id="mobileMenuButton"
+              class="mobile-menu-button"
+              type="button"
+              aria-label="Open menu"
+            >
+              ☰
+            </button>
+
+            <div class="header-page-info">
+              <span class="eyebrow"> SCAN2SERVE </span>
+
+              <h1 id="pageTitle">Dashboard</h1>
+            </div>
+          </div>
+
+          <div class="header-right">
+            <div class="header-date">
+              <span> TODAY </span>
+
+              <strong id="currentDate"> -- </strong>
+            </div>
+
+            <button
+              id="refreshDashboardButton"
+              class="header-action-button"
+              type="button"
+              title="Refresh dashboard"
+            >
+              ↻
+            </button>
+
+            <div class="header-user">
+              <div id="headerAvatar" class="header-avatar">A</div>
+
+              <div class="header-user-info">
+                <strong id="headerName"> Admin </strong>
+
+                <span id="headerRole"> ADMIN </span>
+              </div>
+            </div>
+
+            <button
+              id="headerLogoutButton"
+              class="header-logout-button"
+              type="button"
+            >
+              Logout
+            </button>
+          </div>
+        </header>
+
+        <!-- =================================================
+             CONTENT
+        ================================================== -->
+
+        <div class="admin-content">
+          <!-- =================================================
+                 DASHBOARD SECTION
+            ================================================== -->
+
+          <section
+            id="dashboardSection"
+            class="page-section"
+            data-section="dashboard"
+          >
+            <div class="page-heading">
+              <div>
+                <span class="eyebrow"> OVERVIEW </span>
+
+                <h2>Dashboard</h2>
+
+                <p>Monitor your restaurant operations from one place.</p>
+              </div>
+
+              <button
+                id="dashboardRefreshButton"
+                class="primary-btn"
+                type="button"
+              >
+                ↻ Refresh
+              </button>
+            </div>
+
+            <!-- DASHBOARD STAT CARDS -->
+
+            <div class="stats-grid">
+              <article class="stat-card">
+                <div class="stat-card-icon">☷</div>
+
+                <div class="stat-card-content">
+                  <span> Total Orders </span>
+
+                  <strong id="totalOrders"> 0 </strong>
+
+                  <small> All restaurant orders </small>
+                </div>
+              </article>
+
+              <article class="stat-card">
+                <div class="stat-card-icon">◷</div>
+
+                <div class="stat-card-content">
+                  <span> Today's Orders </span>
+
+                  <strong id="todayOrders"> 0 </strong>
+
+                  <small> Orders placed today </small>
+                </div>
+              </article>
+
+              <article class="stat-card">
+                <div class="stat-card-icon">↻</div>
+
+                <div class="stat-card-content">
+                  <span> Active Orders </span>
+
+                  <strong id="activeOrders"> 0 </strong>
+
+                  <small> Currently in progress </small>
+                </div>
+              </article>
+
+              <article class="stat-card">
+                <div class="stat-card-icon">✓</div>
+
+                <div class="stat-card-content">
+                  <span> Paid Orders </span>
+
+                  <strong id="paidOrders"> 0 </strong>
+
+                  <small> Successfully paid </small>
+                </div>
+              </article>
+
+              <article class="stat-card revenue-card">
+                <div class="stat-card-icon">₹</div>
+
+                <div class="stat-card-content">
+                  <span> Today's Revenue </span>
+
+                  <strong id="todayRevenue"> ₹0.00 </strong>
+
+                  <small> Revenue generated today </small>
+                </div>
+              </article>
+            </div>
+
+            <!-- DASHBOARD SECOND ROW -->
+
+            <div class="dashboard-grid">
+              <!-- ORDER SUMMARY -->
+
+              <section class="panel">
+                <div class="panel-header">
+                  <div>
+                    <span class="eyebrow"> ORDERS </span>
+
+                    <h3>Order Summary</h3>
+
+                    <p>Current restaurant order activity.</p>
+                  </div>
+
+                  <button
+                    class="text-button"
+                    data-go-section="orders"
+                    type="button"
+                  >
+                    View Orders →
+                  </button>
+                </div>
+
+                <div class="summary-grid">
+                  <div class="summary-item">
+                    <span class="summary-dot active"></span>
+
+                    <div>
+                      <small>Active</small>
+                      <strong id="summaryActive">0</strong>
+                    </div>
+                  </div>
+
+                  <div class="summary-item">
+                    <span class="summary-dot paid"></span>
+
+                    <div>
+                      <small>Paid</small>
+                      <strong id="summaryPaid">0</strong>
+                    </div>
+                  </div>
+
+                  <div class="summary-item">
+                    <span class="summary-dot cancelled"></span>
+
+                    <div>
+                      <small>Cancelled</small>
+                      <strong id="summaryCancelled">0</strong>
+                    </div>
+                  </div>
+
+                  <div class="summary-item">
+                    <span class="summary-dot today"></span>
+
+                    <div>
+                      <small>Today</small>
+                      <strong id="summaryToday">0</strong>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- TABLE SUMMARY -->
+
+              <section class="panel">
+                <div class="panel-header">
+                  <div>
+                    <span class="eyebrow"> TABLES </span>
+
+                    <h3>Table Overview</h3>
+
+                    <p>Current restaurant table occupancy.</p>
+                  </div>
+
+                  <button
+                    class="text-button"
+                    data-go-section="tables"
+                    type="button"
+                  >
+                    Manage →
+                  </button>
+                </div>
+
+                <div class="table-overview">
+                  <div class="table-stat">
+                    <div class="table-stat-icon total">▦</div>
+
+                    <div>
+                      <small>Total</small>
+                      <strong id="totalTables">0</strong>
+                    </div>
+                  </div>
+
+                  <div class="table-stat">
+                    <div class="table-stat-icon available">✓</div>
+
+                    <div>
+                      <small>Available</small>
+                      <strong id="availableTables">0</strong>
+                    </div>
+                  </div>
+
+                  <div class="table-stat">
+                    <div class="table-stat-icon occupied">●</div>
+
+                    <div>
+                      <small>Occupied</small>
+                      <strong id="occupiedTables">0</strong>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <!-- QUICK ACTIONS -->
+
+            <section class="panel quick-actions-panel">
+              <div class="panel-header">
+                <div>
+                  <span class="eyebrow"> QUICK ACTIONS </span>
+
+                  <h3>Restaurant Management</h3>
+
+                  <p>Quickly access commonly used tools.</p>
+                </div>
+              </div>
+
+              <div class="quick-actions">
+                <button
+                  class="quick-action"
+                  data-go-section="menu"
+                  type="button"
+                >
+                  <span class="quick-action-icon"> 🍽 </span>
+
+                  <span>
+                    <strong>Manage Menu</strong>
+                    <small>Add or update dishes</small>
+                  </span>
+
+                  <b>→</b>
+                </button>
+
+                <button
+                  class="quick-action"
+                  data-go-section="tables"
+                  type="button"
+                >
+                  <span class="quick-action-icon"> ▥ </span>
+
+                  <span>
+                    <strong>Tables & QR</strong>
+                    <small>Manage restaurant tables</small>
+                  </span>
+
+                  <b>→</b>
+                </button>
+
+                <button
+                  class="quick-action"
+                  data-go-section="orders"
+                  type="button"
+                >
+                  <span class="quick-action-icon"> ☷ </span>
+
+                  <span>
+                    <strong>View Orders</strong>
+                    <small>Check restaurant orders</small>
+                  </span>
+
+                  <b>→</b>
+                </button>
+
+                <button
+                  class="quick-action"
+                  data-go-section="employees"
+                  type="button"
+                >
+                  <span class="quick-action-icon"> ♙ </span>
+
+                  <span>
+                    <strong>Employees</strong>
+                    <small>Manage staff accounts</small>
+                  </span>
+
+                  <b>→</b>
+                </button>
+              </div>
+            </section>
+          </section>
+
+          <!-- =================================================
+                 MENU SECTION
+            ================================================== -->
+
+          <section
+            id="menuSection"
+            class="page-section hidden"
+            data-section="menu"
+          >
+            <div class="page-heading">
+              <div>
+                <span class="eyebrow"> RESTAURANT </span>
+
+                <h2>Menu</h2>
+
+                <p>Manage dishes, prices, availability and images.</p>
+              </div>
+
+              <button id="addMenuButton" class="primary-btn" type="button">
+                + Add Menu Item
+              </button>
+            </div>
+
+            <section class="panel">
+              <div class="toolbar">
+                <div class="search-box">
+                  <span>⌕</span>
+
+                  <input
+                    id="menuSearchInput"
+                    type="search"
+                    placeholder="Search menu items..."
+                    autocomplete="off"
+                  />
+                </div>
+
+                <button
+                  id="menuRefreshButton"
+                  class="secondary-btn"
+                  type="button"
+                >
+                  ↻ Refresh
+                </button>
+              </div>
+
+              <div class="table-wrap">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Item</th>
+                      <th>Category</th>
+                      <th>Price</th>
+                      <th>Availability</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+
+                  <tbody id="menuTableBody"></tbody>
+                </table>
+              </div>
+
+              <div id="menuEmptyState" class="empty-state hidden">
+                <div class="empty-icon">🍽</div>
+
+                <h3>No menu items found</h3>
+
+                <p>Add your first menu item to get started.</p>
+              </div>
+            </section>
+          </section>
+
+          <!-- =================================================
+                 CATEGORIES SECTION
+            ================================================== -->
+
+          <section
+            id="categoriesSection"
+            class="page-section hidden"
+            data-section="categories"
+          >
+            <div class="page-heading">
+              <div>
+                <span class="eyebrow"> RESTAURANT </span>
+
+                <h2>Categories</h2>
+
+                <p>Organize your restaurant menu.</p>
+              </div>
+
+              <button id="addCategoryButton" class="primary-btn" type="button">
+                + Add Category
+              </button>
+            </div>
+
+            <section class="panel">
+              <div class="toolbar">
+                <div class="search-box">
+                  <span>⌕</span>
+
+                  <input
+                    id="categorySearchInput"
+                    type="search"
+                    placeholder="Search categories..."
+                    autocomplete="off"
+                  />
+                </div>
+              </div>
+
+              <div class="table-wrap">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Category</th>
+                      <th>Display Order</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+
+                  <tbody id="categoryTableBody"></tbody>
+                </table>
+              </div>
+
+              <div id="categoryEmptyState" class="empty-state hidden">
+                <div class="empty-icon">▤</div>
+
+                <h3>No categories found</h3>
+
+                <p>Create your first category.</p>
+              </div>
+            </section>
+          </section>
+
+          <!-- =================================================
+                 TABLES SECTION
+            ================================================== -->
+
+          <section
+            id="tablesSection"
+            class="page-section hidden"
+            data-section="tables"
+          >
+            <div class="page-heading">
+              <div>
+                <span class="eyebrow"> RESTAURANT </span>
+
+                <h2>Tables & QR</h2>
+
+                <p>Manage restaurant tables and QR codes.</p>
+              </div>
+
+              <button id="addTableButton" class="primary-btn" type="button">
+                + Add Table
+              </button>
+            </div>
+
+            <section class="panel">
+              <div class="toolbar">
+                <div class="search-box">
+                  <span>⌕</span>
+
+                  <input
+                    id="tableSearchInput"
+                    type="search"
+                    placeholder="Search table number..."
+                    autocomplete="off"
+                  />
+                </div>
+
+                <select id="tableStatusFilter">
+                  <option value="ALL">All Status</option>
+
+                  <option value="AVAILABLE">Available</option>
+
+                  <option value="OCCUPIED">Occupied</option>
+
+                  <option value="INACTIVE">Inactive</option>
+                </select>
+              </div>
+
+              <div id="tablesContainer" class="tables-grid"></div>
+
+              <div id="tablesEmptyState" class="empty-state hidden">
+                <div class="empty-icon">▥</div>
+
+                <h3>No tables found</h3>
+
+                <p>Add your first restaurant table.</p>
+              </div>
+            </section>
+          </section>
+
+          <!-- =================================================
+                 ORDERS SECTION
+            ================================================== -->
+
+          <section
+            id="ordersSection"
+            class="page-section hidden"
+            data-section="orders"
+          >
+            <div class="page-heading">
+              <div>
+                <span class="eyebrow"> OPERATIONS </span>
+
+                <h2>Orders</h2>
+
+                <p>Monitor and manage all restaurant orders.</p>
+              </div>
+
+              <button
+                id="ordersRefreshButton"
+                class="primary-btn"
+                type="button"
+              >
+                ↻ Refresh
+              </button>
+            </div>
+
+            <!-- ORDER STATISTICS -->
+
+            <div class="order-stats-grid">
+              <article class="order-stat-card total">
+                <div class="order-stat-icon">☷</div>
+
+                <div>
+                  <span> Total Orders </span>
+
+                  <strong id="ordersTotalCount"> 0 </strong>
+
+                  <small> All orders </small>
+                </div>
+              </article>
+
+              <article class="order-stat-card paid">
+                <div class="order-stat-icon">✓</div>
+
+                <div>
+                  <span> Paid Orders </span>
+
+                  <strong id="ordersPaidCount"> 0 </strong>
+
+                  <small> Successfully paid </small>
+                </div>
+              </article>
+
+              <article class="order-stat-card cancelled">
+                <div class="order-stat-icon">×</div>
+
+                <div>
+                  <span> Cancelled Orders </span>
+
+                  <strong id="ordersCancelledCount"> 0 </strong>
+
+                  <small> Cancelled orders </small>
+                </div>
+              </article>
+
+              <article class="order-stat-card active">
+                <div class="order-stat-icon">↻</div>
+
+                <div>
+                  <span> Active Orders </span>
+
+                  <strong id="ordersActiveCount"> 0 </strong>
+
+                  <small> Currently active </small>
+                </div>
+              </article>
+
+              <article class="order-stat-card today">
+                <div class="order-stat-icon">◷</div>
+
+                <div>
+                  <span> Today's Orders </span>
+
+                  <strong id="ordersTodayCount"> 0 </strong>
+
+                  <small> Placed today </small>
+                </div>
+              </article>
+            </div>
+
+            <!-- ORDERS TABLE -->
+
+            <section class="panel">
+              <div class="panel-header order-panel-header">
+                <div>
+                  <span class="eyebrow"> ORDER MANAGEMENT </span>
+
+                  <h3>All Orders</h3>
+                </div>
+              </div>
+
+              <div class="toolbar">
+                <div class="search-box">
+                  <span>⌕</span>
+
+                  <input
+                    id="orderSearchInput"
+                    type="search"
+                    placeholder="Search order ID or table..."
+                    autocomplete="off"
+                  />
+                </div>
+
+                <select id="orderStatusFilter">
+                  <option value="ALL">All Status</option>
+
+                  <option value="PENDING">Pending</option>
+
+                  <option value="PREPARING">Preparing</option>
+
+                  <option value="READY">Ready</option>
+
+                  <option value="SERVED">Served</option>
+
+                  <option value="PAID">Paid</option>
+
+                  <option value="CANCELLED">Cancelled</option>
+                </select>
+              </div>
+
+              <div class="table-wrap">
+                <table class="data-table orders-table">
+                  <thead>
+                    <tr>
+                      <th>Order</th>
+                      <th>Table</th>
+                      <th>Customer</th>
+                      <th>Order Time</th>
+                      <th>Status</th>
+                      <th>Amount</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+
+                  <tbody id="ordersTableBody"></tbody>
+                </table>
+              </div>
+
+              <div id="ordersEmptyState" class="empty-state hidden">
+                <div class="empty-icon">☷</div>
+
+                <h3>No orders found</h3>
+
+                <p>There are no orders matching your search.</p>
+              </div>
+            </section>
+          </section>
+
+          <!-- =================================================
+                 BILL DESK
+            ================================================== -->
+
+          <section
+            id="billDeskSection"
+            class="page-section hidden"
+            data-section="bill-desk"
+          >
+            <div class="page-heading">
+              <div>
+                <span class="eyebrow"> OPERATIONS </span>
+                <h2>Bill Desk</h2>
+                <p>Manage bills and process payments.</p>
+              </div>
+            </div>
+
+            <div id="dashboardScreen" class="bill-desk-screen">
+              <main>
+                <section class="dashboard-panel">
+                  <div class="tabs">
+                    <button
+                      id="activeBillsTab"
+                      class="tab-button active"
+                      type="button"
+                    >
+                      <span class="tab-icon"> 🧾 </span>
+                      Active Bills
+                    </button>
+
+                    <button id="oldBillsTab" class="tab-button" type="button">
+                      <span class="tab-icon"> 🕘 </span>
+                      Old Bills
+                    </button>
+                  </div>
+
+                  <section id="activeBillsSection" class="tab-section">
+                    <div class="section-heading">
+                      <div class="section-heading-title">
+                        <h2>ACTIVE BILLS</h2>
+
+                        <span id="activeBillCount"> 0 Active Bills </span>
+                      </div>
+
+                      <button
+                        id="refreshActiveButton"
+                        class="section-refresh-button"
+                        type="button"
+                      >
+                        ↻ Refresh
+                      </button>
+                    </div>
+
+                    <div id="activeBillsContainer" class="active-bills-grid">
+                      <div class="loading">Loading active bills...</div>
+                    </div>
+
+                    <div id="noActiveBills" class="empty-state hidden">
+                      <div class="empty-icon">✓</div>
+
+                      <h3>No Active Bills</h3>
+
+                      <p>All current bills have been completed.</p>
+                    </div>
+                  </section>
+
+                  <section id="oldBillsSection" class="tab-section hidden">
+                    <div class="section-heading">
+                      <div class="section-heading-title">
+                        <h2>OLD BILLS</h2>
+
+                        <span> Paid &amp; Cancelled Bills </span>
+                      </div>
+                    </div>
+
+                    <div class="search-panel">
+                      <div class="search-field">
+                        <label for="orderIdInput"> Order ID </label>
+
+                        <input
+                          type="number"
+                          id="orderIdInput"
+                          placeholder="Enter Order ID"
+                          min="1"
+                        />
+                      </div>
+
+                      <div class="search-field">
+                        <label for="tableNumberInput"> Table No. </label>
+
+                        <input
+                          type="number"
+                          id="tableNumberInput"
+                          placeholder="Enter Table No."
+                          min="1"
+                        />
+                      </div>
+
+                      <div class="search-field">
+                        <label for="dateInput"> Date </label>
+
+                        <input type="date" id="dateInput" />
+                      </div>
+
+                      <button
+                        id="searchButton"
+                        class="primary-button"
+                        type="button"
+                      >
+                        🔍 Search
+                      </button>
+
+                      <button
+                        id="clearButton"
+                        class="secondary-button"
+                        type="button"
+                      >
+                        ↻ Clear
+                      </button>
+                    </div>
+
+                    <div id="searchMessage" class="search-message hidden"></div>
+
+                    <div class="recent-section">
+                      <div class="recent-heading">
+                        <h2 id="recentBillsTitle">RECENT BILLS</h2>
+
+                        <div class="recent-heading-actions">
+                          <button
+                            id="allBillsButton"
+                            class="small-refresh-button"
+                            type="button"
+                          >
+                            See All Bills
+                          </button>
+
+                          <button
+                            id="refreshRecentButton"
+                            class="small-refresh-button"
+                            type="button"
+                          >
+                            ↻ Refresh
+                          </button>
+                        </div>
+                      </div>
+
+                      <div
+                        id="recentBillsContainer"
+                        class="recent-bills-container"
+                      >
+                        <div class="loading">Loading recent bills...</div>
+                      </div>
+                    </div>
+                  </section>
+                </section>
+              </main>
+
+              <div id="billModal" class="modal hidden">
+                <div class="modal-overlay" id="modalOverlay"></div>
+
+                <div class="bill-modal">
+                  <div class="modal-header">
+                    <div>
+                      <h2>Bill Details</h2>
+
+                      <p id="modalOrderInfo">Order</p>
+                    </div>
+
+                    <button
+                      id="closeModalButton"
+                      class="close-button"
+                      type="button"
+                    >
+                      ×
+                    </button>
+                  </div>
+
+                  <div id="modalLoading" class="modal-loading">
+                    Loading bill...
+                  </div>
+
+                  <div id="modalContent" class="modal-content hidden">
+                    <div class="modal-order-info">
+                      <div class="bill-info-card">
+                        <span> Order ID </span>
+
+                        <strong id="modalOrderId"> - </strong>
+                      </div>
+
+                      <div class="bill-info-card">
+                        <span> Table </span>
+
+                        <strong id="modalTableNumber"> - </strong>
+                      </div>
+
+                      <div class="bill-info-card customer-card">
+                        <span> Customer Name </span>
+
+                        <strong id="modalCustomerName">
+                          Walk-in Customer
+                        </strong>
+                      </div>
+
+                      <div class="bill-info-card customer-card">
+                        <span> Contact </span>
+
+                        <strong id="modalCustomerPhone"> Not Provided </strong>
+                      </div>
+
+                      <div class="bill-info-card">
+                        <span> Order Placed </span>
+
+                        <strong id="modalOrderTime"> - </strong>
+                      </div>
+
+                      <div class="bill-info-card payment-time-card">
+                        <span> Payment Completed </span>
+
+                        <strong id="modalPaymentTime"> Not Paid Yet </strong>
+                      </div>
+                    </div>
+
+                    <div class="bill-status-bar">
+                      <div>
+                        <span> Bill Status </span>
+
+                        <strong id="modalBillStatus"> - </strong>
+                      </div>
+
+                      <div>
+                        <span> Payment Method </span>
+
+                        <strong id="modalPaymentMethod"> - </strong>
+                      </div>
+                    </div>
+
+                    <div class="bill-items-wrapper">
+                      <table class="bill-table">
+                        <thead>
+                          <tr>
+                            <th>Item</th>
+                            <th>Qty</th>
+                            <th>Unit Price</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+
+                        <tbody id="modalBillItems"></tbody>
+                      </table>
+                    </div>
+
+                    <div class="billing-note">
+                      Bill amount is calculated only for
+                      <strong>READY</strong> and <strong>SERVED</strong> items.
+
+                      <br />
+
+                      <span>
+                        ORDER_PLACED, PREPARING and CANCELLED items are not
+                        included in the payable amount.
+                      </span>
+                    </div>
+
+                    <div class="bill-totals">
+                      <div class="bill-total-row">
+                        <span> Subtotal </span>
+
+                        <strong id="modalSubtotal"> ₹0.00 </strong>
+                      </div>
+
+                      <div class="bill-total-row">
+                        <span id="modalGstLabel"> GST (5%) </span>
+
+                        <strong id="modalGst"> ₹0.00 </strong>
+                      </div>
+
+                      <div class="bill-total-row grand-total-row">
+                        <span> Grand Total </span>
+
+                        <strong id="modalGrandTotal"> ₹0.00 </strong>
+                      </div>
+                    </div>
+
+                    <div id="paymentSection" class="payment-section">
+                      <label for="paymentMethod"> Payment Method </label>
+
+                      <select id="paymentMethod">
+                        <option value="CASH">Cash</option>
+
+                        <option value="UPI">UPI</option>
+
+                        <option value="CARD">Card</option>
+                      </select>
+
+                      <button id="payButton" class="pay-button" type="button">
+                        ✓ Mark as Paid
+                      </button>
+                    </div>
+
+                    <div id="paidMessage" class="paid-message hidden">
+                      <div>✓ Payment Completed Successfully</div>
+
+                      <small id="paidMessageTime">
+                        Payment time saved successfully.
+                      </small>
+                    </div>
+
+                    <div class="modal-actions">
+                      <button
+                        id="cancelCompleteBillButton"
+                        class="cancel-complete-button"
+                        type="button"
+                      >
+                        ✕ Cancel Complete Bill
+                      </button>
+
+                      <button
+                        id="refreshBillButton"
+                        class="refresh-bill-button"
+                        type="button"
+                      >
+                        ↻ Refresh Bill
+                      </button>
+
+                      <button
+                        id="printButton"
+                        class="print-button"
+                        type="button"
+                      >
+                        🖨 Print Bill
+                      </button>
+
+                      <button
+                        id="modalCloseBottomButton"
+                        class="secondary-button"
+                        type="button"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </div>
+
+                  <div id="modalError" class="modal-error hidden"></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- =================================================
+                 KITCHEN
+            ================================================== -->
+
+          <section
+            id="kitchenSection"
+            class="page-section hidden"
+            data-section="kitchen"
+          >
+            <div class="page-heading">
+              <div>
+                <span class="eyebrow"> OPERATIONS </span>
+
+                <h2>Kitchen</h2>
+
+                <p>Monitor kitchen orders and item preparation.</p>
+              </div>
+            </div>
+
+            <div id="adminKitchenRoot"></div>
+          </section>
+
+          <!-- =================================================
+                 EMPLOYEES
+            ================================================== -->
+
+          <section
+            id="employeesSection"
+            class="page-section hidden"
+            data-section="employees"
+          >
+            <div class="page-heading">
+              <div>
+                <span class="eyebrow"> ADMINISTRATION </span>
+
+                <h2>Employees</h2>
+
+                <p>Manage staff accounts and access roles.</p>
+              </div>
+
+              <button id="addEmployeeButton" class="primary-btn" type="button">
+                + Add Employee
+              </button>
+            </div>
+
+            <section class="panel">
+              <div class="toolbar">
+                <div class="search-box">
+                  <span>⌕</span>
+
+                  <input
+                    id="employeeSearchInput"
+                    type="search"
+                    placeholder="Search employees..."
+                    autocomplete="off"
+                  />
+                </div>
+
+                <select id="employeeRoleFilter">
+                  <option value="">All Roles</option>
+
+                  <option value="ADMIN">Admin</option>
+
+                  <option value="BILL_DESK">Bill Desk</option>
+
+                  <option value="KITCHEN">Kitchen</option>
+                </select>
+
+                <select id="employeeStatusFilter">
+                  <option value="">All Status</option>
+
+                  <option value="active">Active</option>
+
+                  <option value="inactive">Inactive</option>
+                </select>
+              </div>
+
+              <div class="table-wrap">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Employee</th>
+                      <th>Username</th>
+                      <th>Role</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+
+                  <tbody id="employeeTableBody"></tbody>
+                </table>
+              </div>
+
+              <div id="employeeEmptyState" class="empty-state hidden">
+                <div class="empty-icon">♙</div>
+
+                <h3>No employees found</h3>
+
+                <p>Add your first employee.</p>
+              </div>
+            </section>
+          </section>
+
+          <!-- =================================================
+                 SETTINGS
+            ================================================== -->
+
+          <section
+            id="settingsSection"
+            class="page-section hidden"
+            data-section="settings"
+          >
+            <div class="page-heading">
+              <div>
+                <span class="eyebrow"> ADMINISTRATION </span>
+
+                <h2>Settings</h2>
+
+                <p>Configure restaurant billing settings.</p>
+              </div>
+            </div>
+
+            <section class="settings-grid">
+              <!-- GST -->
+
+              <div class="panel settings-card">
+                <div class="settings-card-header">
+                  <div class="settings-icon">%</div>
+
+                  <div>
+                    <span class="eyebrow"> BILLING </span>
+
+                    <h3>GST Settings</h3>
+
+                    <p>
+                      Configure the GST percentage applied to new restaurant
+                      orders.
+                    </p>
+                  </div>
+                </div>
+
+                <form id="gstForm" class="gst-form">
+                  <div class="form-group">
+                    <label for="gstInput"> GST Percentage </label>
+
+                    <div class="input-suffix">
+                      <input
+                        id="gstInput"
+                        type="number"
+                        min="0"
+                        max="100"
+                        step="0.01"
+                        placeholder="0.00"
+                        required
+                      />
+
+                      <span>%</span>
+                    </div>
+                  </div>
+
+                  <button id="gstSaveButton" class="primary-btn" type="submit">
+                    Save GST
+                  </button>
+                </form>
+
+                <div id="gstMessage" class="form-message hidden"></div>
+              </div>
+            </section>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <!-- =========================================================
+     MODAL ROOT
+========================================================= -->
+
+    <div id="modalRoot" class="modal-root"></div>
+
+    <!-- =========================================================
+     TOAST CONTAINER
+========================================================= -->
+
+    <div
+      id="toastContainer"
+      class="toast-container"
+      aria-live="polite"
+      aria-atomic="true"
+    ></div>
+
+    <!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+    <script src="js/admin-bill-desk.js"></script>
+    <script src="js/admin-kitchen.js"></script>
+    <script src="js/admin-dashboard.js"></script>
+  </body>
+</html>

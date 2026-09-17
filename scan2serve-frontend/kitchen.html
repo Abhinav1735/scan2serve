@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Scan2Serve - Kitchen Dashboard</title>
+
+    <link rel="stylesheet" href="css/kitchen.css" />
+  </head>
+
+  <body>
+    <!-- =====================================================
+         LOGIN SCREEN
+         ===================================================== -->
+
+    <div id="loginScreen" class="login-screen">
+      <div class="login-card">
+        <div class="login-brand">
+          <div class="login-brand-icon">🧾</div>
+
+          <div>
+            <h1>SCAN<span>2</span>SERVE</h1>
+            <p>Restaurant Management</p>
+          </div>
+        </div>
+
+        <div class="login-heading">
+          <h2>KITCHEN</h2>
+
+          <p>Sign in to manage kitchen orders and preparation.</p>
+        </div>
+
+        <form id="loginForm" class="login-form" autocomplete="on">
+          <div class="form-group">
+            <label for="loginUsername"> Username </label>
+
+            <input
+              type="text"
+              id="loginUsername"
+              name="username"
+              placeholder="Enter username"
+              autocomplete="username"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="loginPassword"> Password </label>
+
+            <div class="password-wrapper">
+              <input
+                type="password"
+                id="loginPassword"
+                name="password"
+                placeholder="Enter password"
+                autocomplete="current-password"
+                required
+              />
+
+              <button type="button" id="passwordToggle" class="password-toggle">
+                Show
+              </button>
+            </div>
+          </div>
+
+          <div id="loginError" class="login-error hidden"></div>
+
+          <button type="submit" id="loginButton" class="login-button">
+            Login to Kitchen
+          </button>
+        </form>
+
+        <div class="login-footer">
+          <span>Scan2Serve</span>
+          <small>Authorized Kitchen Staff</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- =====================================================
+         KITCHEN DASHBOARD
+         ===================================================== -->
+
+    <div id="dashboardScreen" class="dashboard-screen hidden">
+      <!-- ===================================================
+           HEADER
+           =================================================== -->
+      <header class="top-header">
+        <div class="brand">
+          <div class="brand-icon">👩🏻‍🍳</div>
+
+          <div>
+            <h1>SCAN<span>2</span>SERVE</h1>
+            <p>Restaurant Management</p>
+          </div>
+        </div>
+
+        <div class="page-title">
+          <h2>KITCHEN</h2>
+          <p>Manage Kitchen Orders</p>
+        </div>
+
+        <div class="header-right">
+          <div class="date-time">
+            <span id="currentDate">Loading...</span>
+          </div>
+
+          <div class="employee-info">
+            <strong id="employeeName">Kitchen Staff</strong>
+            <span id="employeeRole">KITCHEN</span>
+          </div>
+
+          <button type="button" id="logoutButton" class="logout-button">
+            Logout
+          </button>
+        </div>
+      </header>
+
+      <!-- ===================================================
+           MAIN
+           =================================================== -->
+
+      <main class="kitchen-main">
+        <!-- =================================================
+             TOP BAR
+             ================================================= -->
+
+        <div class="kitchen-top-bar">
+          <div class="kitchen-title-area">
+            <h2>Kitchen Orders</h2>
+
+            <p id="lastUpdated">-</p>
+          </div>
+
+          <div class="kitchen-search">
+            <input
+              type="text"
+              id="kitchenSearch"
+              placeholder="Search by Order ID or Table No."
+              autocomplete="off"
+            />
+          </div>
+
+          <button
+            type="button"
+            id="refreshButton"
+            class="kitchen-refresh-button"
+          >
+            Refresh
+          </button>
+        </div>
+
+        <!-- =================================================
+             ERROR
+             ================================================= -->
+
+        <p id="kitchenError" class="kitchen-error"></p>
+
+        <!-- =================================================
+             NEW ORDERS
+             ================================================= -->
+
+        <section class="kitchen-section">
+          <div class="kitchen-section-header">
+            <div class="kitchen-section-title">
+              <span class="kitchen-section-icon"> 🆕 </span>
+
+              <div>
+                <h2>New Orders</h2>
+
+                <p>Orders waiting to be prepared</p>
+              </div>
+            </div>
+
+            <span id="pendingCount" class="kitchen-count"> 0 </span>
+          </div>
+
+          <div id="pendingOrders" class="kitchen-orders-grid">
+            <p class="kitchen-empty">No new orders</p>
+          </div>
+        </section>
+
+        <!-- =================================================
+             PREPARING
+             ================================================= -->
+
+        <section class="kitchen-section">
+          <div class="kitchen-section-header">
+            <div class="kitchen-section-title">
+              <span class="kitchen-section-icon"> 👨‍🍳 </span>
+
+              <div>
+                <h2>Preparing</h2>
+
+                <p>Orders currently being prepared</p>
+              </div>
+            </div>
+
+            <span id="preparingCount" class="kitchen-count"> 0 </span>
+          </div>
+
+          <div id="preparingOrders" class="kitchen-orders-grid">
+            <p class="kitchen-empty">No orders being prepared</p>
+          </div>
+        </section>
+
+        <!-- =================================================
+             READY
+             ================================================= -->
+
+        <section class="kitchen-section">
+          <div class="kitchen-section-header">
+            <div class="kitchen-section-title">
+              <span class="kitchen-section-icon"> ✓ </span>
+
+              <div>
+                <h2>Ready</h2>
+
+                <p>Food ready to be served</p>
+              </div>
+            </div>
+
+            <span id="readyCount" class="kitchen-count"> 0 </span>
+          </div>
+
+          <div id="readyOrders" class="kitchen-orders-grid">
+            <p class="kitchen-empty">No ready orders</p>
+          </div>
+        </section>
+
+        <!-- =================================================
+             PAID / CANCELLED
+             ================================================= -->
+
+        <section class="kitchen-section">
+          <div class="kitchen-section-header">
+            <div class="kitchen-section-title">
+              <span class="kitchen-section-icon cancelled-icon"> 💳 </span>
+
+              <div>
+                <h2>Paid / Cancelled Orders</h2>
+
+                <p>Review before closing the kitchen order</p>
+              </div>
+            </div>
+
+            <span id="cancelledCount" class="kitchen-count cancelled-count">
+              0
+            </span>
+          </div>
+
+          <div id="cancelledOrders" class="kitchen-orders-grid">
+            <p class="kitchen-empty">No paid orders requiring review</p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script src="js/kitchen.js"></script>
+  </body>
+</html>

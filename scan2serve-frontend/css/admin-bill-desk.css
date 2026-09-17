@@ -1,0 +1,2294 @@
+/* =========================================================
+   SCAN2SERVE
+   ADMIN BILL DESK
+   ---------------------------------------------------------
+   This stylesheet is ONLY for the native Bill Desk module
+   inside admin-dashboard.html.
+
+   Do NOT use bill-desk.css with this module.
+
+   All selectors are scoped to #billDeskSection so this
+   stylesheet does not affect other Admin modules.
+   ========================================================= */
+
+/* =========================================================
+   BILL DESK ROOT
+   ========================================================= */
+
+/* =========================================================
+   BILL DESK ROOT
+   ---------------------------------------------------------
+   Bill Desk gets its own vertical scroll area.
+   Admin header/sidebar remain unaffected.
+   ========================================================= */
+
+#billDeskSection {
+  width: 100%;
+
+  /*
+   * Keep the Bill Desk content inside the available
+   * viewport area and allow only this module to scroll.
+   */
+  max-height: calc(100vh - 84px);
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  /*
+   * Prevent the scrollbar from touching the content.
+   */
+  padding-right: 4px;
+
+  /*
+   * Smooth scrolling inside Bill Desk.
+   */
+  scroll-behavior: smooth;
+
+  /*
+   * Firefox scrollbar.
+   */
+  scrollbar-width: thin;
+  scrollbar-color: #c58b45 #f5eadc;
+}
+
+/* =========================================================
+   BILL DESK SCROLLBAR
+   ========================================================= */
+
+#billDeskSection::-webkit-scrollbar {
+  width: 8px;
+}
+
+#billDeskSection::-webkit-scrollbar-track {
+  background: #f5eadc;
+
+  border-radius: 8px;
+}
+
+#billDeskSection::-webkit-scrollbar-thumb {
+  background: #c58b45;
+
+  border-radius: 8px;
+
+  border: 2px solid #f5eadc;
+}
+
+#billDeskSection::-webkit-scrollbar-thumb:hover {
+  background: #a96d31;
+}
+
+#billDeskSection .bill-desk-screen {
+  width: 100%;
+  color: #2d241e;
+}
+
+#billDeskSection .bill-desk-screen *,
+#billDeskSection .bill-desk-screen *::before,
+#billDeskSection .bill-desk-screen *::after {
+  box-sizing: border-box;
+}
+
+#billDeskSection .bill-desk-screen button,
+#billDeskSection .bill-desk-screen input,
+#billDeskSection .bill-desk-screen select {
+  font-family: inherit;
+}
+
+#billDeskSection .bill-desk-screen button {
+  cursor: pointer;
+}
+
+#billDeskSection .bill-desk-screen button:disabled {
+  cursor: not-allowed;
+}
+
+#billDeskSection .bill-desk-screen .hidden {
+  display: none !important;
+}
+
+/* =========================================================
+   DASHBOARD PANEL
+   ========================================================= */
+
+#billDeskSection .dashboard-panel {
+  width: 100%;
+
+  background: #fffdf9;
+
+  border: 1px solid #ead8c2;
+  border-radius: 14px;
+
+  box-shadow: 0 4px 18px rgba(80, 48, 25, 0.07);
+
+  overflow: hidden;
+}
+
+/* =========================================================
+   TABS
+   ========================================================= */
+
+#billDeskSection .tabs {
+  display: flex;
+
+  align-items: stretch;
+
+  gap: 8px;
+
+  padding: 14px;
+
+  background: #fffaf3;
+
+  border-bottom: 1px solid #eadfce;
+}
+
+#billDeskSection .tab-button {
+  min-height: 44px;
+
+  padding: 0 20px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  background: transparent;
+
+  color: #765d49;
+
+  border: 1px solid #dcc8ae;
+
+  border-radius: 8px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  transition:
+    background 0.18s ease,
+    color 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+#billDeskSection .tab-button:hover {
+  background: #fff5e8;
+
+  color: #8e501c;
+
+  border-color: #c58b45;
+}
+
+#billDeskSection .tab-button.active {
+  background: #c8792d;
+
+  color: #ffffff;
+
+  border-color: #c8792d;
+
+  box-shadow: 0 3px 9px rgba(168, 92, 32, 0.18);
+}
+
+#billDeskSection .tab-icon {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  line-height: 1;
+}
+
+/* =========================================================
+   TAB SECTION
+   ========================================================= */
+
+#billDeskSection .tab-section {
+  width: 100%;
+
+  padding: 24px;
+}
+
+/* =========================================================
+   SECTION HEADING
+   ========================================================= */
+
+#billDeskSection .section-heading {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 18px;
+
+  margin-bottom: 20px;
+}
+
+#billDeskSection .section-heading-title {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  flex-wrap: wrap;
+}
+
+#billDeskSection .section-heading-title h2 {
+  margin: 0;
+
+  color: #3a2418;
+
+  font-size: 19px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.4px;
+}
+
+#billDeskSection .section-heading-title span {
+  color: #765d49;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+/* =========================================================
+   REFRESH BUTTONS
+   ========================================================= */
+
+#billDeskSection .section-refresh-button,
+#billDeskSection .small-refresh-button,
+#billDeskSection .refresh-bill-button {
+  min-height: 38px;
+
+  padding: 0 14px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+
+  background: #c8792d;
+
+  color: #ffffff;
+
+  border: 1px solid #c8792d;
+
+  border-radius: 7px;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    transform 0.18s ease;
+}
+
+#billDeskSection .section-refresh-button:hover,
+#billDeskSection .small-refresh-button:hover,
+#billDeskSection .refresh-bill-button:hover {
+  background: #b46524;
+
+  border-color: #b46524;
+}
+
+#billDeskSection .section-refresh-button:active,
+#billDeskSection .small-refresh-button:active,
+#billDeskSection .refresh-bill-button:active {
+  transform: translateY(1px);
+}
+
+/* =========================================================
+   ACTIVE BILLS GRID
+   ---------------------------------------------------------
+   Changed to 2 columns to match the screenshot.
+   ========================================================= */
+
+#billDeskSection .active-bills-grid {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(320px, 1fr));
+
+  gap: 16px;
+}
+
+/* =========================================================
+   ACTIVE BILL CARD
+   ========================================================= */
+
+#billDeskSection .bill-card {
+  position: relative;
+
+  padding: 17px;
+
+  background: #ffffff;
+
+  border: 1px solid #eadfce;
+
+  border-radius: 13px;
+
+  box-shadow: 0 5px 16px rgba(80, 48, 25, 0.07);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+#billDeskSection .bill-card:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 9px 22px rgba(80, 48, 25, 0.11);
+}
+
+/* =========================================================
+   BILL CARD TOP
+   ========================================================= */
+
+#billDeskSection .bill-card-top {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+/* =========================================================
+   BILL ICON
+   ========================================================= */
+
+#billDeskSection .bill-icon {
+  width: 43px;
+  height: 43px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: #fff5e8;
+
+  border: 1px solid #e1bd8d;
+
+  border-radius: 10px;
+
+  font-size: 20px;
+}
+
+/* =========================================================
+   BILL CARD TITLE
+   ========================================================= */
+
+#billDeskSection .bill-card h3 {
+  margin: 0;
+
+  color: #3a2418;
+
+  font-size: 15px;
+
+  font-weight: 800;
+}
+
+#billDeskSection .table-number {
+  margin-top: 4px;
+
+  color: #8e501c;
+
+  font-size: 11px;
+
+  font-weight: 700;
+}
+
+/* =========================================================
+   CUSTOMER PREVIEW
+   ========================================================= */
+
+#billDeskSection .customer-preview {
+  margin-top: 13px;
+
+  padding-top: 12px;
+
+  border-top: 1px solid #eee3d5;
+}
+
+#billDeskSection .customer-preview span {
+  display: block;
+
+  color: #927e6c;
+
+  font-size: 10px;
+}
+
+#billDeskSection .customer-preview strong {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #4d3a2b;
+
+  font-size: 12px;
+}
+
+/* =========================================================
+   BILL AMOUNT
+   ========================================================= */
+
+#billDeskSection .bill-amount {
+  margin-top: 16px;
+
+  color: #a65b20;
+
+  font-size: 23px;
+
+  font-weight: 700;
+}
+
+#billDeskSection .bill-amount-label {
+  margin-top: 3px;
+
+  color: #927e6c;
+
+  font-size: 10px;
+}
+
+/* =========================================================
+   VIEW BILL BUTTON
+   ========================================================= */
+
+#billDeskSection .view-bill-button {
+  width: 100%;
+
+  height: 39px;
+
+  margin-top: 15px;
+
+  background: linear-gradient(135deg, #c8792d, #b46524);
+
+  color: #ffffff;
+
+  border: 1px solid #d38a43;
+
+  border-radius: 7px;
+
+  cursor: pointer;
+
+  font-size: 12px;
+
+  font-weight: 700;
+}
+
+#billDeskSection .view-bill-button:hover {
+  background: linear-gradient(135deg, #d4893b, #b96925);
+}
+
+/* =========================================================
+   UNUSED / COMPATIBLE BILL CARD STYLES
+   ---------------------------------------------------------
+   Kept because the module may use these classes inside
+   other bill views or future rendering.
+   ========================================================= */
+
+#billDeskSection .bill-card-header {
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: space-between;
+
+  gap: 12px;
+
+  padding-bottom: 13px;
+
+  border-bottom: 1px solid #eee2d3;
+}
+
+#billDeskSection .bill-card-title {
+  min-width: 0;
+}
+
+#billDeskSection .bill-card-title h3 {
+  margin: 0;
+
+  color: #3a2418;
+
+  font-size: 16px;
+
+  font-weight: 800;
+}
+
+#billDeskSection .bill-card-title p {
+  margin: 4px 0 0;
+
+  color: #8b7563;
+
+  font-size: 10px;
+}
+
+#billDeskSection .bill-card-status {
+  flex-shrink: 0;
+
+  padding: 5px 9px;
+
+  background: #fff5e8;
+
+  color: #8e501c;
+
+  border: 1px solid #e3c49a;
+
+  border-radius: 20px;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  text-transform: uppercase;
+}
+
+#billDeskSection .bill-card-info {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 10px;
+
+  margin-top: 15px;
+}
+
+#billDeskSection .bill-card-info-item {
+  min-width: 0;
+}
+
+#billDeskSection .bill-card-info-item span {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: #927e6c;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+}
+
+#billDeskSection .bill-card-info-item strong {
+  display: block;
+
+  color: #4d3a2b;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+#billDeskSection .bill-card-items {
+  margin-top: 15px;
+
+  padding-top: 13px;
+
+  border-top: 1px solid #eee2d3;
+}
+
+#billDeskSection .bill-card-items-title {
+  margin-bottom: 9px;
+
+  color: #765d49;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  text-transform: uppercase;
+}
+
+#billDeskSection .bill-card-item {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+
+  padding: 7px 0;
+
+  border-bottom: 1px dashed #eadfce;
+}
+
+#billDeskSection .bill-card-item:last-child {
+  border-bottom: 0;
+}
+
+#billDeskSection .bill-card-item-name {
+  min-width: 0;
+
+  color: #4d3a2b;
+
+  font-size: 11px;
+
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+#billDeskSection .bill-card-item-qty {
+  flex-shrink: 0;
+
+  color: #927e6c;
+
+  font-size: 10px;
+}
+
+#billDeskSection .bill-card-item-price {
+  flex-shrink: 0;
+
+  color: #3a2418;
+
+  font-size: 11px;
+
+  font-weight: 700;
+}
+
+#billDeskSection .bill-card-footer {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+
+  margin-top: 16px;
+
+  padding-top: 14px;
+
+  border-top: 1px solid #eadfce;
+}
+
+#billDeskSection .bill-card-total {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+#billDeskSection .bill-card-total span {
+  color: #927e6c;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+}
+
+#billDeskSection .bill-card-total strong {
+  color: #a65b20;
+
+  font-size: 17px;
+
+  font-weight: 800;
+}
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+#billDeskSection .empty-state {
+  width: 100%;
+
+  padding: 50px 20px;
+
+  text-align: center;
+}
+
+#billDeskSection .empty-icon {
+  width: 50px;
+  height: 50px;
+
+  margin: 0 auto 14px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: #e7f5e9;
+
+  color: #26743a;
+
+  border: 1px solid #b9dbbf;
+
+  border-radius: 50%;
+
+  font-size: 20px;
+
+  font-weight: 800;
+}
+
+#billDeskSection .empty-state h3 {
+  margin: 0;
+
+  color: #3a2418;
+
+  font-size: 16px;
+}
+
+#billDeskSection .empty-state p {
+  margin: 7px 0 0;
+
+  color: #806b58;
+
+  font-size: 11px;
+}
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+#billDeskSection .loading {
+  width: 100%;
+
+  padding: 45px 20px;
+
+  text-align: center;
+
+  color: #806b58;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+/* =========================================================
+   OLD BILLS SEARCH
+   ========================================================= */
+
+#billDeskSection .search-panel {
+  display: grid;
+
+  grid-template-columns:
+    minmax(150px, 1fr)
+    minmax(150px, 1fr)
+    minmax(150px, 1fr)
+    auto
+    auto;
+
+  align-items: end;
+
+  gap: 12px;
+
+  padding: 16px;
+
+  background: #fffaf3;
+
+  border: 1px solid #eadfce;
+
+  border-radius: 10px;
+}
+
+#billDeskSection .search-field {
+  min-width: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 6px;
+}
+
+#billDeskSection .search-field label {
+  color: #5f4633;
+
+  font-size: 10px;
+
+  font-weight: 800;
+}
+
+#billDeskSection .search-field input {
+  width: 100%;
+
+  height: 40px;
+
+  padding: 0 11px;
+
+  background: #ffffff;
+
+  color: #3a2418;
+
+  border: 1px solid #d8c6b2;
+
+  border-radius: 7px;
+
+  outline: none;
+
+  font-size: 11px;
+}
+
+#billDeskSection .search-field input:focus {
+  border-color: #c58b45;
+
+  box-shadow: 0 0 0 3px rgba(197, 139, 69, 0.1);
+}
+
+#billDeskSection .primary-button,
+#billDeskSection .secondary-button {
+  min-height: 40px;
+
+  padding: 0 15px;
+
+  border-radius: 7px;
+
+  font-size: 11px;
+
+  font-weight: 800;
+}
+
+#billDeskSection .primary-button {
+  background: #c8792d;
+
+  color: #ffffff;
+
+  border: 1px solid #c8792d;
+}
+
+#billDeskSection .primary-button:hover {
+  background: #b46524;
+
+  border-color: #b46524;
+}
+
+#billDeskSection .secondary-button {
+  background: #ffffff;
+
+  color: #765d49;
+
+  border: 1px solid #d8c6b2;
+}
+
+#billDeskSection .secondary-button:hover {
+  background: #fff5e8;
+
+  color: #8e501c;
+
+  border-color: #c58b45;
+}
+
+/* =========================================================
+   SEARCH MESSAGE
+   ========================================================= */
+
+#billDeskSection .search-message {
+  margin-top: 12px;
+
+  padding: 10px 13px;
+
+  background: #fff5e8;
+
+  color: #765d49;
+
+  border: 1px solid #e3c49a;
+
+  border-radius: 7px;
+
+  font-size: 11px;
+
+  line-height: 1.4;
+}
+
+#billDeskSection .search-message.error {
+  background: #fff0ed;
+
+  color: #9c3529;
+
+  border-color: #dca69d;
+}
+
+#billDeskSection .search-message.success {
+  background: #e7f5e9;
+
+  color: #26743a;
+
+  border-color: #b9dbbf;
+}
+
+/* =========================================================
+   RECENT BILLS
+   ========================================================= */
+
+#billDeskSection .recent-section {
+  margin-top: 28px;
+}
+
+#billDeskSection .recent-heading {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-bottom: 13px;
+}
+
+#billDeskSection .recent-heading h2 {
+  margin: 0;
+
+  color: #3a2418;
+
+  font-size: 18px;
+
+  font-weight: 800;
+}
+
+#billDeskSection .recent-heading-actions {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  flex-wrap: wrap;
+}
+
+/* =========================================================
+   RECENT BILLS CONTAINER
+   ========================================================= */
+
+#billDeskSection .recent-bills-container {
+  width: 100%;
+
+  overflow-x: auto;
+
+  background: #ffffff;
+
+  border: 1px solid #eadfce;
+
+  border-radius: 10px;
+
+  box-shadow: 0 3px 12px rgba(80, 48, 25, 0.05);
+}
+
+/* =========================================================
+   RECENT BILLS TABLE
+   ---------------------------------------------------------
+   This is the table shown in your screenshot.
+   ========================================================= */
+
+#billDeskSection .recent-table {
+  width: 100%;
+
+  min-width: 1000px;
+
+  border-collapse: collapse;
+
+  font-size: 12px;
+}
+
+#billDeskSection .recent-table thead {
+  background: #f8efe3;
+}
+
+#billDeskSection .recent-table th {
+  padding: 13px 14px;
+
+  color: #5f4633;
+
+  border-bottom: 1px solid #e2cfb7;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  text-align: left;
+
+  white-space: nowrap;
+}
+
+#billDeskSection .recent-table td {
+  padding: 14px;
+
+  color: #4d3a2b;
+
+  border-bottom: 1px solid #eee3d5;
+
+  vertical-align: middle;
+
+  white-space: nowrap;
+}
+
+#billDeskSection .recent-table tbody tr:hover {
+  background: #fffaf3;
+}
+
+#billDeskSection .recent-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+/* =========================================================
+   STATUS BADGES
+   ========================================================= */
+
+#billDeskSection .status-badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 5px 10px;
+
+  border-radius: 20px;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+#billDeskSection .status-badge.paid {
+  background: #e7f5e9;
+
+  color: #26743a;
+
+  border: 1px solid #b9dbbf;
+}
+
+#billDeskSection .status-badge.cancelled {
+  background: #fff0ed;
+
+  color: #9c3529;
+
+  border: 1px solid #dca69d;
+}
+
+#billDeskSection .status-badge.pending {
+  background: #fff5e5;
+
+  color: #98601d;
+
+  border: 1px solid #e5c38f;
+}
+
+/* =========================================================
+   TABLE ACTION BUTTONS
+   ========================================================= */
+
+#billDeskSection .table-action {
+  width: 35px;
+
+  height: 32px;
+
+  margin-right: 5px;
+
+  padding: 0;
+
+  border: 0;
+
+  border-radius: 7px;
+
+  color: #ffffff;
+
+  cursor: pointer;
+
+  font-size: 12px;
+}
+
+#billDeskSection .view-action {
+  background: linear-gradient(135deg, #c8792d, #b46524);
+}
+
+#billDeskSection .print-action {
+  background: linear-gradient(135deg, #9a693d, #765035);
+}
+
+#billDeskSection .table-action:hover {
+  opacity: 0.9;
+}
+
+/* =========================================================
+   OLD BILL CARD COMPATIBILITY
+   ========================================================= */
+
+#billDeskSection .old-bill-card {
+  display: grid;
+
+  grid-template-columns:
+    minmax(120px, 1fr)
+    minmax(90px, 0.7fr)
+    minmax(150px, 1fr)
+    minmax(120px, 0.8fr)
+    auto;
+
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 14px 16px;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #eee3d5;
+}
+
+#billDeskSection .old-bill-card:last-child {
+  border-bottom: 0;
+}
+
+#billDeskSection .old-bill-card:hover {
+  background: #fffaf3;
+}
+
+#billDeskSection .old-bill-info {
+  min-width: 0;
+}
+
+#billDeskSection .old-bill-info span {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: #927e6c;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+}
+
+#billDeskSection .old-bill-info strong {
+  display: block;
+
+  color: #3a2418;
+
+  font-size: 12px;
+
+  font-weight: 800;
+}
+
+#billDeskSection .old-bill-status {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: fit-content;
+
+  padding: 5px 9px;
+
+  border-radius: 20px;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  text-transform: uppercase;
+}
+
+#billDeskSection .old-bill-status.paid {
+  background: #e7f5e9;
+
+  color: #26743a;
+
+  border: 1px solid #b9dbbf;
+}
+
+#billDeskSection .old-bill-status.cancelled {
+  background: #fff0ed;
+
+  color: #9c3529;
+
+  border: 1px solid #dca69d;
+}
+
+#billDeskSection .old-bill-view-button {
+  min-height: 34px;
+
+  padding: 0 12px;
+
+  background: #fff5e8;
+
+  color: #8e501c;
+
+  border: 1px solid #d8b27d;
+
+  border-radius: 7px;
+
+  font-size: 10px;
+
+  font-weight: 800;
+}
+
+#billDeskSection .old-bill-view-button:hover {
+  background: #c8792d;
+
+  color: #ffffff;
+
+  border-color: #c8792d;
+}
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+
+#billDeskSection .modal {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 9999;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 25px;
+}
+
+#billDeskSection .modal-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background: rgba(35, 23, 16, 0.58);
+
+  backdrop-filter: blur(2px);
+}
+
+#billDeskSection .bill-modal {
+  position: relative;
+
+  z-index: 1;
+
+  width: min(1050px, 96vw);
+
+  max-height: 92vh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  background: #fffaf3;
+
+  border: 1px solid #d8b27d;
+
+  border-radius: 13px;
+
+  box-shadow: 0 24px 80px rgba(40, 25, 16, 0.25);
+
+  overflow: hidden;
+}
+
+/* =========================================================
+   MODAL HEADER
+   ========================================================= */
+
+#billDeskSection .modal-header {
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  padding: 18px 20px;
+
+  background: #3a2418;
+
+  color: #ffffff;
+
+  border-bottom: 2px solid #c58b45;
+}
+
+#billDeskSection .modal-header h2 {
+  margin: 0;
+
+  color: #fffaf3;
+
+  font-size: 19px;
+
+  font-weight: 800;
+}
+
+#billDeskSection .modal-header p {
+  margin: 4px 0 0;
+
+  color: #d9b98e;
+
+  font-size: 10px;
+}
+
+#billDeskSection .close-button {
+  width: 34px;
+  height: 34px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  color: #ffffff;
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  border-radius: 7px;
+
+  font-size: 22px;
+
+  line-height: 1;
+}
+
+#billDeskSection .close-button:hover {
+  background: #c8792d;
+
+  border-color: #c8792d;
+}
+
+/* =========================================================
+   MODAL LOADING
+   ========================================================= */
+
+#billDeskSection .modal-loading {
+  padding: 50px 20px;
+
+  text-align: center;
+
+  color: #806b58;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+/* =========================================================
+   MODAL CONTENT
+   ========================================================= */
+
+#billDeskSection .modal-content {
+  min-height: 0;
+
+  overflow-y: auto;
+
+  padding: 20px;
+}
+
+/* =========================================================
+   MODAL ORDER INFORMATION
+   ========================================================= */
+
+#billDeskSection .modal-order-info {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 10px;
+
+  margin-bottom: 16px;
+}
+
+#billDeskSection .bill-info-card {
+  min-width: 0;
+
+  padding: 12px 13px;
+
+  background: #ffffff;
+
+  border: 1px solid #eadfce;
+
+  border-radius: 8px;
+}
+
+#billDeskSection .bill-info-card span {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #927e6c;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  text-transform: uppercase;
+}
+
+#billDeskSection .bill-info-card strong {
+  display: block;
+
+  color: #3a2418;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+#billDeskSection .payment-time-card strong {
+  color: #26743a;
+}
+
+/* =========================================================
+   BILL STATUS BAR
+   ========================================================= */
+
+#billDeskSection .bill-status-bar {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 17px;
+
+  padding: 12px 14px;
+
+  background: #ffffff;
+
+  border: 1px solid #eadfce;
+
+  border-radius: 8px;
+}
+
+#billDeskSection .bill-status-bar > div {
+  min-width: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+#billDeskSection .bill-status-bar span {
+  color: #927e6c;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  text-transform: uppercase;
+}
+
+#billDeskSection .bill-status-bar strong {
+  color: #3a2418;
+
+  font-size: 12px;
+
+  font-weight: 800;
+}
+
+/* =========================================================
+   BILL ITEMS TABLE
+   ========================================================= */
+
+#billDeskSection .bill-items-wrapper {
+  width: 100%;
+
+  overflow-x: auto;
+
+  border: 1px solid #eadfce;
+
+  border-radius: 8px;
+}
+
+#billDeskSection .bill-table {
+  width: 100%;
+
+  min-width: 700px;
+
+  border-collapse: collapse;
+
+  background: #ffffff;
+}
+
+#billDeskSection .bill-table th {
+  padding: 11px 12px;
+
+  background: #f8efe3;
+
+  color: #5f4633;
+
+  border-bottom: 1px solid #e2cfb7;
+
+  text-align: left;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+#billDeskSection .bill-table td {
+  padding: 11px 12px;
+
+  color: #4d3a2b;
+
+  border-bottom: 1px solid #eee3d5;
+
+  font-size: 11px;
+
+  vertical-align: middle;
+}
+
+#billDeskSection .bill-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+#billDeskSection .bill-table tr.billable-row {
+  background: #fffdf9;
+}
+
+#billDeskSection .bill-table tr.non-billable-row {
+  background: #faf7f2;
+}
+
+#billDeskSection .bill-table tr.cancelled-row {
+  opacity: 0.62;
+}
+
+/* =========================================================
+   ITEM STATUS BADGES
+   ========================================================= */
+
+#billDeskSection .status {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 5px 8px;
+
+  border-radius: 20px;
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+}
+
+#billDeskSection .status.ready,
+#billDeskSection .status.served {
+  background: #e7f5e9;
+
+  color: #26743a;
+
+  border: 1px solid #b9dbbf;
+}
+
+#billDeskSection .status.preparing {
+  background: #eef4fb;
+
+  color: #35669a;
+
+  border: 1px solid #bfd3e8;
+}
+
+#billDeskSection .status.order_placed {
+  background: #fff5e5;
+
+  color: #98601d;
+
+  border: 1px solid #e5c38f;
+}
+
+#billDeskSection .status.cancelled {
+  background: #fff0ed;
+
+  color: #9c3529;
+
+  border: 1px solid #dca69d;
+}
+
+/* =========================================================
+   ITEM ACTION
+   ========================================================= */
+
+#billDeskSection .bill-item-action-cell {
+  white-space: nowrap;
+}
+
+#billDeskSection .bill-item-cancel-button {
+  min-height: 31px;
+
+  padding: 0 10px;
+
+  background: #c0392b;
+
+  color: #ffffff;
+
+  border: 1px solid #a61f17;
+
+  border-radius: 6px;
+
+  font-size: 9px;
+
+  font-weight: 800;
+}
+
+#billDeskSection .bill-item-cancel-button:hover {
+  background: #a61f17;
+}
+
+#billDeskSection .item-action-disabled {
+  color: #a28e7c;
+
+  font-size: 9px;
+}
+
+/* =========================================================
+   BILLING NOTE
+   ========================================================= */
+
+#billDeskSection .billing-note {
+  margin: 16px 0;
+
+  padding: 11px 13px;
+
+  background: #fff5e8;
+
+  color: #765d49;
+
+  border-left: 3px solid #c58b45;
+
+  border-radius: 0 7px 7px 0;
+
+  font-size: 10px;
+
+  line-height: 1.55;
+}
+
+#billDeskSection .billing-note strong {
+  color: #8e501c;
+}
+
+#billDeskSection .billing-note span {
+  color: #927e6c;
+
+  font-size: 9px;
+}
+
+/* =========================================================
+   BILL TOTALS
+   ========================================================= */
+
+#billDeskSection .bill-totals {
+  width: min(400px, 100%);
+
+  margin-left: auto;
+
+  padding: 13px 15px;
+
+  background: #ffffff;
+
+  border: 1px solid #eadfce;
+
+  border-radius: 8px;
+}
+
+#billDeskSection .bill-total-row {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 7px 0;
+
+  color: #765d49;
+
+  font-size: 12px;
+}
+
+#billDeskSection .bill-total-row strong {
+  color: #3a2418;
+}
+
+#billDeskSection .grand-total-row {
+  margin-top: 5px;
+
+  padding-top: 12px;
+
+  border-top: 1px solid #d8c6b2;
+
+  color: #3a2418;
+
+  font-size: 17px;
+
+  font-weight: 800;
+}
+
+#billDeskSection .grand-total-row strong {
+  color: #a65b20;
+
+  font-size: 18px;
+}
+
+/* =========================================================
+   PAYMENT SECTION
+   ========================================================= */
+
+#billDeskSection .payment-section {
+  display: grid;
+
+  grid-template-columns:
+    150px
+    190px
+    minmax(180px, 1fr);
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-top: 18px;
+
+  padding: 14px;
+
+  background: #fffaf3;
+
+  border: 1px solid #eadfce;
+
+  border-radius: 8px;
+}
+
+#billDeskSection .payment-section label {
+  color: #5f4633;
+
+  font-size: 11px;
+
+  font-weight: 800;
+}
+
+#billDeskSection .payment-section select {
+  width: 100%;
+
+  height: 40px;
+
+  padding: 0 10px;
+
+  background: #ffffff;
+
+  color: #3a2418;
+
+  border: 1px solid #d8c6b2;
+
+  border-radius: 7px;
+
+  outline: none;
+
+  font-size: 11px;
+}
+
+#billDeskSection .payment-section select:focus {
+  border-color: #c58b45;
+
+  box-shadow: 0 0 0 3px rgba(197, 139, 69, 0.1);
+}
+
+#billDeskSection .pay-button {
+  width: 100%;
+
+  min-height: 40px;
+
+  background: #3c9654;
+
+  color: #ffffff;
+
+  border: 1px solid #3c9654;
+
+  border-radius: 7px;
+
+  font-size: 11px;
+
+  font-weight: 800;
+}
+
+#billDeskSection .pay-button:hover {
+  background: #26743a;
+
+  border-color: #26743a;
+}
+
+#billDeskSection .pay-button:disabled {
+  opacity: 0.55;
+}
+
+/* =========================================================
+   PAID MESSAGE
+   ========================================================= */
+
+#billDeskSection .paid-message {
+  margin-top: 16px;
+
+  padding: 12px;
+
+  text-align: center;
+
+  background: #e7f5e9;
+
+  color: #26743a;
+
+  border: 1px solid #b9dbbf;
+
+  border-radius: 8px;
+
+  font-size: 11px;
+
+  font-weight: 800;
+}
+
+#billDeskSection .paid-message small {
+  display: block;
+
+  margin-top: 4px;
+
+  color: #4e8059;
+
+  font-size: 9px;
+
+  font-weight: 600;
+}
+
+/* =========================================================
+   MODAL ACTIONS
+   ========================================================= */
+
+#billDeskSection .modal-actions {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-end;
+
+  gap: 8px;
+
+  margin-top: 18px;
+
+  flex-wrap: wrap;
+}
+
+#billDeskSection .cancel-complete-button {
+  min-height: 38px;
+
+  margin-right: auto;
+
+  padding: 0 13px;
+
+  background: #c0392b;
+
+  color: #ffffff;
+
+  border: 1px solid #a61f17;
+
+  border-radius: 7px;
+
+  font-size: 10px;
+
+  font-weight: 800;
+}
+
+#billDeskSection .cancel-complete-button:hover {
+  background: #a61f17;
+}
+
+#billDeskSection .cancel-complete-button:disabled {
+  opacity: 0.55;
+}
+
+#billDeskSection .refresh-bill-button,
+#billDeskSection .print-button,
+#billDeskSection .modal-actions .secondary-button {
+  min-height: 38px;
+
+  padding: 0 13px;
+
+  border-radius: 7px;
+
+  font-size: 10px;
+
+  font-weight: 800;
+}
+
+#billDeskSection .print-button {
+  background: #c8792d;
+
+  color: #ffffff;
+
+  border: 1px solid #c8792d;
+}
+
+#billDeskSection .print-button:hover {
+  background: #b46524;
+
+  border-color: #b46524;
+}
+
+#billDeskSection .modal-actions .secondary-button {
+  background: #ffffff;
+
+  color: #765d49;
+
+  border: 1px solid #d8c6b2;
+}
+
+#billDeskSection .modal-actions .secondary-button:hover {
+  background: #fff5e8;
+
+  color: #8e501c;
+
+  border-color: #c58b45;
+}
+
+/* =========================================================
+   MODAL ERROR
+   ========================================================= */
+
+#billDeskSection .modal-error {
+  padding: 30px 20px;
+
+  text-align: center;
+
+  background: #fff0ed;
+
+  color: #9c3529;
+
+  font-size: 11px;
+
+  line-height: 1.5;
+}
+
+/* =========================================================
+   BILL STATUS VARIATIONS
+   ========================================================= */
+
+#billDeskSection .bill-status-paid {
+  color: #26743a;
+}
+
+#billDeskSection .bill-status-cancelled {
+  color: #9c3529;
+}
+
+#billDeskSection .bill-status-active {
+  color: #8e501c;
+}
+
+/* =========================================================
+   RESPONSIVE — 1200px
+   ========================================================= */
+
+@media (max-width: 1200px) {
+  #billDeskSection .active-bills-grid {
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+  }
+
+  #billDeskSection .search-panel {
+    grid-template-columns: repeat(3, minmax(130px, 1fr));
+  }
+
+  #billDeskSection .search-panel .primary-button,
+  #billDeskSection .search-panel .secondary-button {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE — 900px
+   ========================================================= */
+
+@media (max-width: 900px) {
+  #billDeskSection .tab-section {
+    padding: 18px;
+  }
+
+  #billDeskSection .active-bills-grid {
+    grid-template-columns: repeat(2, minmax(210px, 1fr));
+  }
+
+  #billDeskSection .search-panel {
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
+  }
+
+  #billDeskSection .modal-order-info {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #billDeskSection .payment-section {
+    grid-template-columns:
+      1fr
+      1fr;
+  }
+
+  #billDeskSection .payment-section .pay-button {
+    grid-column: 1 / -1;
+  }
+
+  #billDeskSection .old-bill-card {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #billDeskSection .old-bill-view-button {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE — 650px
+   ========================================================= */
+
+@media (max-width: 650px) {
+  #billDeskSection .tabs {
+    flex-direction: column;
+  }
+
+  #billDeskSection .tab-button {
+    width: 100%;
+  }
+
+  #billDeskSection .tab-section {
+    padding: 14px;
+  }
+
+  #billDeskSection .section-heading {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  #billDeskSection .section-refresh-button {
+    width: 100%;
+  }
+
+  #billDeskSection .active-bills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #billDeskSection .search-panel {
+    grid-template-columns: 1fr;
+  }
+
+  #billDeskSection .recent-heading {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  #billDeskSection .recent-heading-actions {
+    width: 100%;
+  }
+
+  #billDeskSection .recent-heading-actions button {
+    flex: 1;
+  }
+
+  #billDeskSection .modal {
+    padding: 10px;
+  }
+
+  #billDeskSection .bill-modal {
+    width: 100%;
+
+    max-height: 96vh;
+  }
+
+  #billDeskSection .modal-content {
+    padding: 14px;
+  }
+
+  #billDeskSection .modal-order-info {
+    grid-template-columns: 1fr;
+  }
+
+  #billDeskSection .bill-status-bar {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 10px;
+  }
+
+  #billDeskSection .bill-totals {
+    width: 100%;
+  }
+
+  #billDeskSection .payment-section {
+    grid-template-columns: 1fr;
+  }
+
+  #billDeskSection .payment-section .pay-button {
+    grid-column: auto;
+  }
+
+  #billDeskSection .modal-actions {
+    flex-direction: column;
+  }
+
+  #billDeskSection .cancel-complete-button {
+    width: 100%;
+
+    margin-right: 0;
+  }
+
+  #billDeskSection .refresh-bill-button,
+  #billDeskSection .print-button,
+  #billDeskSection .modal-actions .secondary-button {
+    width: 100%;
+  }
+
+  #billDeskSection .old-bill-card {
+    grid-template-columns: 1fr;
+
+    gap: 9px;
+  }
+}
+
+/* =========================================================
+   PRINT
+   ========================================================= */
+
+@media print {
+  #billDeskSection .modal-overlay,
+  #billDeskSection .modal-header,
+  #billDeskSection .payment-section,
+  #billDeskSection .modal-actions,
+  #billDeskSection .billing-note {
+    display: none !important;
+  }
+
+  #billDeskSection .modal {
+    position: static;
+
+    display: block;
+
+    padding: 0;
+  }
+
+  #billDeskSection .bill-modal {
+    width: 100%;
+
+    max-height: none;
+
+    border: 0;
+
+    box-shadow: none;
+
+    overflow: visible;
+  }
+
+  #billDeskSection .modal-content {
+    overflow: visible;
+
+    padding: 0;
+  }
+
+  #billDeskSection .bill-items-wrapper {
+    overflow: visible;
+
+    border: 0;
+  }
+
+  #billDeskSection .bill-table {
+    min-width: 0;
+  }
+
+  #billDeskSection .bill-totals {
+    margin-top: 20px;
+  }
+}
+
+/* =========================================================
+   BILL DESK MODAL ISOLATION
+   ---------------------------------------------------------
+   Prevent Admin's generic .modal styles from affecting
+   the native Bill Desk modal.
+   ========================================================= */
+
+#billDeskSection #billModal.modal {
+  position: fixed;
+
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  width: 100vw;
+
+  max-width: none;
+
+  height: 100vh;
+
+  max-height: none;
+
+  margin: 0;
+
+  padding: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: flex-start;
+
+  overflow-y: auto;
+
+  overflow-x: hidden;
+
+  background: transparent;
+
+  border: 0;
+
+  border-radius: 0;
+
+  box-shadow: none;
+
+  animation: none;
+
+  box-sizing: border-box;
+}

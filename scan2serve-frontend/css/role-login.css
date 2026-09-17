@@ -1,0 +1,1135 @@
+/* =========================================================
+   SCAN2SERVE - ROLE LOGIN
+   ONE CARD / TWO SIDES
+   ========================================================= */
+
+:root {
+  --bg-primary: #321a0f;
+  --bg-secondary: #4b2818;
+
+  --card-bg: #fbf5ed;
+  --card-bg-light: #fffaf4;
+
+  --accent: #d9903f;
+  --accent-light: #e6a34e;
+  --accent-dark: #bd762d;
+
+  --text-dark: #24170f;
+  --text-secondary: #806b5d;
+
+  --text-light: #fffaf5;
+  --text-light-secondary: #dcc4ae;
+
+  --border-light: #ead9c7;
+  --border-accent: #e3b679;
+
+  --radius: 22px;
+
+  --shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+
+  --transition: 0.2s ease;
+}
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+
+  font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+
+  background:
+    radial-gradient(circle at 15% 20%, #5b321d 0%, transparent 30%),
+    radial-gradient(circle at 85% 80%, #512a18 0%, transparent 32%),
+    linear-gradient(135deg, #30170c, #482518, #351b10);
+
+  color: var(--text-dark);
+
+  overflow-x: hidden;
+}
+
+button {
+  font: inherit;
+}
+
+/* =========================================================
+   MAIN PAGE
+   ========================================================= */
+
+.role-login-page {
+  position: relative;
+
+  width: 100%;
+  min-height: 100vh;
+
+  padding: 45px 55px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+/* =========================================================
+   BACKGROUND DECORATIONS
+   ========================================================= */
+
+.background-circle {
+  position: absolute;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  z-index: 0;
+}
+
+.background-circle-one {
+  width: 520px;
+  height: 520px;
+
+  top: -300px;
+  left: -220px;
+
+  background: rgba(205, 128, 48, 0.11);
+}
+
+.background-circle-two {
+  width: 600px;
+  height: 600px;
+
+  right: -300px;
+  bottom: -360px;
+
+  background: rgba(214, 137, 55, 0.09);
+}
+
+/* =========================================================
+   ONE MAIN CARD
+   ========================================================= */
+
+.role-login-card {
+  position: relative;
+
+  z-index: 2;
+
+  width: min(1450px, 100%);
+
+  min-height: 760px;
+
+  display: grid;
+
+  grid-template-columns:
+    1.08fr
+    0.92fr;
+
+  overflow: hidden;
+
+  background: var(--card-bg);
+
+  border: 1px solid rgba(255, 255, 255, 0.5);
+
+  border-radius: var(--radius);
+
+  box-shadow: var(--shadow);
+}
+
+/* =========================================================
+   LEFT SIDE
+   ========================================================= */
+
+.restaurant-info {
+  position: relative;
+
+  min-width: 0;
+
+  background: linear-gradient(145deg, #422317 0%, #542c1a 50%, #63351f 100%);
+
+  color: var(--text-light);
+
+  overflow: hidden;
+}
+
+/* Left-side subtle decoration */
+
+.restaurant-info::before {
+  content: "";
+
+  position: absolute;
+
+  width: 430px;
+  height: 430px;
+
+  top: -250px;
+  left: -160px;
+
+  border-radius: 50%;
+
+  background: rgba(201, 127, 55, 0.12);
+
+  pointer-events: none;
+}
+
+.restaurant-info::after {
+  content: "";
+
+  position: absolute;
+
+  width: 500px;
+  height: 500px;
+
+  right: -300px;
+  bottom: -330px;
+
+  border-radius: 50%;
+
+  background: rgba(220, 145, 65, 0.08);
+
+  pointer-events: none;
+}
+
+.restaurant-info-content {
+  position: relative;
+
+  z-index: 2;
+
+  height: 100%;
+
+  min-height: 760px;
+
+  padding: 48px 7%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================================
+   BRAND
+   ========================================================= */
+
+.brand {
+  display: flex;
+  align-items: center;
+
+  gap: 17px;
+}
+
+/* =========================================================
+   S2S LOGO
+   ========================================================= */
+
+.s2s-logo {
+  width: 68px;
+  height: 68px;
+
+  flex: 0 0 68px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 1px;
+
+  background: linear-gradient(145deg, #dc9d52, #c98334);
+
+  border-radius: 15px;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.16);
+
+  user-select: none;
+}
+
+.s2s-letter,
+.s2s-number {
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 21px;
+
+  line-height: 1;
+
+  font-weight: 900;
+}
+
+.s2s-letter {
+  color: #281910;
+}
+
+.s2s-number {
+  color: #fff5e8;
+}
+
+/* =========================================================
+   BRAND TEXT
+   ========================================================= */
+
+.brand-text h1 {
+  font-size: 32px;
+
+  line-height: 1;
+
+  font-weight: 800;
+
+  letter-spacing: 0.3px;
+
+  color: #fffaf6;
+}
+
+.brand-text h1 span {
+  color: var(--accent-light);
+}
+
+.brand-text p {
+  margin-top: 7px;
+
+  font-size: 13px;
+
+  color: #dfc0a1;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero-content {
+  margin-top: 82px;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+
+  margin-bottom: 21px;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.8px;
+
+  color: #e6aa6b;
+}
+
+.hero-content h2 {
+  max-width: 720px;
+
+  font-size: clamp(42px, 3.7vw, 59px);
+
+  line-height: 1.08;
+
+  font-weight: 800;
+
+  letter-spacing: -1.6px;
+
+  color: #fffaf6;
+}
+
+.hero-content h2 span {
+  color: var(--accent-light);
+}
+
+.hero-description {
+  max-width: 690px;
+
+  margin-top: 26px;
+
+  font-size: 15px;
+
+  line-height: 1.7;
+
+  color: #dfc6b0;
+}
+
+/* =========================================================
+   FEATURES
+   ========================================================= */
+
+.feature-grid {
+  margin-top: 43px;
+
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 13px;
+}
+
+.feature-card {
+  min-height: 82px;
+
+  padding: 13px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+
+  border: 1px solid rgba(218, 145, 64, 0.37);
+
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.045);
+
+  transition:
+    transform var(--transition),
+    background var(--transition),
+    border-color var(--transition);
+}
+
+.feature-card:hover {
+  transform: translateY(-2px);
+
+  background: rgba(255, 255, 255, 0.07);
+
+  border-color: rgba(226, 157, 78, 0.58);
+}
+
+.feature-icon {
+  width: 41px;
+  height: 41px;
+
+  flex: 0 0 41px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(220, 146, 66, 0.4);
+
+  border-radius: 9px;
+
+  background: rgba(255, 255, 255, 0.055);
+
+  font-size: 19px;
+}
+
+.feature-content h3 {
+  font-size: 13px;
+
+  font-weight: 700;
+
+  color: #fffaf6;
+}
+
+.feature-content p {
+  margin-top: 4px;
+
+  font-size: 10px;
+
+  line-height: 1.4;
+
+  color: #d3b9a2;
+}
+
+/* =========================================================
+   LEFT FOOTER
+   ========================================================= */
+
+.restaurant-footer {
+  margin-top: auto;
+
+  padding-top: 18px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  border-top: 1px solid rgba(220, 146, 66, 0.25);
+
+  font-size: 10px;
+
+  color: #bda18b;
+}
+
+.restaurant-footer strong {
+  font-size: 12px;
+
+  letter-spacing: 0.5px;
+
+  color: var(--accent-light);
+}
+
+.restaurant-footer strong span {
+  color: #f0bd82;
+}
+
+/* =========================================================
+   RIGHT SIDE
+   ========================================================= */
+
+.login-selection {
+  min-width: 0;
+
+  background: linear-gradient(135deg, #fbf5ed, #fffaf4);
+
+  border-left: 1px solid #ead9c8;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-selection-content {
+  width: 100%;
+
+  padding: 52px 11%;
+}
+
+/* =========================================================
+   RIGHT HEADER
+   ========================================================= */
+
+.login-card-header {
+  margin-bottom: 29px;
+}
+
+.login-eyebrow {
+  display: block;
+
+  margin-bottom: 10px;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.7px;
+
+  color: #c77525;
+}
+
+.login-card-header h2 {
+  font-size: 32px;
+
+  line-height: 1.15;
+
+  font-weight: 800;
+
+  color: #26180f;
+}
+
+.login-card-header p {
+  margin-top: 9px;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+
+  color: #806c5f;
+}
+
+/* =========================================================
+   ROLE OPTIONS
+   ========================================================= */
+
+.role-options {
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+.role-option {
+  width: 100%;
+
+  min-height: 79px;
+
+  padding: 11px 13px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  text-align: left;
+
+  border: 1px solid #e6d6c5;
+
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.85);
+
+  color: var(--text-dark);
+
+  cursor: pointer;
+
+  transition:
+    transform var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition),
+    background var(--transition);
+}
+
+.role-option:hover {
+  transform: translateY(-1px);
+
+  border-color: #d99a50;
+
+  background: #ffffff;
+
+  box-shadow: 0 8px 20px rgba(74, 43, 22, 0.08);
+}
+
+.role-option:focus-visible {
+  outline: 2px solid #d9903f;
+
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   ADMIN DEFAULT ACTIVE BORDER
+   ========================================================= */
+
+.role-option:first-child {
+  border: 2px solid #2a1b12;
+}
+
+/* =========================================================
+   ROLE ICON
+   ========================================================= */
+
+.role-option-icon {
+  width: 50px;
+  height: 50px;
+
+  flex: 0 0 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #edcfaa;
+
+  border-radius: 11px;
+
+  background: #fff2df;
+
+  font-size: 22px;
+}
+
+/* =========================================================
+   ROLE TEXT
+   ========================================================= */
+
+.role-option-content {
+  min-width: 0;
+
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.role-option-content strong {
+  font-size: 15px;
+
+  font-weight: 750;
+
+  color: #21150e;
+}
+
+.role-option-content span {
+  margin-top: 4px;
+
+  font-size: 10px;
+
+  color: #846f61;
+}
+
+/* =========================================================
+   ARROW
+   ========================================================= */
+
+.role-arrow {
+  flex: 0 0 auto;
+
+  font-size: 25px;
+
+  font-weight: 300;
+
+  color: #c77b2c;
+
+  transition: transform var(--transition);
+}
+
+.role-option:hover .role-arrow {
+  transform: translateX(3px);
+}
+
+/* =========================================================
+   SECURITY MESSAGE
+   ========================================================= */
+
+.security-message {
+  margin-top: 25px;
+
+  padding: 13px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  border: 1px solid #ecd2af;
+
+  border-radius: 10px;
+
+  background: #fff6e9;
+}
+
+.security-icon {
+  width: 32px;
+  height: 32px;
+
+  flex: 0 0 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 16px;
+}
+
+.security-content {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+}
+
+.security-content strong {
+  font-size: 11px;
+
+  color: #70451f;
+}
+
+.security-content span {
+  margin-top: 3px;
+
+  font-size: 9px;
+
+  line-height: 1.4;
+
+  color: #947760;
+}
+
+/* =========================================================
+   RIGHT FOOTER
+   ========================================================= */
+
+.login-card-footer {
+  margin-top: 25px;
+
+  padding-top: 17px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-top: 1px solid #eadfd3;
+}
+
+.login-card-footer strong {
+  font-size: 10px;
+
+  letter-spacing: 0.4px;
+
+  color: #38251b;
+}
+
+.login-card-footer strong span {
+  color: #c77b2c;
+}
+
+.login-card-footer > span {
+  font-size: 9px;
+
+  color: #a08d80;
+}
+
+/* =========================================================
+   LAPTOP
+   ========================================================= */
+
+@media (max-width: 1200px) {
+  .role-login-page {
+    padding: 30px;
+  }
+
+  .role-login-card {
+    min-height: 700px;
+  }
+
+  .restaurant-info-content {
+    min-height: 700px;
+
+    padding: 40px 6%;
+  }
+
+  .hero-content {
+    margin-top: 65px;
+  }
+
+  .hero-content h2 {
+    font-size: 45px;
+  }
+
+  .feature-grid {
+    margin-top: 32px;
+  }
+
+  .login-selection-content {
+    padding: 40px 9%;
+  }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .role-login-page {
+    padding: 25px;
+  }
+
+  .role-login-card {
+    grid-template-columns: 1fr;
+
+    max-width: 680px;
+
+    min-height: auto;
+  }
+
+  .restaurant-info-content {
+    min-height: auto;
+
+    padding: 38px 40px;
+  }
+
+  .hero-content {
+    margin-top: 50px;
+  }
+
+  .hero-content h2 {
+    font-size: 43px;
+  }
+
+  .feature-grid {
+    margin-bottom: 25px;
+  }
+
+  .restaurant-footer {
+    margin-top: 35px;
+  }
+
+  .login-selection {
+    border-left: 0;
+
+    border-top: 1px solid #ead9c8;
+  }
+
+  .login-selection-content {
+    padding: 40px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .role-login-page {
+    min-height: 100vh;
+
+    padding: 16px;
+  }
+
+  .role-login-card {
+    border-radius: 17px;
+  }
+
+  .restaurant-info-content {
+    padding: 28px 22px;
+  }
+
+  .brand {
+    gap: 12px;
+  }
+
+  .s2s-logo {
+    width: 54px;
+    height: 54px;
+
+    flex-basis: 54px;
+
+    border-radius: 13px;
+  }
+
+  .s2s-letter,
+  .s2s-number {
+    font-size: 17px;
+  }
+
+  .brand-text h1 {
+    font-size: 24px;
+  }
+
+  .brand-text p {
+    font-size: 11px;
+  }
+
+  .hero-content {
+    margin-top: 45px;
+  }
+
+  .hero-eyebrow {
+    font-size: 9px;
+
+    letter-spacing: 1.3px;
+  }
+
+  .hero-content h2 {
+    font-size: 34px;
+
+    letter-spacing: -0.8px;
+  }
+
+  .hero-description {
+    margin-top: 20px;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+
+    gap: 10px;
+
+    margin-top: 28px;
+  }
+
+  .feature-card {
+    min-height: 70px;
+  }
+
+  .restaurant-footer {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 5px;
+  }
+
+  .login-selection-content {
+    padding: 32px 22px;
+  }
+
+  .login-card-header {
+    margin-bottom: 24px;
+  }
+
+  .login-card-header h2 {
+    font-size: 27px;
+  }
+
+  .login-card-header p {
+    font-size: 12px;
+  }
+
+  .role-options {
+    gap: 10px;
+  }
+
+  .role-option {
+    min-height: 70px;
+
+    padding: 10px;
+
+    gap: 10px;
+  }
+
+  .role-option-icon {
+    width: 45px;
+    height: 45px;
+
+    flex-basis: 45px;
+
+    font-size: 19px;
+  }
+
+  .role-option-content strong {
+    font-size: 14px;
+  }
+
+  .role-option-content span {
+    font-size: 9px;
+  }
+
+  .role-arrow {
+    font-size: 22px;
+  }
+
+  .security-message {
+    margin-top: 20px;
+
+    padding: 11px;
+  }
+
+  .login-card-footer {
+    margin-top: 20px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+  .role-login-page {
+    padding: 10px;
+  }
+
+  .restaurant-info-content {
+    padding: 25px 18px;
+  }
+
+  .s2s-logo {
+    width: 50px;
+    height: 50px;
+
+    flex-basis: 50px;
+  }
+
+  .s2s-letter,
+  .s2s-number {
+    font-size: 16px;
+  }
+
+  .brand-text h1 {
+    font-size: 21px;
+  }
+
+  .brand-text p {
+    font-size: 10px;
+  }
+
+  .hero-content {
+    margin-top: 38px;
+  }
+
+  .hero-content h2 {
+    font-size: 30px;
+  }
+
+  .hero-description {
+    font-size: 12px;
+  }
+
+  .feature-card {
+    padding: 10px;
+  }
+
+  .feature-icon {
+    width: 37px;
+    height: 37px;
+
+    flex-basis: 37px;
+
+    font-size: 17px;
+  }
+
+  .feature-content h3 {
+    font-size: 12px;
+  }
+
+  .feature-content p {
+    font-size: 9px;
+  }
+
+  .login-selection-content {
+    padding: 28px 16px;
+  }
+
+  .login-card-header h2 {
+    font-size: 25px;
+  }
+
+  .login-card-header p {
+    font-size: 11px;
+  }
+
+  .role-option {
+    min-height: 66px;
+  }
+
+  .role-option-icon {
+    width: 41px;
+    height: 41px;
+
+    flex-basis: 41px;
+
+    font-size: 18px;
+  }
+
+  .security-content span {
+    font-size: 8px;
+  }
+
+  .login-card-footer > span {
+    font-size: 8px;
+  }
+}
+
+/* =========================================================
+   TOUCH DEVICES
+   ========================================================= */
+
+@media (hover: none) {
+  .feature-card:hover {
+    transform: none;
+
+    background: rgba(255, 255, 255, 0.045);
+
+    border-color: rgba(218, 145, 64, 0.37);
+  }
+
+  .role-option:hover {
+    transform: none;
+
+    box-shadow: none;
+  }
+
+  .role-option:hover .role-arrow {
+    transform: none;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+
+    transition: none !important;
+
+    scroll-behavior: auto !important;
+  }
+}

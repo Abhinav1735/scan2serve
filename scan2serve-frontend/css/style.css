@@ -1,0 +1,155 @@
+/* =========================================================
+   SCAN2SERVE
+   SHARED BASE THEME
+========================================================= */
+
+:root {
+  /* COLORS */
+  --gold: #c58b45;
+  --light-gold: #e0b36f;
+
+  --dark-brown: #3a2418;
+  --brown: #4a2d1c;
+
+  --cream: #fffaf3;
+  --white: #ffffff;
+
+  --terracotta: #b96925;
+  --orange: #d88932;
+
+  --background: #f7f0e7;
+
+  --muted-text: #725f4e;
+
+  --danger: #a33d31;
+
+  /* SIZES */
+  --radius-large: 14px;
+  --radius-medium: 10px;
+
+  /* SHADOWS */
+  --shadow-small: 0 4px 14px rgba(58, 36, 24, 0.08);
+
+  --shadow-medium: 0 8px 22px rgba(58, 36, 24, 0.12);
+
+  --shadow-large: 0 12px 35px rgba(45, 29, 20, 0.22);
+
+  /* TRANSITION */
+  --transition: 0.2s ease;
+}
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   HTML / BODY
+========================================================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+
+  background: linear-gradient(180deg, #f8f2ea 0%, #f4ece2 100%);
+
+  color: var(--dark-brown);
+
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
+
+  font-size: 14px;
+
+  line-height: 1.5;
+}
+
+/* =========================================================
+   BUTTON RESET
+========================================================= */
+
+button {
+  font: inherit;
+
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.65;
+}
+
+/* =========================================================
+   LINK RESET
+========================================================= */
+
+a {
+  color: inherit;
+
+  text-decoration: none;
+}
+
+/* =========================================================
+   INPUT RESET
+========================================================= */
+
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+/* =========================================================
+   HIDDEN
+========================================================= */
+
+.hidden {
+  display: none !important;
+}
+
+/* =========================================================
+   SELECTION
+========================================================= */
+
+::selection {
+  background: rgba(197, 139, 69, 0.25);
+
+  color: var(--dark-brown);
+}
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: #eee4d8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c9aa86;
+
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
+}
