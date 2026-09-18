@@ -7,7 +7,7 @@
    CONFIG
    ========================================================= */
 
-const API_BASE_URL = "http://localhost:8080";
+const API_BASE_URL = "https://scan2servee.onrender.com";
 
 const TOKEN_KEY = "scan2serve_token";
 

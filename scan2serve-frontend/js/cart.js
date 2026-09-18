@@ -4,7 +4,7 @@
    CONFIGURATION
 ========================================================= */
 
-const BACKEND_URL = "http://localhost:8080";
+const BACKEND_URL = "https://scan2servee.onrender.com";
 
 let gstPercentage = null;
 

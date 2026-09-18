@@ -8,7 +8,7 @@
    BACKEND
 ========================================================= */
 
-const BACKEND_URL = "http://localhost:8080";
+const BACKEND_URL = "https://scan2servee.onrender.com";
 
 /* =========================================================
    STATE
@@ -547,15 +547,15 @@ function createMenuItemCard(item) {
 
    "/uploads/menu-images/a.jpg"
        ↓
-   "http://localhost:8080/uploads/menu-images/a.jpg"
+   https://scan2servee.onrender.com/uploads/menu-images/a.jpg
 
 
    "uploads/menu-images/a.jpg"
        ↓
-   "http://localhost:8080/uploads/menu-images/a.jpg"
+   https://scan2servee.onrender.com/uploads/menu-images/a.jpg
 
 
-   "http://localhost:8080/uploads/menu-images/a.jpg"
+   https://scan2servee.onrender.com/uploads/menu-images/a.jpg
        ↓
    unchanged
 

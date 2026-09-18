@@ -14,7 +14,7 @@
      - Safe to initialize multiple times
      ========================================================= */
 
-  const API_BASE_URL = "http://localhost:8080";
+  const API_BASE_URL = "https://scan2servee.onrender.com";
 
   const TOKEN_KEY = "scan2serve_token";
   const TAB_KEY = "scan2serve_bill_desk_selected_tab";

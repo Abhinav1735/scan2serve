@@ -9,7 +9,7 @@
    CONFIGURATION
    ========================================================= */
 
-const API_BASE_URL = "http://localhost:8080";
+const API_BASE_URL = "https://scan2servee.onrender.com";
 
 /* =========================================================
    KITCHEN SESSION

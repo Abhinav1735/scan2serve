@@ -8,7 +8,7 @@
    CONFIGURATION
    ========================================================= */
 
-const ADMIN_KITCHEN_API_BASE_URL = "http://localhost:8080";
+const ADMIN_KITCHEN_API_BASE_URL = "https://scan2servee.onrender.com";
 
 const ADMIN_KITCHEN_TOKEN_KEY = "scan2serve_token";
 

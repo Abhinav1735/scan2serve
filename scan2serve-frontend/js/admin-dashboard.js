@@ -12,7 +12,7 @@ Built against the current Scan2Serve backend
    CONFIG
 ======================================================= */
 
-const API_BASE_URL = "http://localhost:8080";
+const API_BASE_URL = "https://scan2servee.onrender.com";
 
 /* =======================================================
    STORAGE KEYS
