@@ -2,6 +2,8 @@ package com.scan2serve.security;
 
 import com.scan2serve.security.CustomUserDetailsService;
 import com.scan2serve.security.JwtAuthenticationFilter;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -15,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -28,6 +31,16 @@ public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final CustomUserDetailsService customUserDetailsService;
 
+    /*
+     * Frontend URL is supplied through environment variable:
+     *
+     * FRONTEND_URL=https://scan2servee.vercel.app
+     *
+     * Local development continues to use localhost by default.
+     */
+    @Value("${app.frontend.url:http://localhost:5500}")
+    private String frontendUrl;
+
     public SecurityConfig(
             JwtAuthenticationFilter jwtAuthenticationFilter,
             CustomUserDetailsService customUserDetailsService
@@ -40,18 +53,14 @@ public class SecurityConfig {
      * Main Spring Security configuration.
      */
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(
+            HttpSecurity http
+    ) throws Exception {
 
         http
 
                 // ---------------------------------------------------------
                 // CORS
-                // ---------------------------------------------------------
-                // Required because the frontend is running on:
-                // http://127.0.0.1:5500
-                //
-                // The browser sends an OPTIONS preflight request before
-                // requests containing Authorization headers.
                 // ---------------------------------------------------------
                 .cors(cors -> cors
                         .configurationSource(corsConfigurationSource())
@@ -68,8 +77,6 @@ public class SecurityConfig {
                 // ---------------------------------------------------------
                 // SESSION MANAGEMENT
                 // ---------------------------------------------------------
-                // JWT authentication is stateless.
-                // ---------------------------------------------------------
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(
                                 SessionCreationPolicy.STATELESS
@@ -82,11 +89,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
 
                         // -------------------------------------------------
-                        // IMPORTANT:
-                        // Allow browser CORS preflight requests.
-                        //
-                        // Without this, Spring Security can return 403
-                        // before the actual API request is reached.
+                        // CORS PREFLIGHT
                         // -------------------------------------------------
                         .requestMatchers(
                                 HttpMethod.OPTIONS,
@@ -94,13 +97,13 @@ public class SecurityConfig {
                         ).permitAll()
 
                         // -------------------------------------------------
-                        // Authentication
+                        // AUTHENTICATION
                         // -------------------------------------------------
                         .requestMatchers("/auth/**")
                         .permitAll()
 
                         // -------------------------------------------------
-                        // Swagger / OpenAPI
+                        // SWAGGER / OPENAPI
                         // -------------------------------------------------
                         .requestMatchers(
                                 "/swagger-ui/**",
@@ -111,23 +114,11 @@ public class SecurityConfig {
                         // -------------------------------------------------
                         // ADMIN
                         // -------------------------------------------------
-                        // ADMIN only:
-                        //
-                        // /admin/dashboard
-                        // /admin/menu
-                        // /admin/category
-                        // /admin/tables
-                        // /admin/orders
-                        // /admin/employees
-                        // etc.
-                        // -------------------------------------------------
                         .requestMatchers("/admin/**")
                         .hasRole("ADMIN")
 
                         // -------------------------------------------------
                         // BILL DESK
-                        // -------------------------------------------------
-                        // ADMIN and BILL_DESK can access Bill Desk APIs.
                         // -------------------------------------------------
                         .requestMatchers("/bill-desk/**")
                         .hasAnyRole(
@@ -138,8 +129,6 @@ public class SecurityConfig {
                         // -------------------------------------------------
                         // KITCHEN
                         // -------------------------------------------------
-                        // ADMIN and KITCHEN can access Kitchen APIs.
-                        // -------------------------------------------------
                         .requestMatchers("/kitchen/**")
                         .hasAnyRole(
                                 "ADMIN",
@@ -147,10 +136,7 @@ public class SecurityConfig {
                         )
 
                         // -------------------------------------------------
-                        // Remaining endpoints
-                        // -------------------------------------------------
-                        // Customer-facing APIs currently remain publicly
-                        // accessible.
+                        // REMAINING ENDPOINTS
                         // -------------------------------------------------
                         .anyRequest()
                         .permitAll()
@@ -158,9 +144,6 @@ public class SecurityConfig {
 
                 // ---------------------------------------------------------
                 // JWT FILTER
-                // ---------------------------------------------------------
-                // Run JWT authentication before Spring's normal username/
-                // password authentication filter.
                 // ---------------------------------------------------------
                 .addFilterBefore(
                         jwtAuthenticationFilter,
@@ -198,8 +181,6 @@ public class SecurityConfig {
 
     /**
      * BCrypt password encoder.
-     *
-     * Employee passwords are stored as BCrypt hashes.
      */
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -219,16 +200,20 @@ public class SecurityConfig {
         // -------------------------------------------------------------
         // FRONTEND ORIGINS
         // -------------------------------------------------------------
-        // Your current frontend is running from:
-        //
+        // Local development:
+        // http://localhost:5500
         // http://127.0.0.1:5500
         //
-        // We also allow localhost because Live Server can be opened
-        // using either hostname.
+        // Production:
+        // https://scan2servee.vercel.app
+        //
+        // The production URL is read from:
+        // FRONTEND_URL
         // -------------------------------------------------------------
         configuration.setAllowedOrigins(List.of(
                 "http://localhost:5500",
-                "http://127.0.0.1:5500"
+                "http://127.0.0.1:5500",
+                frontendUrl
         ));
 
         // -------------------------------------------------------------
@@ -245,9 +230,6 @@ public class SecurityConfig {
         // -------------------------------------------------------------
         // REQUEST HEADERS
         // -------------------------------------------------------------
-        // Authorization is required for JWT requests.
-        // Content-Type is required for JSON and multipart requests.
-        // -------------------------------------------------------------
         configuration.setAllowedHeaders(List.of(
                 "Authorization",
                 "Content-Type",
@@ -258,8 +240,6 @@ public class SecurityConfig {
 
         // -------------------------------------------------------------
         // RESPONSE HEADERS
-        // -------------------------------------------------------------
-        // Content-Disposition is useful for QR/image downloads.
         // -------------------------------------------------------------
         configuration.setExposedHeaders(List.of(
                 "Content-Disposition"

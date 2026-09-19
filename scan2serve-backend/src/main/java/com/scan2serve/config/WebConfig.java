@@ -1,5 +1,6 @@
 package com.scan2serve.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -12,6 +13,9 @@ import java.nio.file.Paths;
 @Configuration
 public class WebConfig {
 
+    @Value("${app.frontend.url:http://localhost:5500}")
+    private String frontendUrl;
+
     @Bean
     public WebMvcConfigurer corsConfigurer() {
 
@@ -19,8 +23,7 @@ public class WebConfig {
 
             @Override
             public void addResourceHandlers(
-                    ResourceHandlerRegistry registry
-            ) {
+                    ResourceHandlerRegistry registry) {
 
                 Path uploadPath =
                         Paths.get("uploads/menu-images")
@@ -38,14 +41,14 @@ public class WebConfig {
 
             @Override
             public void addCorsMappings(
-                    CorsRegistry registry
-            ) {
+                    CorsRegistry registry) {
 
                 registry
                         .addMapping("/**")
                         .allowedOrigins(
                                 "http://localhost:5500",
-                                "http://127.0.0.1:5500"
+                                "http://127.0.0.1:5500",
+                                frontendUrl
                         )
                         .allowedMethods(
                                 "GET",
