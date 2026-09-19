@@ -33,7 +33,7 @@ public class QrCodeService {
                 .orElseThrow(() -> new RuntimeException("Table Not Found"));
 
         String customerUrl =
-                frontendUrl + "/menu?table=" + table.getTableNumber();
+                frontendUrl + "/menu.html?table=" + table.getTableNumber();
 
         try {
 
