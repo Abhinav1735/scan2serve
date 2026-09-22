@@ -1,5 +1,7 @@
 package com.scan2serve.service;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.scan2serve.entity.Menu;
 import com.scan2serve.exception.custom.MenuNotFoundException;
 import com.scan2serve.repository.MenuRepository;
@@ -7,14 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 
 @Service
 public class MenuImageService {
@@ -30,20 +27,26 @@ public class MenuImageService {
                     "image/gif"
             );
 
-    private static final String IMAGE_URL_PREFIX =
-            "/uploads/menu-images/";
-
-    private static final Path IMAGE_DIRECTORY =
-            Paths.get("uploads/menu-images")
-                    .toAbsolutePath()
-                    .normalize();
+    private static final String CLOUDINARY_FOLDER =
+            "scan2serve/menu-images";
 
     private final MenuRepository menuRepository;
+    private final Cloudinary cloudinary;
 
-    public MenuImageService(MenuRepository menuRepository) {
+    public MenuImageService(
+            MenuRepository menuRepository,
+            Cloudinary cloudinary
+    ) {
         this.menuRepository = menuRepository;
+        this.cloudinary = cloudinary;
     }
 
+    /**
+     * Upload a menu image to Cloudinary.
+     *
+     * The Cloudinary URL returned after upload is stored
+     * in the Menu entity's imageUrl field.
+     */
     public Menu uploadImage(
             Long menuId,
             MultipartFile image
@@ -56,74 +59,58 @@ public class MenuImageService {
 
         String oldImageUrl = menu.getImageUrl();
 
-        Path newImagePath = null;
-
         try {
 
-            Files.createDirectories(IMAGE_DIRECTORY);
+            Map<String, Object> uploadOptions =
+                    ObjectUtils.asMap(
+                            "folder", CLOUDINARY_FOLDER,
+                            "resource_type", "image"
+                    );
 
-            String extension =
-                    getExtension(image.getContentType());
+            Map<?, ?> uploadResult =
+                    cloudinary.uploader().upload(
+                            image.getBytes(),
+                            uploadOptions
+                    );
 
-            String fileName =
-                    UUID.randomUUID() + extension;
+            Object secureUrl =
+                    uploadResult.get("secure_url");
 
-            newImagePath =
-                    IMAGE_DIRECTORY
-                            .resolve(fileName)
-                            .normalize();
-
-            if (!newImagePath.startsWith(IMAGE_DIRECTORY)) {
-                throw new IllegalArgumentException(
-                        "Invalid image file."
+            if (secureUrl == null) {
+                throw new IllegalStateException(
+                        "Cloudinary did not return an image URL."
                 );
             }
 
-            try (InputStream inputStream =
-                         image.getInputStream()) {
+            String newImageUrl =
+                    secureUrl.toString();
 
-                Files.copy(
-                        inputStream,
-                        newImagePath,
-                        StandardCopyOption.REPLACE_EXISTING
-                );
-            }
-
-            menu.setImageUrl(
-                    IMAGE_URL_PREFIX + fileName
-            );
+            menu.setImageUrl(newImageUrl);
 
             Menu savedMenu =
                     menuRepository.save(menu);
 
             /*
-             * Delete old image only after the database
-             * successfully stores the new image URL.
+             * The database now contains the new
+             * Cloudinary URL.
+             *
+             * Delete the old Cloudinary image only
+             * after the database update succeeds.
              */
-            deleteStoredImage(oldImageUrl);
+            deleteOldCloudinaryImage(oldImageUrl);
 
             return savedMenu;
 
         } catch (IOException ex) {
 
-            deleteFileQuietly(newImagePath);
-
-            /*
-             * Restore old image URL in memory.
-             */
             menu.setImageUrl(oldImageUrl);
 
             throw new IllegalStateException(
-                    "Unable to save menu image."
+                    "Unable to upload menu image to Cloudinary.",
+                    ex
             );
 
         } catch (RuntimeException ex) {
-
-            /*
-             * If database save fails, remove the newly
-             * uploaded file and restore the old URL.
-             */
-            deleteFileQuietly(newImagePath);
 
             menu.setImageUrl(oldImageUrl);
 
@@ -131,26 +118,33 @@ public class MenuImageService {
         }
     }
 
+    /**
+     * Remove the menu image.
+     *
+     * The database URL is cleared first.
+     * The old Cloudinary image is then deleted.
+     */
     public Menu removeImage(Long menuId) {
 
         Menu menu = menuRepository.findById(menuId)
                 .orElseThrow(MenuNotFoundException::new);
 
-        String oldImageUrl = menu.getImageUrl();
+        String oldImageUrl =
+                menu.getImageUrl();
 
         menu.setImageUrl(null);
 
         Menu savedMenu =
                 menuRepository.save(menu);
 
-        /*
-         * Delete physical file only after DB update.
-         */
-        deleteStoredImage(oldImageUrl);
+        deleteOldCloudinaryImage(oldImageUrl);
 
         return savedMenu;
     }
 
+    /**
+     * Validate uploaded image.
+     */
     private void validateImage(MultipartFile image) {
 
         if (image == null || image.isEmpty()) {
@@ -183,33 +177,16 @@ public class MenuImageService {
         }
     }
 
-    private String getExtension(String contentType) {
-
-        if (contentType == null) {
-            throw new IllegalArgumentException(
-                    "Unsupported image type."
-            );
-        }
-
-        return switch (
-                contentType.toLowerCase(Locale.ROOT)
-                ) {
-
-            case "image/jpeg" -> ".jpg";
-
-            case "image/png" -> ".png";
-
-            case "image/webp" -> ".webp";
-
-            case "image/gif" -> ".gif";
-
-            default -> throw new IllegalArgumentException(
-                    "Unsupported image type."
-            );
-        };
-    }
-
-    private void deleteStoredImage(String imageUrl) {
+    /**
+     * Delete an old Cloudinary image.
+     *
+     * Existing local /uploads URLs are ignored.
+     * This is intentional so existing database records
+     * don't cause errors during migration.
+     */
+    private void deleteOldCloudinaryImage(
+            String imageUrl
+    ) {
 
         if (
                 imageUrl == null ||
@@ -218,43 +195,121 @@ public class MenuImageService {
             return;
         }
 
-        if (!imageUrl.startsWith(IMAGE_URL_PREFIX)) {
-            return;
-        }
-
-        String fileName =
-                imageUrl.substring(
-                        IMAGE_URL_PREFIX.length()
-                );
-
-        Path file =
-                IMAGE_DIRECTORY
-                        .resolve(fileName)
-                        .normalize();
-
-        if (!file.startsWith(IMAGE_DIRECTORY)) {
-            return;
-        }
-
-        deleteFileQuietly(file);
-    }
-
-    private void deleteFileQuietly(Path file) {
-
-        if (file == null) {
+        /*
+         * Only attempt deletion for Cloudinary URLs.
+         */
+        if (!imageUrl.contains("res.cloudinary.com")) {
             return;
         }
 
         try {
 
-            Files.deleteIfExists(file);
+            String publicId =
+                    extractCloudinaryPublicId(imageUrl);
 
-        } catch (IOException ignored) {
+            if (
+                    publicId == null ||
+                            publicId.isBlank()
+            ) {
+                return;
+            }
+
+            cloudinary.uploader().destroy(
+                    publicId,
+                    ObjectUtils.asMap(
+                            "resource_type", "image"
+                    )
+            );
+
+        } catch (Exception ignored) {
 
             /*
-             * Database operation should remain functional
-             * even if an old physical file cannot be deleted.
+             * The database operation has already succeeded.
+             * Failure to delete an old Cloudinary image should
+             * not break the menu operation.
              */
+        }
+    }
+
+    /**
+     * Extract the Cloudinary public ID from a delivery URL.
+     *
+     * Example:
+     *
+     * https://res.cloudinary.com/cloud/image/upload/v123/
+     * scan2serve/menu-images/abc123.jpg
+     *
+     * becomes:
+     *
+     * scan2serve/menu-images/abc123
+     */
+    private String extractCloudinaryPublicId(
+            String imageUrl
+    ) {
+
+        try {
+
+            String marker = "/upload/";
+
+            int uploadIndex =
+                    imageUrl.indexOf(marker);
+
+            if (uploadIndex == -1) {
+                return null;
+            }
+
+            String path =
+                    imageUrl.substring(
+                            uploadIndex + marker.length()
+                    );
+
+            /*
+             * Remove optional transformation/version
+             * information before the public ID.
+             */
+            if (path.startsWith("v")) {
+
+                int slashIndex =
+                        path.indexOf('/');
+
+                if (slashIndex > 0) {
+
+                    String possibleVersion =
+                            path.substring(
+                                    1,
+                                    slashIndex
+                            );
+
+                    if (possibleVersion.matches("\\d+")) {
+
+                        path =
+                                path.substring(
+                                        slashIndex + 1
+                                );
+                    }
+                }
+            }
+
+            /*
+             * Remove file extension.
+             */
+            int extensionIndex =
+                    path.lastIndexOf('.');
+
+            if (extensionIndex > -1) {
+
+                path =
+                        path.substring(
+                                0,
+                                extensionIndex
+                        );
+            }
+
+            return path;
+
+        } catch (Exception ex) {
+
+            return null;
         }
     }
 }

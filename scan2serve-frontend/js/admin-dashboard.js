@@ -1480,12 +1480,14 @@ async function saveMenu(menuId) {
     /*
      * Image upload is a separate backend endpoint.
      */
-    if (image && savedMenu?.id) {
+    const savedMenuId = menuId || savedMenu?.id;
+
+    if (image && savedMenuId) {
       const formData = new FormData();
 
       formData.append("image", image);
 
-      await apiRequest(`/admin/menu/${savedMenu.id}/image`, {
+      await apiRequest(`/admin/menu/${savedMenuId}/image`, {
         method: "POST",
         body: formData,
       });
