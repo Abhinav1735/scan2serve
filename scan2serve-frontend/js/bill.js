@@ -398,7 +398,51 @@ async function loadBill() {
          ITEMS
       =================================================== */
 
+      const mergedServedItems = new Map();
+
+      const displayItems = [];
+
       items.forEach((item) => {
+        const status = String(item.status || "ORDER_PLACED").toUpperCase();
+
+        /*
+         * Merge only SERVED items with the same item name.
+         */
+        if (status === "SERVED") {
+          const mergeKey = String(item.itemName || "")
+            .trim()
+            .toLowerCase();
+
+          if (mergedServedItems.has(mergeKey)) {
+            const existingItem = mergedServedItems.get(mergeKey);
+
+            existingItem.quantity += Number(item.quantity || 0);
+
+            existingItem.totalPrice += Number(item.totalPrice || 0);
+
+            return;
+          }
+
+          const servedItem = {
+            ...item,
+            quantity: Number(item.quantity || 0),
+            totalPrice: Number(item.totalPrice || 0),
+          };
+
+          mergedServedItems.set(mergeKey, servedItem);
+
+          displayItems.push(servedItem);
+
+          return;
+        }
+
+        /*
+         * All non-SERVED items remain separate.
+         */
+        displayItems.push(item);
+      });
+
+      displayItems.forEach((item) => {
         const row = document.createElement("tr");
 
         /* ===============================================
