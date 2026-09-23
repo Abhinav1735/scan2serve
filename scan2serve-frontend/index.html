@@ -62,6 +62,88 @@
 
 <body>
 
+    <!-- =========================================================
+     FREE BACKEND DEMO NOTICE
+========================================================= -->
+
+<div
+    class="demo-hosting-overlay"
+    id="demoHostingOverlay"
+    aria-hidden="true"
+>
+
+    <div
+        class="demo-hosting-popup"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="demoHostingTitle"
+    >
+
+        <button
+            type="button"
+            class="demo-hosting-close"
+            id="demoHostingClose"
+            aria-label="Close demo hosting notice"
+        >
+            &times;
+        </button>
+
+
+        <div class="demo-hosting-icon">
+            <ion-icon name="cloud-outline"></ion-icon>
+        </div>
+
+
+        <span class="demo-hosting-label">
+            DEMO HOSTING NOTICE
+        </span>
+
+
+        <h2 id="demoHostingTitle">
+            Demo may take a little longer
+        </h2>
+
+
+        <p>
+            Scan2Serve is currently running on a
+            <strong>free backend server</strong>.
+        </p>
+
+
+        <p>
+            Because the free server may go idle when
+            there is no activity, the first request can
+            take a little longer while the server wakes up.
+        </p>
+
+
+        <div class="demo-hosting-note">
+
+            <ion-icon
+                name="information-circle-outline"
+            ></ion-icon>
+
+            <span>
+                This is a hosting limitation, not an issue
+                with the Scan2Serve application.
+            </span>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="demo-hosting-button"
+            id="demoHostingContinue"
+        >
+            Continue to Demo
+            <ion-icon name="arrow-forward-outline"></ion-icon>
+        </button>
+
+    </div>
+
+</div>
+
 
 <!-- =========================================================
      HEADER

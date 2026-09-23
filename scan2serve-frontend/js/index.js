@@ -303,6 +303,130 @@ function initializeHeaderScroll() {
 
 
 /* =========================================================
+   FREE BACKEND DEMO NOTICE
+========================================================= */
+
+function initializeDemoHostingNotice() {
+
+    const overlay =
+        document.getElementById("demoHostingOverlay");
+
+    const closeButton =
+        document.getElementById("demoHostingClose");
+
+    const continueButton =
+        document.getElementById("demoHostingContinue");
+
+
+    if (
+        !overlay ||
+        !closeButton ||
+        !continueButton
+    ) {
+        return;
+    }
+
+
+    function closeNotice() {
+
+        overlay.classList.remove("active");
+
+        overlay.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+        document.body.style.overflow = "";
+    }
+
+
+    function openNotice() {
+
+        overlay.classList.add("active");
+
+        overlay.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+        document.body.style.overflow = "hidden";
+    }
+
+
+    closeButton.addEventListener(
+        "click",
+        closeNotice
+    );
+
+
+    continueButton.addEventListener(
+        "click",
+        closeNotice
+    );
+
+
+    overlay.addEventListener(
+        "click",
+        function (event) {
+
+            if (
+                event.target === overlay
+            ) {
+                closeNotice();
+            }
+
+        }
+    );
+
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key === "Escape" &&
+                overlay.classList.contains("active")
+            ) {
+                closeNotice();
+            }
+
+        }
+    );
+
+
+    /*
+     * Show once per browser session.
+     * It will appear again when the browser
+     * session is started again.
+     */
+
+    const noticeShown =
+        sessionStorage.getItem(
+            "scan2serveDemoNoticeShown"
+        );
+
+
+    if (!noticeShown) {
+
+        setTimeout(
+            function () {
+
+                openNotice();
+
+                sessionStorage.setItem(
+                    "scan2serveDemoNoticeShown",
+                    "true"
+                );
+
+            },
+            700
+        );
+    }
+
+}
+
+
+/* =========================================================
    INITIALIZE
 ========================================================= */
 
@@ -321,6 +445,8 @@ document.addEventListener(
         initializeHeaderScroll();
 
         handleTableRedirect();
+
+        initializeDemoHostingNotice();
 
         console.log(
             "Scan2Serve landing page initialized."

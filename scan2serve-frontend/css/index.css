@@ -1624,3 +1624,396 @@ grid-template-columns:repeat(8,minmax(0,1fr))
     }
 
 }
+
+/* =========================================================
+   FREE BACKEND DEMO NOTICE
+========================================================= */
+
+.demo-hosting-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 99999;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(10, 10, 10, 0.78);
+
+    backdrop-filter: blur(8px);
+
+    -webkit-backdrop-filter: blur(8px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+}
+
+
+.demo-hosting-overlay.active {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+}
+
+
+/* =========================================================
+   POPUP
+========================================================= */
+
+.demo-hosting-popup {
+
+    position: relative;
+
+    width: min(100%, 480px);
+
+    padding: 34px 32px 30px;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #2b2b2c,
+            #1e1e1f
+        );
+
+    border: 1px solid
+        rgba(255, 219, 112, 0.22);
+
+    box-shadow:
+        0 25px 80px
+        rgba(0, 0, 0, 0.55),
+
+        0 0 40px
+        rgba(255, 219, 112, 0.08);
+
+    transform:
+        translateY(20px)
+        scale(0.96);
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+.demo-hosting-overlay.active
+.demo-hosting-popup {
+
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
+.demo-hosting-close {
+
+    position: absolute;
+
+    top: 14px;
+
+    right: 14px;
+
+    width: 34px;
+
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.06);
+
+    color:
+        #aaaaaa;
+
+    font-size: 25px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.demo-hosting-close:hover {
+
+    background:
+        rgba(255, 219, 112, 0.14);
+
+    color:
+        #ffdb70;
+}
+
+
+/* =========================================================
+   ICON
+========================================================= */
+
+.demo-hosting-icon {
+
+    width: 58px;
+
+    height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-bottom: 18px;
+
+    border-radius: 16px;
+
+    background:
+        rgba(255, 219, 112, 0.10);
+
+    border: 1px solid
+        rgba(255, 219, 112, 0.18);
+
+    color:
+        #ffdb70;
+
+    font-size: 28px;
+}
+
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.demo-hosting-label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color:
+        #ffdb70;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.8px;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.demo-hosting-popup h2 {
+
+    margin: 0 0 16px;
+
+    color:
+        #fafafa;
+
+    font-size: 25px;
+
+    line-height: 1.25;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   TEXT
+========================================================= */
+
+.demo-hosting-popup p {
+
+    margin: 0 0 12px;
+
+    color:
+        #aaaaaa;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+.demo-hosting-popup p strong {
+
+    color:
+        #fafafa;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   INFORMATION NOTE
+========================================================= */
+
+.demo-hosting-note {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    margin-top: 20px;
+
+    padding: 14px 15px;
+
+    border-radius: 12px;
+
+    background:
+        rgba(255, 219, 112, 0.07);
+
+    border:
+        1px solid
+        rgba(255, 219, 112, 0.13);
+
+    color:
+        #bdbdbd;
+
+    font-size: 12px;
+
+    line-height: 1.55;
+}
+
+
+.demo-hosting-note ion-icon {
+
+    flex-shrink: 0;
+
+    margin-top: 1px;
+
+    color:
+        #ffdb70;
+
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   CONTINUE BUTTON
+========================================================= */
+
+.demo-hosting-button {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    margin-top: 22px;
+
+    padding: 13px 18px;
+
+    border: 0;
+
+    border-radius: 12px;
+
+    background:
+        #ffdb70;
+
+    color:
+        #1e1e1f;
+
+    font-family:
+        inherit;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.demo-hosting-button:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 25px
+        rgba(255, 219, 112, 0.20);
+}
+
+
+.demo-hosting-button ion-icon {
+
+    font-size: 17px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .demo-hosting-overlay {
+
+        padding: 16px;
+    }
+
+
+    .demo-hosting-popup {
+
+        padding: 30px 22px 24px;
+
+        border-radius: 18px;
+    }
+
+
+    .demo-hosting-popup h2 {
+
+        font-size: 22px;
+    }
+
+
+    .demo-hosting-popup p {
+
+        font-size: 13px;
+    }
+
+}
