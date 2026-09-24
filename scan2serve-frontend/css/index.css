@@ -894,7 +894,7 @@ align-items:center;
 justify-content:center
 }
 
-.developer-ring{
+/* .developer-ring{
 width:215px;
 height:215px;
 border:1px solid rgba(255,219,112,0.45);
@@ -902,25 +902,32 @@ border-radius:50%;
 display:flex;
 align-items:center;
 justify-content:center;
-box-shadow:0 25px 60px rgba(0,0,0,0.30)
+box-shadow:0 25px 60px rgba(0,0,0,0.30);
+overflow:hidden
+} */
+
+
+/* =========================================================
+   DEVELOPER IMAGE
+========================================================= */
+
+.developer-image{
+width:200px;
+height:200px;
+border-radius:50%;
+object-fit:cover;
+object-position:center;
+display:block;
+border:3px solid rgba(255,219,112,0.18);
+box-shadow:0 12px 35px rgba(0,0,0,0.30);
+transition:var(--transition)
 }
 
-.developer-logo{
-width:115px;
-height:115px;
-border-radius:30px;
-background:linear-gradient(
-145deg,
-#e6b058,
-#ca8d38
-);
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:31px;
-font-weight:800;
-letter-spacing:1px
+.developer-image:hover{
+transform:scale(1.04);
+border-color:rgba(255,219,112,0.45)
 }
+
 
 .developer-content h2{
 font-size:43px;
@@ -1389,10 +1396,7 @@ transform:translateY(-3px)
         height:180px
     }
 
-    .developer-logo{
-        width:100px;
-        height:100px
-    }
+    
 
     .developer-content h2{
         font-size:34px
@@ -1481,6 +1485,11 @@ transform:translateY(-3px)
 
     .technology-card>span{
         font-size:9px
+    }
+
+    .developer-image{
+        width:170px;
+        height:170px
     }
 
 }
@@ -1624,6 +1633,7 @@ grid-template-columns:repeat(8,minmax(0,1fr))
     }
 
 }
+
 
 /* =========================================================
    FREE BACKEND DEMO NOTICE
