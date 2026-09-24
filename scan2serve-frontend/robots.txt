@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://scan2servee.vercel.app/sitemap.xml
