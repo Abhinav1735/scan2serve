@@ -8,7 +8,7 @@
    BACKEND
 ========================================================= */
 
-const BACKEND_URL = "https://scan2servee.onrender.com";
+const BACKEND_URL = "https://p01--scan2serve-backend--ttjpyrf6rh7d.code.run";
 
 /* =========================================================
    STATE
@@ -547,15 +547,15 @@ function createMenuItemCard(item) {
 
    "/uploads/menu-images/a.jpg"
        ↓
-   https://scan2servee.onrender.com/uploads/menu-images/a.jpg
+   https://p01--scan2serve-backend--ttjpyrf6rh7d.code.run/uploads/menu-images/a.jpg
 
 
    "uploads/menu-images/a.jpg"
        ↓
-   https://scan2servee.onrender.com/uploads/menu-images/a.jpg
+   https://p01--scan2serve-backend--ttjpyrf6rh7d.code.run/uploads/menu-images/a.jpg
 
 
-   https://scan2servee.onrender.com/uploads/menu-images/a.jpg
+   https://p01--scan2serve-backend--ttjpyrf6rh7d.code.run/uploads/menu-images/a.jpg
        ↓
    unchanged
 

@@ -4,7 +4,7 @@
    CONFIGURATION
 ========================================================= */
 
-const BACKEND_URL = "https://scan2servee.onrender.com";
+const BACKEND_URL = "https://p01--scan2serve-backend--ttjpyrf6rh7d.code.run";
 
 let gstPercentage = null;
 

@@ -4,7 +4,7 @@
    SCAN2SERVE - CUSTOMER BILL
 ========================================================= */
 
-const API_URL = "https://scan2servee.onrender.com";
+const API_URL = "https://p01--scan2serve-backend--ttjpyrf6rh7d.code.run";
 
 /* =========================================================
    URL PARAMETERS
