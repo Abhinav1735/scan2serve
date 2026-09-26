@@ -1411,6 +1411,109 @@ async function openMenuModal(menuId = null) {
   });
 }
 
+
+/* =======================================================
+   MENU IMAGE OPTIMIZATION
+======================================================= */
+
+async function optimizeMenuImage(file) {
+  if (!file || !file.type.startsWith("image/")) {
+    return file;
+  }
+
+  // Small images do not need extra processing.
+  if (file.size <= 1.5 * 1024 * 1024) {
+    return file;
+  }
+
+  // Keep animated GIFs unchanged.
+  if (file.type === "image/gif") {
+    return file;
+  }
+
+  try {
+    const bitmap = await createImageBitmap(file);
+
+    const maxDimension = 1400;
+
+    const scale = Math.min(
+      1,
+      maxDimension / Math.max(bitmap.width, bitmap.height)
+    );
+
+    const width = Math.max(
+      1,
+      Math.round(bitmap.width * scale)
+    );
+
+    const height = Math.max(
+      1,
+      Math.round(bitmap.height * scale)
+    );
+
+    const canvas = document.createElement("canvas");
+
+    canvas.width = width;
+    canvas.height = height;
+
+    const context = canvas.getContext("2d", {
+      alpha: true,
+    });
+
+    if (!context) {
+      bitmap.close();
+      return file;
+    }
+
+    context.drawImage(
+      bitmap,
+      0,
+      0,
+      width,
+      height
+    );
+
+    bitmap.close();
+
+    const blob = await new Promise((resolve) => {
+      canvas.toBlob(
+        resolve,
+        "image/webp",
+        0.82
+      );
+    });
+
+    // If compression doesn't make the file smaller,
+    // keep the original image.
+    if (!blob || blob.size >= file.size) {
+      return file;
+    }
+
+    const baseName = file.name.replace(
+      /\.[^/.]+$/,
+      ""
+    );
+
+    return new File(
+      [blob],
+      `${baseName}.webp`,
+      {
+        type: "image/webp",
+        lastModified: Date.now(),
+      }
+    );
+  } catch (error) {
+    console.warn(
+      "Menu image optimization skipped:",
+      error
+    );
+
+    return file;
+  }
+}
+
+
+
 /* =======================================================
    SAVE MENU
 ======================================================= */
@@ -1418,36 +1521,57 @@ async function openMenuModal(menuId = null) {
 async function saveMenu(menuId) {
   const name = $("menuName")?.value.trim();
 
-  const description = $("menuDescription")?.value.trim();
+  const description =
+    $("menuDescription")?.value.trim();
 
-  const price = Number($("menuPrice")?.value);
+  const price =
+    Number($("menuPrice")?.value);
 
-  const categoryId = Number($("menuCategory")?.value);
+  const categoryId =
+    Number($("menuCategory")?.value);
 
-  const available = Boolean($("menuAvailable")?.checked);
+  const available =
+    Boolean($("menuAvailable")?.checked);
 
-  const image = $("menuImage")?.files?.[0];
+  let image =
+    $("menuImage")?.files?.[0];
 
   if (!name) {
-    showToast("Validation", "Menu name is required.", "error");
+    showToast(
+      "Validation",
+      "Menu name is required.",
+      "error"
+    );
 
     return;
   }
 
   if (!description) {
-    showToast("Validation", "Description is required.", "error");
+    showToast(
+      "Validation",
+      "Description is required.",
+      "error"
+    );
 
     return;
   }
 
   if (!Number.isFinite(price) || price <= 0) {
-    showToast("Validation", "Price must be greater than 0.", "error");
+    showToast(
+      "Validation",
+      "Price must be greater than 0.",
+      "error"
+    );
 
     return;
   }
 
   if (!Number.isInteger(categoryId) || categoryId <= 0) {
-    showToast("Validation", "Please select a category.", "error");
+    showToast(
+      "Validation",
+      "Please select a category.",
+      "error"
+    );
 
     return;
   }
@@ -1463,51 +1587,142 @@ async function saveMenu(menuId) {
   try {
     let response;
 
+    /*
+     * Create new menu
+     * OR
+     * update existing menu.
+     */
     if (menuId) {
-      response = await apiRequest(`/admin/menu/${menuId}`, {
-        method: "PUT",
-        body: request,
-      });
+      response = await apiRequest(
+        `/admin/menu/${menuId}`,
+        {
+          method: "PUT",
+          body: request,
+        }
+      );
     } else {
-      response = await apiRequest("/admin/menu", {
-        method: "POST",
-        body: request,
-      });
+      response = await apiRequest(
+        "/admin/menu",
+        {
+          method: "POST",
+          body: request,
+        }
+      );
     }
 
-    const savedMenu = unwrapResponse(response);
+    let savedMenu =
+      unwrapResponse(response);
 
     /*
-     * Image upload is a separate backend endpoint.
+     * Compress large images before
+     * sending them to the backend.
      */
-    const savedMenuId = menuId || savedMenu?.id;
-
-    if (image && savedMenuId) {
-      const formData = new FormData();
-
-      formData.append("image", image);
-
-      await apiRequest(`/admin/menu/${savedMenuId}/image`, {
-        method: "POST",
-        body: formData,
-      });
+    if (image) {
+      image =
+        await optimizeMenuImage(image);
     }
 
+    const savedMenuId =
+      menuId || savedMenu?.id;
+
+    /*
+     * Upload image if selected.
+     */
+    if (image && savedMenuId) {
+      const formData =
+        new FormData();
+
+      formData.append(
+        "image",
+        image
+      );
+
+      const imageResponse =
+        await apiRequest(
+          `/admin/menu/${savedMenuId}/image`,
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
+
+      /*
+       * IMPORTANT:
+       * The image endpoint already returns
+       * the complete updated menu.
+       *
+       * Therefore we can use this response
+       * directly instead of calling
+       * GET /admin/menu again.
+       */
+      savedMenu =
+        unwrapResponse(imageResponse);
+    }
+
+    /*
+     * =====================================================
+     * UPDATE LOCAL MENU DATA
+     * =====================================================
+     *
+     * We do NOT call:
+     *
+     * await loadMenu(true);
+     *
+     * anymore.
+     */
+
+    if (savedMenu?.id) {
+      const savedId =
+        String(savedMenu.id);
+
+      const existingIndex =
+        menuData.findIndex(
+          (menu) =>
+            String(menu?.id) === savedId
+        );
+
+      /*
+       * Existing menu -> replace it.
+       */
+      if (existingIndex >= 0) {
+        menuData[existingIndex] =
+          savedMenu;
+      }
+
+      /*
+       * New menu -> add it directly.
+       */
+      else {
+        menuData.push(savedMenu);
+      }
+    }
+
+    menuLoaded = true;
+
+    /*
+     * Refresh only the local UI.
+     */
+    ensureMenuCategoryFilter();
+
+    renderMenu();
+
     closeModal();
-
-    menuLoaded = false;
-
-    await loadMenu(true);
 
     showToast(
       "Success",
       menuId
         ? "Menu item updated successfully."
         : "Menu item created successfully.",
-      "success",
+      "success"
     );
+
   } catch (error) {
-    showToast("Unable to save menu item", getErrorMessage(error), "error");
+
+    showToast(
+      "Unable to save menu item",
+      getErrorMessage(error),
+      "error"
+    );
   }
 }
 
